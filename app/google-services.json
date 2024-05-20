@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "825063107231",
+    "project_id": "my-firebase-chat-baa60",
+    "storage_bucket": "my-firebase-chat-baa60.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825063107231:android:478bceb54822ea7c5ad0aa",
+        "android_client_info": {
+          "package_name": "com.capstone.compassionly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825063107231-2vdimpe1vovvt1u9l43dsauqbgm4gnb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD02qa3whlFCaeHDT8guip_bps5PodfMsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825063107231-2vdimpe1vovvt1u9l43dsauqbgm4gnb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825063107231:android:7a831f7e81d64c545ad0aa",
+        "android_client_info": {
+          "package_name": "com.dicoding.myfirebasechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825063107231-2vdimpe1vovvt1u9l43dsauqbgm4gnb9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD02qa3whlFCaeHDT8guip_bps5PodfMsQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825063107231-2vdimpe1vovvt1u9l43dsauqbgm4gnb9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
