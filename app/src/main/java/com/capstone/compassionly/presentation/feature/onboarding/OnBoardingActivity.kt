@@ -1,12 +1,10 @@
 package com.capstone.compassionly.presentation.feature.onboarding
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityOnBoardingBinding

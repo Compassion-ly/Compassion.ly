@@ -1,17 +1,10 @@
 package com.capstone.compassionly.presentation.feature.users_data
 
-import android.app.Activity
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsetsController
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityProfileBinding
 import com.capstone.compassionly.utility.Utils

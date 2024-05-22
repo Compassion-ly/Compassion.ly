@@ -2,11 +2,10 @@ package com.capstone.compassionly.presentation.feature.onboarding.screen
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.capstone.compassionly.R
+import androidx.fragment.app.Fragment
 import com.capstone.compassionly.databinding.FragmentScreen2Binding
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
