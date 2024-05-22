@@ -50,5 +50,110 @@
 
     </style>
 
-    <style name="Theme.Compassionly" parent="Base.Theme.Compassionly" />
+    <style name="Theme.Compassionly" parent="Base.Theme.Compassionly">
+        
+    </style>
+
+    <!-- Font Style Theme. -->
+    <style name="Theme.Compassionly.Poppins_20_bold_secondaryContainer" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/md_theme_secondaryContainer</item>
+    </style>
+
+    <style name="Theme.Compassionly.Poppins_20_bold_onPrimary" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="Theme.Compassionly.Poppins_12_light_onPrimary" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins_light</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="Theme.Compassionly.Poppins_18_bold_ternaryContainer" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/md_theme_tertiaryContainer</item>
+    </style>
+
+    <style name="Theme.Compassionly.Poppins_12_regular_onSurface" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_theme_onSurface</item>
+    </style>
+
+    <style name="Theme.Compassionly.Poppins_12_regular_primary" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+    </style>
+
+    <style name="Theme.Compassionly.Poppins_12_regular_outline" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_theme_outline</item>
+    </style>
+
+    <style name="Theme.Compassionly.Poppins_12_regular_onPrimary" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+
+    <style name="Theme.Compassionly.Poppins_12_bold_onPrimary" parent="Base.Theme.Compassionly">
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+
+    <!-- Button Style Theme. -->
+    <style name="Button_White_12_regular" parent="Widget.Material3.Button">
+        <item name="background">@drawable/button_white_custom</item>
+        <item name="android:backgroundTint">@color/md_theme_onPrimary</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/md_theme_primary</item>
+    </style>
+
+    <style name="Button_Primary_12_regular" parent="Widget.Material3.Button">
+        <item name="background">@drawable/button_primary_custom</item>
+        <item name="android:backgroundTint">@color/md_theme_primary</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+    <style name="Button_Primary_12_onPrimaryFixedVariant" parent="Widget.Material3.Button">
+        <item name="background">@drawable/button_primary_custom</item>
+        <item name="android:backgroundTint">@color/md_theme_onPrimaryFixedVariant</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:textColor">@color/md_theme_onPrimary</item>
+    </style>
+
+    <!-- EditText Style Theme. -->
+    <style name="EditTextCustom_allradius_12" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColor">@color/md_theme_primary</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+    </style>
+
+    <style name="Dropdown_allradius_12" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="endIconDrawable">@drawable/icon_arrow_dropdown_selector</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+    </style>
+
+    <!-- Image Style Theme. -->
+    <style name="Image_Corner_12">
+        <item name="cornerSize">12dp</item>
+    </style>
 </resources>

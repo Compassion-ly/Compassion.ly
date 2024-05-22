@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">Compassionly</string>
+    <string name="app_name">Compassion.ly</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="imageonboardingscreen1">Tampil Gambar Fitur Belajar</string>
+    <string name="learn">Learn</string>
+    <string name="short_desc_learn">Kami menyediakan platform informasi mengenai mata pelajaran sesuai jurusan yang ada di perkuliahan.</string>
+    <string name="imageonboardingscreen2">Tampil Gambar Sistem Rekomendasi</string>
+    <string name="system_recommedation">Sistem Rekomendasi</string>
+    <string name="short_desc_system_recommedation">Kami menyediakan sistem rekomendasi jurusan yang akan membantu anda dalam mengambil keputusan untuk menempuh pendidikan lanjut di masa depan.</string>
+    <string name="next">Selanjutnya</string>
+    <string name="back">Kembali</string>
+    <string name="signIn">Sign In</string>
+    <string name="please_fill_your_data">Lengkapi data dirimu</string>
+    <string name="request_to_fill_in_the_data_correctly">Mohon isi data berikut dengan benar</string>
+    <string name="first_name">Nama awal</string>
+    <string name="last_name">Nama akhir</string>
+    <string name="phone_number">Nomor Telepon</string>
+    <string name="gender">Jenis Kelamin</string>
+    <string name="school_from">Asal Sekolah</string>
+    <string name="save">Simpan</string>
+    <string name="username_profile">Nama User</string>
+    <string name="email">Email</string>
+    <string name="phone_number_sample">+6288712654514</string>
+    <string name="gender_sample">Laki-Laki</string>
+    <string name="school_sample">Nusantara</string>
+    <string name="school_detail">Detail Sekolah</string>
+    <string name="npsn">NPSN</string>
+    <string name="npsn_sample">123D1234</string>
+    <string name="major">Jurusan</string>
+    <string name="major_sample">MIPA</string>
+    <string name="province">Provinsi</string>
+    <string name="province_sample">Kalimantan Barat</string>
+    <string name="city">Kota</string>
+    <string name="sign_out">Keluar</string>
 </resources>

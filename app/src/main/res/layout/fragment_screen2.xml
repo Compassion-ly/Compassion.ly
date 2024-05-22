@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.feature.onboarding.screen.Screen2">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+        
+        <ImageView
+            android:layout_width="325dp"
+            android:layout_height="250dp"
+            android:src="@drawable/image_onboarding_screen_2"
+            android:contentDescription="@string/imageonboardingscreen2"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/system_recommedation"
+            style="@style/Theme.Compassionly.Poppins_20_bold_secondaryContainer"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:lineSpacingExtra="5dp"
+            android:text="@string/short_desc_system_recommedation"
+            style="@style/Theme.Compassionly.Poppins_12_regular_onSurface"/>
+        
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:paddingHorizontal="20dp"
+        android:paddingBottom="20dp"
+        android:layout_gravity="bottom">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBack"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="15dp"
+            style="@style/Button_White_12_regular"
+            android:text="@string/back"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignIn"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:layout_marginStart="15dp"
+            style="@style/Button_Primary_12_regular"
+            android:text="@string/signIn"/>
+        
+    </LinearLayout>
+    
+</FrameLayout>
