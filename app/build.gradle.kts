@@ -49,4 +49,10 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("com.tbuonomo:dotsindicator:4.3")
+
+    //view pager
+    implementation("androidx.viewpager2:viewpager2:1.1.0")
+
+    //circle crop image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
 }
