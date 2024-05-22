@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.capstone.compassionly"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -48,6 +48,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    // Indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
 }
