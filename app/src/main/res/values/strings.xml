@@ -33,4 +33,6 @@
     <string name="province_sample">Kalimantan Barat</string>
     <string name="city">Kota</string>
     <string name="sign_out">Keluar</string>
+    <string name="tab_ketertarikan">Ketertarikan</string>
+    <string name="tab_jurusan">Jurusan</string>
 </resources>
