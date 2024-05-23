@@ -1,6 +1,5 @@
 package com.capstone.compassionly.presentation.adapter
 
-import android.graphics.drawable.Drawable
 import android.util.ArrayMap
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
-                    android:text="asdfdasfasdfdsafdsfsdfdanij s fasfhdsayufsabf usyabfuaf ub auydsfbusabyfsaufb dsa syfbsdayfb dasufb"
+                    android:text="@string/sample_introduction_learn_feature"
                     style="@style/Theme.Compassionly.Poppins_12_regular_onSurface"
                     android:lineSpacingExtra="10dp"/>
 
