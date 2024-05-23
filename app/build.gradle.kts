@@ -35,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -50,3 +53,10 @@ dependencies {
 
     implementation("com.tbuonomo:dotsindicator:4.3")
 }
+    //crop profile
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    //glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+
+
