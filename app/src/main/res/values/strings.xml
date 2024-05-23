@@ -33,4 +33,8 @@
     <string name="province_sample">Kalimantan Barat</string>
     <string name="city">Kota</string>
     <string name="sign_out">Keluar</string>
+    <string name="app_logo">App Logo</string>
+    <string name="circle_deco">circle decoration</string>
+    <string name="login_title">Ayo cari \nPassion mu !!</string>
+    <string name="login_desc">Sudahkah menemukan jurusan yang kamu \nimpikan? Jika belum ayo cari tahu bersama kami!</string>
 </resources>

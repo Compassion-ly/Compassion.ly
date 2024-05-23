@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -48,5 +49,14 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
     implementation("com.tbuonomo:dotsindicator:4.3")
+
+    //login with firebase
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.play.services.auth)
+
+    //custom sign in button
+    implementation (libs.custom.google.signin.button)
+
 }
