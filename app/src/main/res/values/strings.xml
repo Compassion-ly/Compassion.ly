@@ -37,4 +37,7 @@
     <string name="coding">Coding</string>
     <string name="desc_icon_star">Menampilkan icon bintang</string>
     <string name="_5">5</string>
+    <string name="sample_step_for_introduction_features">Step 1 : Klik menu learn pada halaman dashboard</string>
+    <string name="desc_features_iamge">Gambar langkah-langkah menjalankan fitur</string>
+    <string name="sample_introduction_learn_feature">Pada bagian ini, kamu akan mempelajari beberapa topik. Kamu dapat memilih untuk mempelajarinya atau melewatinya untuk mempelajari topik lainnya. Setelah belajar, kamu akan diminta untuk memberikan penilaian terhadap materi yang telah dipelajari dengan skala rating dari satu hingga lima bintang yang digunakan untuk menggambarkan tingkat kesukaan. Satu bintang menunjukkan ketidaksukaan, sementara lima bintang menunjukkan kesukaan yang sangat tinggi.</string>
 </resources>
