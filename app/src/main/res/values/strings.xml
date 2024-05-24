@@ -34,4 +34,10 @@
     <string name="city">Kota</string>
     <string name="sign_out">Keluar</string>
     <string name="search_hint_jurusan">Cari jurusan yang kamu inginkan…</string>
+    <string name="fitur_utama">Fitur Utama</string>
+    <string name="pengantar_njurusan">Pengantar \nJurusan</string>
+    <string name="sistem_rekomendasi">Sistem \nRekomendasi</string>
+    <string name="riwayat_topik">Riwayat Topik</string>
+    <string name="logo">logo</string>
+    <string name="halo">Halo,</string>
 </resources>

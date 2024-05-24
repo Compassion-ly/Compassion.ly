@@ -21,7 +21,8 @@
         android:layout_height="70dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="80dp"
-        android:src="@drawable/ic_launcher_background"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/image_compassion_logos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
-        android:text="Halo,"
+        android:fontFamily="@font/poppins"
+        android:text="@string/halo"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,13 +44,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="10dp"
-        android:text="username !"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/poppins"
         android:textColor="@color/white"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/tv_halo"
-        app:layout_constraintTop_toBottomOf="@id/logo" />
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        tools:text="username !" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/iv_profile_photo"
@@ -56,7 +59,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="35dp"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@drawable/image_profile_sample"
         app:civ_border_width="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -94,9 +97,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/slider"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.denzcoskun.imageslider.ImageSlider
         android:id="@+id/slider"
@@ -122,20 +126,22 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="20dp"
-        android:text="Fitur Utama"
+        android:fontFamily="@font/poppins"
+        android:text="@string/fitur_utama"
         android:textSize="15sp"
+        android:textStyle="normal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/slider" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/learn_feature"
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="245dp"
         android:background="@drawable/tertiary_container"
         android:elevation="4dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_fitur">
 
@@ -143,7 +149,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Learn"
+            android:fontFamily="@font/poppins"
+            android:text="@string/learn"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -151,9 +158,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/iv_learn"
             android:layout_width="90dp"
             android:layout_height="80dp"
             android:layout_marginBottom="-3dp"
+            android:contentDescription="@string/learn"
             android:src="@drawable/learn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -162,20 +171,23 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/pengantar_jurusan_feature"
-        android:layout_width="205dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginStart="185dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:background="@drawable/tertiary_container"
         android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/learn_feature"
         app:layout_constraintTop_toBottomOf="@id/tv_fitur">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Pengantar \nJurusan"
+            android:fontFamily="@font/poppins"
+            android:text="@string/pengantar_njurusan"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -186,6 +198,7 @@
             android:layout_width="100dp"
             android:layout_height="90dp"
             android:layout_marginBottom="-8dp"
+            android:contentDescription="@string/pengantar_njurusan"
             android:src="@drawable/pengantar_jurusan"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -206,7 +219,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="Sistem \nRekomendasi"
+            android:fontFamily="@font/poppins"
+            android:text="@string/sistem_rekomendasi"
             android:textColor="@color/white"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -217,6 +231,7 @@
             android:layout_width="130dp"
             android:layout_height="100dp"
             android:layout_marginBottom="-3dp"
+            android:contentDescription="@string/sistem_rekomendasi"
             android:src="@drawable/sistem_rekomendasi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -227,7 +242,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
-        android:contentDescription="Riwayat Topik"
+        android:contentDescription="@string/riwayat_topik"
         android:src="@drawable/history"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

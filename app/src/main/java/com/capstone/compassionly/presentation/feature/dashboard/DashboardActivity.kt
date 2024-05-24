@@ -3,7 +3,6 @@ package com.capstone.compassionly.presentation.feature.dashboard
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.capstone.compassionly.MainActivity
@@ -21,18 +20,19 @@ class DashboardActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setStatusBarColor()
 
         val imageList = ArrayList<SlideModel>().apply {
-            add(SlideModel("https://bit.ly/2YoJ77H"))
-            add(SlideModel("https://bit.ly/2BteuF2"))
-            add(SlideModel("https://bit.ly/3fLJf72"))
+            add(SlideModel(R.drawable.slider1))
+            add(SlideModel(R.drawable.slider2))
+            add(SlideModel(R.drawable.slider3))
         }
 
         with(binding) {
             searchView.setupWithSearchBar(searchBar)
         }
 
-        binding.slider.setImageList(imageList, ScaleTypes.FIT)
+        binding.slider.setImageList(imageList, ScaleTypes.CENTER_CROP)
 
         binding.learnFeature.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -46,5 +46,9 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+    private fun setStatusBarColor() {
+        window.statusBarColor = getColor(R.color.md_theme_primaryContainer)
+
     }
 }
