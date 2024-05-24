@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "223463197253",
+    "project_id": "compassion-ly-app",
+    "storage_bucket": "compassion-ly-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223463197253:android:33d4afb2fe669f0d62b12c",
+        "android_client_info": {
+          "package_name": "com.capstone.compassionly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223463197253-0urnapdf69s6ftm4nb98jjamk5o02da8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.capstone.compassionly",
+            "certificate_hash": "915674e21aa3e2539646d2cf00d7748489e27b39"
+          }
+        },
+        {
+          "client_id": "223463197253-hrce5hgpv7jtarp0318nl29k53ovj2kd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACG3HpVdjxmHLAkiMCHZ7nT2s6XHNzeFs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223463197253-hrce5hgpv7jtarp0318nl29k53ovj2kd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
