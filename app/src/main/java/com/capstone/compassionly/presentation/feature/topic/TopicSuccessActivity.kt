@@ -35,6 +35,7 @@ class TopicSuccessActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("For ux user")
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this@TopicSuccessActivity, TopicActivity::class.java)

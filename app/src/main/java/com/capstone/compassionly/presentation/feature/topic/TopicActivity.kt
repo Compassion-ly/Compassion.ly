@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -38,9 +36,8 @@ class TopicActivity : AppCompatActivity() {
         adapter.save(setDataDummy())
 
         val rc = binding.vpTopic[0] as? RecyclerView
-        rc?.let {
-            it.addOnItemTouchListener(swipeControlListener)
-        }
+        rc?.addOnItemTouchListener(swipeControlListener)
+
         binding.apply {
             vpTopic.adapter = adapter
             btnPlay.setOnClickListener { showDetailTopic() }

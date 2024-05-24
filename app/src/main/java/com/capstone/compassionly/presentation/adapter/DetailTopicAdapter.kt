@@ -1,15 +1,10 @@
 package com.capstone.compassionly.presentation.adapter
 
-import android.adservices.topics.Topic
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.compassionly.databinding.ItemDetailTopicBinding
-import com.capstone.compassionly.databinding.ItemRandomTopicBinding
 import com.capstone.compassionly.models.TopicModel
-import com.capstone.compassionly.presentation.feature.topic.DetailTopicActivity
 
 class DetailTopicAdapter : RecyclerView.Adapter<DetailTopicAdapter.DetailViewHolder>() {
 

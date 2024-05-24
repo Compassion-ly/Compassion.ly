@@ -2,18 +2,13 @@ package com.capstone.compassionly.presentation.feature.topic
 
 import android.app.Dialog
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailBinding
 import com.capstone.compassionly.databinding.LayoutDialogRateTopicBinding
-import com.capstone.compassionly.models.Material
 import com.capstone.compassionly.models.TopicModel
 import com.capstone.compassionly.presentation.adapter.DetailTopicAdapter
 import com.capstone.compassionly.utility.Utils
