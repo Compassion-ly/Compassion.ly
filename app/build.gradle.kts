@@ -52,11 +52,11 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("com.tbuonomo:dotsindicator:4.3")
-}
     //crop profile
     implementation("de.hdodenhof:circleimageview:3.1.0")
-
     //glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
+}
+
 
 

@@ -17,8 +17,6 @@
         <activity
             android:name=".presentation.feature.users_data.FormCompleteUserProfile"
             android:exported="false"/>
-            android:name=".presentation.feature.pengantar_jurusan.DetailMatkulActivity"
-            android:exported="false" />
         <activity
             android:name=".presentation.feature.pengantar_jurusan.DetailJurusanActivity"
             android:exported="false" />
@@ -26,7 +24,7 @@
             android:name=".presentation.feature.pengantar_jurusan.PengantarJurusanActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.feature.login.LoginActivity"
+            android:name=".presentation.feature.pengantar_jurusan.DetailMatkulActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.feature.users_data.ProfileActivity"

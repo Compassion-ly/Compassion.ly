@@ -3,8 +3,11 @@ package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailJurusanBinding
 import com.capstone.compassionly.presentation.adapter.ListCourseAdapter
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Course
@@ -18,6 +21,12 @@ class DetailJurusanActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityDetailJurusanBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         val majorId = intent.getIntExtra(MAJOR_ID, -1)
         if (majorId != -1) {
