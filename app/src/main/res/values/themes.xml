@@ -115,6 +115,7 @@
     <style name="Button_White_12_regular" parent="Widget.Material3.Button">
         <item name="background">@drawable/button_white_custom</item>
         <item name="android:backgroundTint">@color/md_theme_onPrimary</item>
+        <item name="cornerRadius">12dp</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
         <item name="android:textColor">@color/md_theme_primary</item>
     </style>
@@ -168,5 +169,25 @@
         <item name="cornerSize">12dp</item>
     </style>
 
+    <!-- Dialog Style Theme. -->
+    <style name="MaterialDialogSheet" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@style/MaterialDialogSheetAnimation</item>
+    </style>
+
+    <style name="MaterialDialogSheetAnimation">
+        <item name="android:windowEnterAnimation">@anim/popup_show</item>
+        <item name="android:windowExitAnimation">@anim/popup_close</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/md_theme_outline</item>
+        <item name="colorControlActivated">@color/md_theme_tertiaryFixedDim</item>
+    </style>
 
 </resources>
