@@ -33,4 +33,5 @@
     <string name="province_sample">Kalimantan Barat</string>
     <string name="city">Kota</string>
     <string name="sign_out">Keluar</string>
+    <string name="search_hint_jurusan">Cari jurusan yang kamu inginkan…</string>
 </resources>

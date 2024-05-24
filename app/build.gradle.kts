@@ -35,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -49,4 +52,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation("com.tbuonomo:dotsindicator:4.3")
+    //crop profile
+    implementation(libs.circleimageview)
+
+    //slider image
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 }
