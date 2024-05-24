@@ -16,7 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityLoginBinding
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
-import com.capstone.compassionly.presentation.feature.users_data.FormCompleteUserProfile
+import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -84,7 +84,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            startActivity(Intent(this@LoginActivity, FormCompleteUserProfile::class.java))
+            startActivity(Intent(this@LoginActivity, OnBoardingActivity::class.java))
             finish()
         }
     }
