@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,6 +18,9 @@ import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityLoginBinding
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
+import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
+import com.capstone.compassionly.repository.di.StateInjection
+import com.capstone.compassionly.utility.Utils
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -28,13 +32,18 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginViewModel
+    private val onBoardViewModel : OnBoardViewModel by viewModels {
+        StateInjection.onBoardInjection(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        stateCheck()
+        Utils.changeStatusBarColorWhite(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -86,6 +95,16 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser != null) {
             startActivity(Intent(this@LoginActivity, OnBoardingActivity::class.java))
             finish()
+        }
+    }
+
+    private fun stateCheck() {
+        onBoardViewModel.getOnBoardState().observe(this) {
+            if (it.isNullOrBlank()) {
+                val intent = Intent(this@LoginActivity, OnBoardingActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 }
