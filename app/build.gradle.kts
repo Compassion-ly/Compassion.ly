@@ -47,16 +47,20 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    //viewmodel
+    // View Model
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
+    implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.activity.ktx)
+
+    // Dot indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
 
-    //login with firebase
+    // Login with Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
@@ -66,7 +70,10 @@ dependencies {
     implementation("androidx.credentials:credentials-play-services-auth:1.2.2")
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.0")
 
-    //custom sign in button
+    // Custom SignIn Button
     implementation(libs.custom.google.signin.button)
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
 }
