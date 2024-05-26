@@ -7,14 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.capstone.compassionly.databinding.FragmentScreen2Binding
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
 import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
 import com.capstone.compassionly.repository.di.StateInjection
-import com.capstone.compassionly.utility.datasupport.StateAppPreference
-import com.capstone.compassionly.utility.datasupport.datastore
 
 class Screen2 : Fragment() {
 
