@@ -29,9 +29,6 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
         val listJurusan = DataDummyUtil.getMajors()
 
-        with(binding) {
-            searchView.setupWithSearchBar(searchBar)
-        }
         setStatusBarColor()
         setListMajor(listJurusan)
         showRecyclerView()
