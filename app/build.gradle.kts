@@ -37,6 +37,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -60,6 +63,7 @@ dependencies {
     // Dot indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
 
+
     // Login with Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
@@ -75,5 +79,11 @@ dependencies {
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    //crop profile
+    implementation(libs.circleimageview)
+
+    //slider image
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
 }
