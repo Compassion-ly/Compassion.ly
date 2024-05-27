@@ -28,10 +28,6 @@ class DashboardActivity : AppCompatActivity() {
             add(SlideModel(R.drawable.slider3))
         }
 
-        with(binding) {
-            searchView.setupWithSearchBar(searchBar)
-        }
-
         binding.slider.setImageList(imageList, ScaleTypes.CENTER_CROP)
 
         binding.learnFeature.setOnClickListener {
