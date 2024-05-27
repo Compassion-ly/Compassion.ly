@@ -62,4 +62,6 @@
     <string name="riwayat_topik">Riwayat Topik</string>
     <string name="logo">logo</string>
     <string name="halo">Halo,</string>
+    <string name="decoration">Decoration</string>
+    <string name="image_major">Image Major</string>
 </resources>

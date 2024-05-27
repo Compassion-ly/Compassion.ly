@@ -63,7 +63,6 @@ dependencies {
     // Dot indicator
     implementation("com.tbuonomo:dotsindicator:4.3")
 
-
     // Login with Firebase
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
@@ -86,4 +85,10 @@ dependencies {
     //slider image
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
+    //crop profile
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    //glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
+
+
