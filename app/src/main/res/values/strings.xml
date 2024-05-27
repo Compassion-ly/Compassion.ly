@@ -64,4 +64,6 @@
     <string name="halo">Halo,</string>
     <string name="decoration">Decoration</string>
     <string name="image_major">Image Major</string>
+    <string name="tab_ketertarikan">Ketertarikan</string>
+    <string name="tab_jurusan">Jurusan</string>
 </resources>

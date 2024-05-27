@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
@@ -27,6 +28,13 @@
         <activity
             android:name=".presentation.feature.topic_histories.TopicHistoriesActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".presentation.feature.show_recommendation.ShowRecommendationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.show_recommendation.NoDataRecActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.feature.users_data.FormCompleteUserProfile"
             android:exported="false" />
@@ -50,7 +58,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.feature.login.LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
