@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -18,8 +17,6 @@ import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityLoginBinding
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
-import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
-import com.capstone.compassionly.repository.di.StateInjection
 import com.capstone.compassionly.utility.Utils
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.Firebase
@@ -32,14 +29,10 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var viewModel: LoginViewModel
-    private val onBoardViewModel : OnBoardViewModel by viewModels {
-        StateInjection.onBoardInjection(this)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        stateCheck()
         Utils.changeStatusBarColorWhite(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -98,13 +91,5 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun stateCheck() {
-        onBoardViewModel.getOnBoardState().observe(this) {
-            if (it.isNullOrBlank()) {
-                val intent = Intent(this@LoginActivity, OnBoardingActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
+
 }
