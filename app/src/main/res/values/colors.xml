@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="md_theme_primary">#00234E</color>
+    <color name="customs_tatusbar">#0C356A</color>
     <color name="md_theme_onPrimary">#FFFFFF</color>
     <color name="md_theme_primaryContainer">#21447A</color>
     <color name="md_theme_onPrimaryContainer">#CEDDFF</color>
@@ -143,5 +144,5 @@
     <color name="md_theme_surfaceContainer_highContrast">#EEEDF2</color>
     <color name="md_theme_surfaceContainerHigh_highContrast">#E8E7ED</color>
     <color name="md_theme_surfaceContainerHighest_highContrast">#E3E2E7</color>
-
+    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
 </resources>

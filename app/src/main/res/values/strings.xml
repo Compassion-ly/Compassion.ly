@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Compassion.ly</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="imageonboardingscreen1">Tampil Gambar Fitur Belajar</string>
     <string name="learn">Learn</string>
@@ -33,4 +32,38 @@
     <string name="province_sample">Kalimantan Barat</string>
     <string name="city">Kota</string>
     <string name="sign_out">Keluar</string>
+    <string name="search">Search</string>
+    <string name="result">Hasil</string>
+    <string name="coding">Coding</string>
+    <string name="desc_icon_star">Menampilkan icon bintang</string>
+    <string name="_5">5</string>
+    <string name="sample_step_for_introduction_features">Step 1 : Klik menu learn pada halaman dashboard</string>
+    <string name="desc_features_iamge">Gambar langkah-langkah menjalankan fitur</string>
+    <string name="sample_introduction_learn_feature">Pada bagian ini, kamu akan mempelajari beberapa topik. Kamu dapat memilih untuk mempelajarinya atau melewatinya untuk mempelajari topik lainnya. Setelah belajar, kamu akan diminta untuk memberikan penilaian terhadap materi yang telah dipelajari dengan skala rating dari satu hingga lima bintang yang digunakan untuk menggambarkan tingkat kesukaan. Satu bintang menunjukkan ketidaksukaan, sementara lima bintang menunjukkan kesukaan yang sangat tinggi.</string>
+    <string name="skip_intruction">Geser ke arah kiri untuk skip</string>
+    <string name="desc_icon_skip">Icon skip</string>
+    <string name="desc_image_topic">Image of topic</string>
+    <string name="desc_topic_coding"><![CDATA[Coding adalah salah satu tindakan dari langkah-langkah pemrograman dengan menuliskan kode atau skrip dalam bahasa pemrograman. Supaya skrip tersebut dapat dipahami oleh komputer, maka saat proses coding kamu harus mengikuti aturan sintaks yang berlaku]]></string>
+    <string name="desc_button_topic">Tombol baca topic</string>
+    <string name="done">Selesai</string>
+    <string name="user_like_the_material">Apakah kamu menyukai topik ini ?</string>
+    <string name="send">Kirim</string>
+    <string name="image_rate_success">Gambar rating sukses</string>
+    <string name="explore_another_topic">Pelajari topic lain</string>
+    <string name="app_logo">App Logo</string>
+    <string name="circle_deco">circle decoration</string>
+    <string name="login_title">Ayo cari \nPassion mu !!</string>
+    <string name="login_desc">Sudahkah menemukan jurusan yang kamu \nimpikan? Jika belum ayo cari tahu bersama kami!</string>
+    <string name="web_client_id">223463197253-hrce5hgpv7jtarp0318nl29k53ovj2kd.apps.googleusercontent.com</string>
+    <string name="search_hint_jurusan">Cari jurusan yang kamu inginkan…</string>
+    <string name="fitur_utama">Fitur Utama</string>
+    <string name="pengantar_njurusan">Pengantar \nJurusan</string>
+    <string name="sistem_rekomendasi">Sistem \nRekomendasi</string>
+    <string name="riwayat_topik">Riwayat Topik</string>
+    <string name="logo">logo</string>
+    <string name="halo">Halo,</string>
+    <string name="decoration">Decoration</string>
+    <string name="image_major">Image Major</string>
+    <string name="tab_ketertarikan">Ketertarikan</string>
+    <string name="tab_jurusan">Jurusan</string>
 </resources>

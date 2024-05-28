@@ -6,14 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.capstone.compassionly.databinding.FragmentScreen2Binding
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
+import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
+import com.capstone.compassionly.repository.di.StateInjection
 
 class Screen2 : Fragment() {
 
     private var _binding: FragmentScreen2Binding? = null
     private val binding get() = _binding!!
+    private val onBoardViewModel : OnBoardViewModel by viewModels {
+        StateInjection.onBoardInjection(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +37,7 @@ class Screen2 : Fragment() {
             val intentToLogin = Intent(requireActivity(), LoginActivity::class.java)
             startActivity(intentToLogin)
             requireActivity().finish()
+            onBoardViewModel.updateOnBoardState()
         }
 
         return binding.root

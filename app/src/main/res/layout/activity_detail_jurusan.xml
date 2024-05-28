@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".presentation.feature.pengantar_jurusan.DetailJurusanActivity">
+
+        <ImageView
+            android:id="@+id/iv_major"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:contentDescription="@string/image_major"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_major_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="215dp"
+            android:background="@drawable/majorname_bg"
+            android:fontFamily="@font/poppins"
+            android:paddingVertical="10dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="60dp"
+            android:text="Teknik Informatika"
+            android:textColor="@color/md_theme_primary"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_major_def"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/poppins"
+            android:justificationMode="inter_word"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere."
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:textStyle="normal"
+            app:layout_constraintTop_toBottomOf="@+id/tv_major_name" />
+
+        <TextView
+            android:id="@+id/tv_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="Matakuliah Terkait"
+            android:textColor="@color/md_theme_secondary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/tv_major_def" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_courses"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_course"
+            tools:listitem="@layout/item_course" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

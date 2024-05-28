@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,14 +14,48 @@
         android:theme="@style/Theme.Compassionly"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.feature.topic.TopicSuccessActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.topic.DetailTopicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.topic.TopicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.introduction_of_features.IntroductionFeaturesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.topic_histories.TopicHistoriesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".presentation.feature.show_recommendation.ShowRecommendationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.show_recommendation.NoDataRecActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.feature.users_data.FormCompleteUserProfile"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.dashboard.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.pengantar_jurusan.DetailJurusanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.pengantar_jurusan.PengantarJurusanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.pengantar_jurusan.DetailMatkulActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.feature.users_data.ProfileActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".presentation.feature.onboarding.OnBoardingActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".presentation.feature.login.LoginActivity"
             android:exported="true">
