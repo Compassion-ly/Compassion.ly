@@ -1,19 +1,15 @@
 package com.capstone.compassionly.presentation.feature.show_recommendation.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstone.compassionly.R
-import com.capstone.compassionly.databinding.FragmentJurusanBinding
 import com.capstone.compassionly.databinding.FragmentKetertarikanBinding
 import com.capstone.compassionly.presentation.adapter.ListCategoryAdapter
-import com.capstone.compassionly.presentation.adapter.ListMajorRecAdapter
 import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Category
 import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Major
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

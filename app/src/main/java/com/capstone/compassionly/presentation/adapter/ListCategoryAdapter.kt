@@ -1,12 +1,12 @@
 package com.capstone.compassionly.presentation.adapter
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.compassionly.databinding.ItemCategoryBinding
 import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Category
-import android.view.ViewGroup
-import android.view.LayoutInflater
-import androidx.recyclerview.widget.DiffUtil
 
 class ListCategoryAdapter :
     ListAdapter<Category, ListCategoryAdapter.MyViewHolder>(DIFF_CALLBACK) {
