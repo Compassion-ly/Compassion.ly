@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -16,10 +17,12 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "BASEURL", "\"${properties["BASE_URL"]}\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     buildTypes {
         release {
@@ -56,7 +59,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // View Model
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.activity.ktx)
 
@@ -77,26 +80,30 @@ dependencies {
     implementation(libs.custom.google.signin.button)
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
 
-    //crop profile
+    // Crop Profile
     implementation(libs.circleimageview)
 
-    //slider image
-    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    // Slider Image
+    implementation (libs.imageslideshow)
 
-    //crop profile
-    implementation("de.hdodenhof:circleimageview:3.1.0")
+    // View Pager
+    implementation(libs.androidx.viewpager2)
 
-    //glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // Circle Crop Image
+    implementation(libs.circleimageview)
 
-    //view pager
-    implementation("androidx.viewpager2:viewpager2:1.1.0")
+    // Glide
+    implementation(libs.glide)
 
-    //circle crop image
-    implementation("de.hdodenhof:circleimageview:3.1.0")
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
-    //glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    // Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }

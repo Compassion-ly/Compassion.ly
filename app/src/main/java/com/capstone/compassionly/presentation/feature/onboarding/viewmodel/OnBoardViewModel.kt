@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.capstone.compassionly.utility.datasupport.StateAppPreference
+import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import kotlinx.coroutines.launch
 
 class OnBoardViewModel(

@@ -7,9 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.compassionly.databinding.ItemCourseBinding
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Course
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.DetailJurusanActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.DetailMatkulActivity
+import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Course
 
 class ListCourseAdapter :
     ListAdapter<Course, ListCourseAdapter.MyViewHolder>(ListCourseAdapter.DIFF_CALLBACK) {

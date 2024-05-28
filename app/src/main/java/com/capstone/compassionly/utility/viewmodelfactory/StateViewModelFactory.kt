@@ -2,8 +2,8 @@ package com.capstone.compassionly.utility.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
-import com.capstone.compassionly.utility.datasupport.StateAppPreference
 
 class StateViewModelFactory(
     private val state : StateAppPreference?
