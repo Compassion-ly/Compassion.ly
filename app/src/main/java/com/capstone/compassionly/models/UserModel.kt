@@ -4,18 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class UserModel(
 
-	@field:SerializedName("access_token")
-	val accessToken: String? = null,
-
-	@field:SerializedName("token_type")
-	val tokenType: String? = null,
-
-	@field:SerializedName("user")
-	val user: User? = null
-)
-
-data class User(
-
 	@field:SerializedName("uid")
 	val uid: String? = null,
 
@@ -25,8 +13,8 @@ data class User(
 	@field:SerializedName("gender")
 	val gender: String? = null,
 
-	@field:SerializedName("user_schools_id")
-	val userSchoolsId: Int? = null,
+	@field:SerializedName("school_id")
+	val schoolId: Int? = null,
 
 	@field:SerializedName("last_name")
 	val lastName: String? = null,
@@ -40,6 +28,34 @@ data class User(
 	@field:SerializedName("first_name")
 	val firstName: String? = null,
 
+	@field:SerializedName("school_major_id")
+	val schoolMajorId: Int? = null,
+
 	@field:SerializedName("email")
 	val email: String? = null
+)
+
+data class AccessToken(
+
+	@field:SerializedName("access_token")
+	val accessToken: String? = null,
+
+	@field:SerializedName("token_type")
+	val tokenType: String? = null,
+
+	@field:SerializedName("user")
+	val user: UserModel? = null
+)
+
+data class DetailUserModel (
+
+	@field:SerializedName("school")
+	val school: SchoolModel? = null,
+
+	@field:SerializedName("school_major")
+	val schoolMajor: SchoolMajor? = null,
+
+	@field:SerializedName("user")
+	val user: UserModel
+
 )

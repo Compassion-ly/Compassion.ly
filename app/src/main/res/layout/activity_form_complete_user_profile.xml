@@ -75,6 +75,7 @@
                         android:textColor="@color/md_theme_primary"
                         style="@style/Theme.Compassionly.Poppins_12_regular_primary"
                         android:ems="10"
+                        android:maxLines="1"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,6 +101,7 @@
                         android:textColor="@color/md_theme_primary"
                         style="@style/Theme.Compassionly.Poppins_12_regular_primary"
                         android:ems="10"
+                        android:maxLines="1"
                         android:inputType="textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,6 +128,7 @@
                     android:textColor="@color/md_theme_primary"
                     style="@style/Theme.Compassionly.Poppins_12_regular_primary"
                     android:ems="10"
+                    android:maxLines="1"
                     android:inputType="number|phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,8 +152,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    style="@style/Theme.Compassionly.Poppins_12_regular_primary"
+                    android:maxLines="1"
                     android:inputType="none"
+                    style="@style/Theme.Compassionly.Poppins_12_regular_primary"
                     tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -164,6 +168,7 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/school"
                 style="@style/Dropdown_allradius_12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -174,8 +179,34 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:maxLines="1"
                     style="@style/Theme.Compassionly.Poppins_12_regular_primary"
-                    android:inputType="none"
+                    tools:ignore="LabelFor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/schoolMajor"
+                style="@style/Dropdown_allradius_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/major">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteSchoolMajor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    style="@style/Theme.Compassionly.Poppins_12_regular_primary"
                     tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -183,6 +214,7 @@
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
@@ -191,6 +223,23 @@
         
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/containerLoad"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/loadingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

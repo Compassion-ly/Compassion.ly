@@ -13,5 +13,5 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="250"
-        android:font="@font/poppins_regular" />
+        android:font="@font/poppins_light" />
 </font-family>

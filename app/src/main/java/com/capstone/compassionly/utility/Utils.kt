@@ -7,6 +7,7 @@ import android.os.Build
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.capstone.compassionly.R
@@ -48,6 +49,10 @@ object Utils {
         }
 
         return dialog
+    }
+
+    fun showToast(context: Context, message: String) {
+        Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
     }
 
 }

@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primaryContainer))
+                binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
                 val intent = Intent(this@MainActivity, LoginActivity::class.java)
                 startActivity(intent)
                 finish()
