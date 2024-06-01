@@ -1,20 +1,19 @@
 package com.capstone.compassionly.repository.core.network
 
+
 import android.util.Log
-import androidx.lifecycle.liveData
 import com.capstone.compassionly.datasource.network.ApiConfiguration
 import com.capstone.compassionly.datasource.network.HitPointService
 import com.capstone.compassionly.models.AccessTokenRequest
-import com.capstone.compassionly.models.AccessTokenRequest2
-import com.capstone.compassionly.models.UserModel
-import com.google.gson.Gson
-import retrofit2.HttpException
+import com.capstone.compassionly.models.AccessTokenResponse
+import com.capstone.compassionly.models.LoginResponse
 import retrofit2.Response
 
 
 class UserRepository(private val hitPointService: HitPointService) {
-    suspend fun sendToken(token: String): Response<UserModel> {
+    suspend fun sendToken(token: String): Response<AccessTokenResponse> {
         val body = AccessTokenRequest(token)
+        Log.d("UserRepository", "Sending token: $token")
         return ApiConfiguration.hitPointService.accessToken(body)
     }
 

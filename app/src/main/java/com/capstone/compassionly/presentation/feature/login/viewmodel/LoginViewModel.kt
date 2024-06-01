@@ -8,8 +8,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.capstone.compassionly.models.AccessTokenResponse
 import com.capstone.compassionly.models.ErrorModel2
-import com.capstone.compassionly.models.UserModel
 import com.capstone.compassionly.repository.core.network.UserRepository
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -57,27 +57,30 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     _loginResult.value = FirebaseAuth.getInstance().currentUser
+                    Log.d(TAG, "FirebaseAuth successful: ${task.result?.user}")
                     sendTokenToServer()
-                    Log.d(TAG, "$idToken")
+                    Log.d(TAG, "Token: $idToken")
                 } else {
                     _loginResult.value = null
                 }
             }
     }
 
-    private val sendTokenResult: MutableLiveData<Resources<UserModel>> = MutableLiveData()
-    val getSendTokenResult: LiveData<Resources<UserModel>> = sendTokenResult
+    private val sendTokenResult: MutableLiveData<Resources<AccessTokenResponse>> = MutableLiveData()
+    val getSendTokenResult: LiveData<Resources<AccessTokenResponse>> = sendTokenResult
     private fun sendToken(token: String) = viewModelScope.launch {
         sendTokenResult.postValue(Resources.Loading())
         try {
+            Log.d(TAG, "Sending token: $token")
             val response = userRepository.sendToken(token)
             sendTokenResult.postValue(handlerSendToken(response))
         } catch (e: Exception) {
+            Log.e(TAG, "Error sending token: ${e.message}")
             sendTokenResult.postValue(Resources.OnFailure(e.message ?: "Unknown error"))
         }
     }
 
-    private fun sendTokenToServer() {
+     fun sendTokenToServer() {
         val mUser = FirebaseAuth.getInstance().currentUser
         mUser?.getIdToken(true)
             ?.addOnCompleteListener { task ->
@@ -94,26 +97,34 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
             }
     }
 
-    private fun handlerSendToken(response: Response<UserModel>): Resources<UserModel> {
+    private fun handlerSendToken(response: Response<AccessTokenResponse>): Resources<AccessTokenResponse> {
         return try {
             if (response.isSuccessful && response.body() != null) {
                 val body = response.body()!!
+                Log.d(TAG, "Response body: $body")
                 Resources.Success(body)
             } else {
                 val jsonInString = response.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorModel2::class.java)
+                Log.e(TAG, "Error body: $jsonInString")
                 Resources.OnFailure(errorBody?.message ?: "Unknown error")
             }
         } catch (e: Exception) {
             val errorMessage = if (e is HttpException) {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorModel2::class.java)
+                Log.e(TAG, "HTTP error body: $jsonInString")
                 errorBody?.message ?: "HTTP error"
             } else {
                 e.message ?: "Unknown error"
             }
+            Log.e(TAG, "Exception: $errorMessage")
             Resources.OnFailure(errorMessage)
         }
+    }
+
+    companion object{
+        const val TAG = "LOGIN VIEW MODEL TEST"
     }
 
 }

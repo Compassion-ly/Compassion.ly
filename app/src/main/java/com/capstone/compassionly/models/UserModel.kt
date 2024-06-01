@@ -14,6 +14,11 @@ data class UserModel(
 	val user: User? = null
 )
 
+data class LoginResponse(
+	val message: String,
+	val data: UserModel
+)
+
 data class User(
 
 	@field:SerializedName("uid")
@@ -44,10 +49,6 @@ data class User(
 	val email: String? = null
 )
 
-data class AccessTokenRequest(
-	val token: String
-)data class AccessTokenRequest2(
-	val tokens: Array<String>
 
-)
+
 
