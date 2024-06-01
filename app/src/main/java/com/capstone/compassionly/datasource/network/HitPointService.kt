@@ -1,5 +1,7 @@
 package com.capstone.compassionly.datasource.network
 
+import com.capstone.compassionly.models.AccessTokenRequest
+import com.capstone.compassionly.models.AccessTokenRequest2
 import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.UserModel
 import com.capstone.compassionly.models.forsending.BodyUpdateProfile
@@ -11,10 +13,21 @@ import retrofit2.http.POST
 
 interface HitPointService {
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
+//    @POST("/api/v1/auth/access-token")
+//    suspend fun accessToken (
+//        @Body credential: String
+//    ): Response<UserModel>
+
+//    @POST("/api/v1/auth/access-token")
+//    suspend fun accessToken(
+//        @Body credential: AccessTokenRequest
+//    ): Response<UserModel>
+
+
     @POST("/api/v1/auth/access-token")
-    suspend fun accessToken (
-        @Body credential: String
+    suspend fun accessToken(
+        @Body credential: AccessTokenRequest
     ): Response<UserModel>
 
     @FormUrlEncoded

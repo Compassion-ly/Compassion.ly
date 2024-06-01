@@ -7,7 +7,9 @@ data class ErrorModel(
 	@field:SerializedName("detail")
 	val detail: List<DetailItem?>? = null
 )
-
+data class ErrorModel2(
+	@SerializedName("message") val message: String?
+)
 data class DetailItem(
 
 	@field:SerializedName("msg")

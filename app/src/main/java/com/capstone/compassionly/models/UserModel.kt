@@ -43,3 +43,11 @@ data class User(
 	@field:SerializedName("email")
 	val email: String? = null
 )
+
+data class AccessTokenRequest(
+	val token: String
+)data class AccessTokenRequest2(
+	val tokens: Array<String>
+
+)
+
