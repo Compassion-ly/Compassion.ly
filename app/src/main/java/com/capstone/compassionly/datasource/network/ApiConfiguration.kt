@@ -1,6 +1,5 @@
 package com.capstone.compassionly.datasource.network
 
-import com.capstone.compassionly.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,7 +15,7 @@ class ApiConfiguration {
             .addInterceptor(interceptor)
             .build()
         private val retrofit = Retrofit.Builder()
-            .baseUrl("https://compassionly-api-zue4vcwkfa-et.a.run.app")
+            .baseUrl(BuildConfig.BASEURL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

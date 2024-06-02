@@ -20,6 +20,7 @@ import com.capstone.compassionly.databinding.ActivityLoginBinding
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
 import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
+import com.capstone.compassionly.presentation.feature.users_data.FormCompleteUserProfile
 import com.capstone.compassionly.repository.di.StateInjection
 import com.capstone.compassionly.utility.Utils
 import com.capstone.compassionly.utility.viewmodelfactory.ViewModelFactory
@@ -37,14 +38,14 @@ class LoginActivity : AppCompatActivity() {
     private val viewModel: LoginViewModel by viewModels {
         factory
     }
-    private val onBoardViewModel : OnBoardViewModel by viewModels {
+    private val onBoardViewModel: OnBoardViewModel by viewModels {
         StateInjection.onBoardInjection(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        //stateCheck()
+        stateCheck()
         Utils.changeStatusBarColorWhite(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -55,33 +56,35 @@ class LoginActivity : AppCompatActivity() {
         }
         auth = Firebase.auth
 
-        viewModel.getSendTokenResult.observe(this) { resource ->
-            when (resource) {
-                is Resources.OnFailure -> {
-                    val errorMessage = resource.message
-                    errorMessage?.let {
-                       Log.d("LOGINTEST","$errorMessage")
-                    }
-                }
-                is Resources.Success -> {
-                    val userModel = resource.data
-                    userModel?.let {
-                        Log.d("LOGINTEST","$userModel")
-                    }
-                }
-
-                is Resources.Loading -> {
-                    Log.d("LOGINTEST","loading")
-                }
-            }
-        }
-
         binding.signInButton.setOnClickListener {
             signIn()
         }
 
-        viewModel.loginResult.observe(this) { user ->
-            updateUI(user)
+        viewModel.token.observe(this) { token ->
+            viewModel.sendToken(token!!).observe(this) { resources ->
+                if (resources != null) {
+                    when (resources) {
+                        is Resources.Loading -> {
+                            Log.d("LoginActivity", "Loading...")
+                        }
+
+                        is Resources.Success -> {
+                            Log.d("LoginActivity", "$resources")
+                            viewModel.loginResult.observe(this) { user ->
+                                updateUI(user)
+                            }
+                        }
+
+                        is Resources.Error -> {
+                            Toast.makeText(
+                                application,
+                                "Error: ${resources.error}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -118,7 +121,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            startActivity(Intent(this@LoginActivity, OnBoardingActivity::class.java))
+            startActivity(Intent(this@LoginActivity, FormCompleteUserProfile::class.java))
             finish()
         }
     }
