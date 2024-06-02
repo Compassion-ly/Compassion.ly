@@ -80,7 +80,7 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
-     fun sendTokenToServer() {
+     private fun sendTokenToServer() {
         val mUser = FirebaseAuth.getInstance().currentUser
         mUser?.getIdToken(true)
             ?.addOnCompleteListener { task ->

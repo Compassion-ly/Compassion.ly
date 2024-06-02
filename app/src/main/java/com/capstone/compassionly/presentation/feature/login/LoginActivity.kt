@@ -118,7 +118,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?) {
         if (currentUser != null) {
-            viewModel.sendTokenToServer()
             startActivity(Intent(this@LoginActivity, OnBoardingActivity::class.java))
             finish()
         }
