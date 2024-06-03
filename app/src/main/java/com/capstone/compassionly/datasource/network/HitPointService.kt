@@ -6,7 +6,9 @@ import com.capstone.compassionly.models.SchoolMajor
 import com.capstone.compassionly.models.SchoolModel
 import com.capstone.compassionly.models.SuccessResponse
 import com.capstone.compassionly.models.UserModel
+import com.capstone.compassionly.models.forsending.UserUpdateSend
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -21,15 +23,9 @@ interface HitPointService {
         @Field("token") token: String
     ): Response<SuccessResponse<AccessToken>>
 
-    @FormUrlEncoded
     @POST("/api/v1/users/save-user")
     suspend fun updatePersonalData(
-        @Field("first_name") firstName: String,
-        @Field("last_name") lastName: String,
-        @Field("phone_number") phoneNUmber: String,
-        @Field("gender") gender: String,
-        @Field("user_school_id") userSchoolId : Int,
-        @Field("school_major_id") schoolMajorId : Int,
+       @Body userUpdateSend: UserUpdateSend
     ): Response<SuccessResponse<UserModel>>
 
     @GET("/api/v1/users/me")

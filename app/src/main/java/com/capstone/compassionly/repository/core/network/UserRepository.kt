@@ -6,36 +6,44 @@ import com.capstone.compassionly.models.SchoolMajor
 import com.capstone.compassionly.models.SchoolModel
 import com.capstone.compassionly.models.SuccessResponse
 import com.capstone.compassionly.models.UserModel
+import com.capstone.compassionly.models.forsending.UserUpdateSend
 import retrofit2.Response
 
 class UserRepository {
 
     suspend fun updateProfile(
-        firstname : String,
-        lastName : String,
+        firstname: String,
+        lastName: String,
         phoneNumber: String,
         gender: String,
         userSchoolId: Int,
         userSchoolMajorId: Int,
     ): Response<SuccessResponse<UserModel>> {
         return ApiConfiguration.hitPointService.updatePersonalData(
-            firstname, lastName, phoneNumber, gender, userSchoolId, userSchoolMajorId
+            UserUpdateSend(
+                firstName = firstname,
+                lastName = lastName,
+                phoneNumber = phoneNumber,
+                gender = gender,
+                schoolId = userSchoolId,
+                schoolMajorId = userSchoolMajorId,
+            )
         )
     }
 
-    suspend fun getMe() : Response<SuccessResponse<DetailUserModel>> {
+    suspend fun getMe(): Response<SuccessResponse<DetailUserModel>> {
         return ApiConfiguration.hitPointService.getMe()
     }
 
-    suspend fun removeTokenApi(token: String) : Response<SuccessResponse<String>> {
+    suspend fun removeTokenApi(token: String): Response<SuccessResponse<String>> {
         return ApiConfiguration.hitPointService.logout(token)
     }
 
-    suspend fun getSchoolList() : Response<SuccessResponse<List<SchoolModel>>> {
+    suspend fun getSchoolList(): Response<SuccessResponse<List<SchoolModel>>> {
         return ApiConfiguration.hitPointService.getSchoolList()
     }
 
-    suspend fun getSchoolMajor() : Response<SuccessResponse<List<SchoolMajor>>> {
+    suspend fun getSchoolMajor(): Response<SuccessResponse<List<SchoolMajor>>> {
         return ApiConfiguration.hitPointService.getSchoolMajorList()
     }
 

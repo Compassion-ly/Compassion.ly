@@ -20,7 +20,9 @@ class ApiConfiguration {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-        val hitPointService : HitPointService = retrofit.create(HitPointService::class.java)
+        val hitPointService : HitPointService by lazy {
+            retrofit.create(HitPointService::class.java)
+        }
     }
 
 }
