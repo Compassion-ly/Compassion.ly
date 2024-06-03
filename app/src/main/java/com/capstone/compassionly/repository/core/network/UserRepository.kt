@@ -4,7 +4,7 @@ package com.capstone.compassionly.repository.core.network
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.capstone.compassionly.datasource.network.HitPointService
-import com.capstone.compassionly.models.AccessToken
+import com.capstone.compassionly.models.forsending.AccessToken
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.utility.Resources
 import com.google.gson.Gson

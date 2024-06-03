@@ -1,9 +1,8 @@
 package com.capstone.compassionly.datasource.network
 
-import com.capstone.compassionly.models.AccessToken
+import com.capstone.compassionly.models.forsending.AccessToken
 import com.capstone.compassionly.models.LoginResponse
 import com.capstone.compassionly.models.User
-import com.capstone.compassionly.models.UserModel
 import com.capstone.compassionly.models.forsending.BodyUpdateProfile
 import retrofit2.Response
 import retrofit2.http.Body
