@@ -47,6 +47,20 @@ class UserRepository {
         return ApiConfiguration.hitPointService.getSchoolMajorList()
     }
 
+    fun sendToken(token: String) = liveData {
+        emit(Resources.Loading)
+        try {
+            val accessToken = AccessToken(token)
+            val response = hitPointService.accesToken(accessToken)
+            Log.d("UserRepository", "$response")
+            emit(Resources.Success(response))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage!!))
+        }
+    }
     companion object {
         @Volatile
         private var instance: UserRepository? = null

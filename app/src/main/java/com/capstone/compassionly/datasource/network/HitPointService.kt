@@ -1,12 +1,9 @@
 package com.capstone.compassionly.datasource.network
 
-import com.capstone.compassionly.models.AccessToken
-import com.capstone.compassionly.models.DetailUserModel
-import com.capstone.compassionly.models.SchoolMajor
-import com.capstone.compassionly.models.SchoolModel
-import com.capstone.compassionly.models.SuccessResponse
-import com.capstone.compassionly.models.UserModel
-import com.capstone.compassionly.models.forsending.UserUpdateSend
+import com.capstone.compassionly.models.forsending.AccessToken
+import com.capstone.compassionly.models.LoginResponse
+import com.capstone.compassionly.models.User
+import com.capstone.compassionly.models.forsending.BodyUpdateProfile
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field
@@ -17,11 +14,10 @@ import retrofit2.http.Query
 
 interface HitPointService {
 
-    @FormUrlEncoded
     @POST("/api/v1/auth/access-token")
-    suspend fun accessToken (
-        @Field("token") token: String
-    ): Response<SuccessResponse<AccessToken>>
+    suspend fun accesToken(
+        @Body accessToken: AccessToken
+    ): LoginResponse
 
     @POST("/api/v1/users/save-user")
     suspend fun updatePersonalData(
