@@ -45,7 +45,14 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
         majorRepository.getMajor(token,searchQuery).observeForever{ resource ->
             when (resource) {
                 is Resources.Success -> {
-                    _findMajor.value = resource.data as List<DataItem>?
+                    val data = resource.data as? List<DataItem>
+                    if (!data.isNullOrEmpty()) {
+                        // Optionally, filter the data here if needed
+                        _findMajor.value = data!!
+                    } else {
+                        Log.e(TAG, "No matching data found")
+                        _findMajor.value = emptyList()
+                    }
                     _isLoading.value = false
                 }
 

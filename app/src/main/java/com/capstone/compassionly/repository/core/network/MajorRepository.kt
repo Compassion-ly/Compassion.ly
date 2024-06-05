@@ -29,21 +29,13 @@ class MajorRepository {
     fun getMajor(token: String, searchQuery: String) = liveData {
         emit(Resources.Loading)
         try {
-            val response = hitPointService.getMajor(Utils.getHeader(token),searchQuery)
+            val response = hitPointService.getMajor(Utils.getHeader(token), searchQuery)
             val data = response.data
             if (!data.isNullOrEmpty()) {
-                val matchingItem = data.find {
-                    it?.majorName?.contains(
-                        searchQuery, ignoreCase = true
-                    ) == true
-                }
-                if (matchingItem != null) {
-                    emit(Resources.Success(matchingItem))
-                } else {
-                    Log.e(TAG, "No matching data found")
-                }
+                emit(Resources.Success(data))
             } else {
                 Log.e(TAG, "Data not found")
+                emit(Resources.Error("Data not found"))
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
@@ -52,6 +44,7 @@ class MajorRepository {
             emit(Resources.Error(errorMessage))
         }
     }
+
 
     companion object {
         const val TAG = "Major Repository"

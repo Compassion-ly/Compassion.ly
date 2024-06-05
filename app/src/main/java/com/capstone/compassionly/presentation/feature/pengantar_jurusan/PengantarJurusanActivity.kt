@@ -1,8 +1,6 @@
 package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -24,7 +22,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
         MajorInjector.majorInjector(this)
     }
     private lateinit var token: String
-    private lateinit var search_major: String
+    private lateinit var searchMajor: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,9 +53,9 @@ class PengantarJurusanActivity : AppCompatActivity() {
         binding.searchBar.requestFocus()
         binding.searchBar.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                search_major = binding.searchBar.text.toString()
-                Log.d(TAG, "find major : $search_major")
-                findMajor(search_major)
+                searchMajor = binding.searchBar.text.toString()
+                Log.d(TAG, "find major : $searchMajor")
+                findMajor(searchMajor)
                 return@setOnEditorActionListener true
             }
             false
@@ -77,20 +75,6 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
     private fun setStatusBarColor() {
         window.statusBarColor = getColor(R.color.customs_tatusbar)
-
-    }
-
-    private fun searchMajor() {
-        binding.searchBar.requestFocus()
-        binding.searchBar.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                search_major = binding.searchBar.text.toString()
-                Log.d(TAG, "find major : $search_major")
-                return@setOnEditorActionListener true
-            }
-            false
-        }
-        findMajor(search_major)
 
     }
 
@@ -119,7 +103,6 @@ class PengantarJurusanActivity : AppCompatActivity() {
             viewModel.getMajor(token, search_query)
             Log.d(TAG, "findMajor(), token: $token")
             setListFindMajors()
-
         }
     }
 
