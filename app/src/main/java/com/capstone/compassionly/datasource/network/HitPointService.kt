@@ -41,10 +41,11 @@ interface HitPointService {
         @HeaderMap headerMap: Map<String, String>,
         ): MajorResponse
 
-    @GET("/api/v1/colleges/list-college-majors/{search_query}")
+    @GET("/api/v1/colleges/list-college-majors")
     suspend fun getMajor(
-        @Path("search_query") searchQuery : String,
-        @HeaderMap headerMap: Map<String, String>): MajorResponse
+        @HeaderMap headerMap: Map<String, String>,
+        @Query("search_query") searchQuery: String
+    ): MajorResponse
 
     @POST("/api/v1/auth/logout")
     suspend fun logout(

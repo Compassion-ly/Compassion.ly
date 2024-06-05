@@ -41,8 +41,8 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
         }
     }
 
-    fun getMajor(searchQuery: String, token: String) {
-        majorRepository.getMajor(searchQuery,token).observeForever{ resource ->
+    fun getMajor(token: String, searchQuery: String) {
+        majorRepository.getMajor(token,searchQuery).observeForever{ resource ->
             when (resource) {
                 is Resources.Success -> {
                     _findMajor.value = resource.data as List<DataItem>?
@@ -56,7 +56,7 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
 
                 is Resources.Loading -> {
                     _isLoading.value = true
-                    Log.e(TAG, "Loading to get the majors you are looking for")
+                    Log.d(TAG, "Loading to get the majors you are looking for")
 
                 }
             }

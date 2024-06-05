@@ -26,10 +26,10 @@ class MajorRepository {
         }
     }
 
-    fun getMajor(searchQuery: String, token: String) = liveData {
+    fun getMajor(token: String, searchQuery: String) = liveData {
         emit(Resources.Loading)
         try {
-            val response = hitPointService.getMajor(searchQuery, Utils.getHeader(token))
+            val response = hitPointService.getMajor(Utils.getHeader(token),searchQuery)
             val data = response.data
             if (!data.isNullOrEmpty()) {
                 val matchingItem = data.find {

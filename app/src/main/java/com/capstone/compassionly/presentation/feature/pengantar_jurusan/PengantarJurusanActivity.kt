@@ -1,7 +1,11 @@
 package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +40,8 @@ class PengantarJurusanActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this) {
             showLoading(it)
         }
+
+
         if (intent.hasExtra("token")) {
             token = intent.getStringExtra("token").toString()
         }
@@ -44,7 +50,12 @@ class PengantarJurusanActivity : AppCompatActivity() {
         setStatusBarColor()
         setListMajors()
         showRecyclerView()
-
+        binding.apply {
+            btnSearch.setOnClickListener {
+                val userInput = binding.searchBar.text.toString()
+                Log.d(TAG, "User Input: $userInput")
+            }
+        }
     }
 
     private fun setup() {
@@ -62,7 +73,6 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
     }
 
-
     private fun setListMajors() {
         val adapter = ListMajorAdapter()
         binding.rvMajors.adapter = adapter
@@ -70,6 +80,26 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
         viewModel.majors.observe(this) { majors ->
             adapter.submitList(majors)
+        }
+    }
+
+    private fun setListFindMajors() {
+        val adapter = ListMajorAdapter()
+        binding.rvMajors.adapter = adapter
+        binding.rvMajors.layoutManager = LinearLayoutManager(this)
+
+        viewModel.findMajor.observe(this) { majors ->
+            adapter.submitList(majors)
+        }
+    }
+
+    private fun findMajor() {
+        with(binding) {
+            val major = searchBar.text.toString()
+            viewModel.getMajor(token, major)
+            Log.d(TAG, "findMajor(), token: $token")
+            setListFindMajors()
+
         }
     }
 
