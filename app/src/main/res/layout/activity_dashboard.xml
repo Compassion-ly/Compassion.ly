@@ -4,17 +4,17 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".presentation.feature.dashboard.DashboardActivity">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="210dp"
+            android:layout_height="190dp"
             android:background="@color/md_theme_primaryContainer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="35dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:contentDescription="@string/logo"
             android:src="@drawable/image_compassion_logos"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="35dp"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins"
             android:text="username !"
@@ -62,25 +62,25 @@
             android:id="@+id/iv_profile_photo"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="35dp"
             android:src="@drawable/image_profile_sample"
             app:civ_border_width="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="160dp"
             android:background="@drawable/searchbar_border"
             android:fontFamily="@font/poppins"
             android:gravity="center_vertical"
             android:hint="@string/search_hint_jurusan"
             android:importantForAutofill="no"
-            android:inputType="text"
+            android:inputType="none"
             android:paddingHorizontal="20dp"
             android:textColorHint="@color/md_theme_outline"
             android:textSize="14sp"
@@ -89,13 +89,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/slider"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginHorizontal="25dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="240dp"
             app:iss_auto_cycle="true"
             app:iss_corner_radius="30"
             app:iss_delay="0"
@@ -127,7 +126,7 @@
             android:layout_height="100dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="245dp"
+            android:layout_marginEnd="200dp"
             android:background="@drawable/tertiary_container"
             android:elevation="4dp"
             app:layout_constraintStart_toStartOf="parent"
