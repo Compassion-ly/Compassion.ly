@@ -3,18 +3,24 @@ package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityPengantarJurusanBinding
+import com.capstone.compassionly.models.DataItem
 import com.capstone.compassionly.presentation.adapter.ListMajorAdapter
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Major
+import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
+import com.capstone.compassionly.repository.di.StateInjection
 
 class PengantarJurusanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPengantarJurusanBinding
+    private val viewModel: PengantarJurusanViewModel by viewModels {
+        StateInjection.majorInjection(this)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,13 +33,21 @@ class PengantarJurusanActivity : AppCompatActivity() {
             insets
         }
 
-        val listJurusan = DataDummyUtil.getMajors()
+        viewModel.isLoading.observe(this) {
+            showLoading(it)
+        }
 
+        setup()
         setStatusBarColor()
-        setListMajor(listJurusan)
+        setListMajors()
         showRecyclerView()
 
     }
+
+    private fun setup() {
+        viewModel.getMajors()
+    }
+
 
     private fun showRecyclerView() {
         val layoutManager = LinearLayoutManager(this)
@@ -45,14 +59,22 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
     }
 
+
+    private fun setListMajors() {
+        val adapter = ListMajorAdapter()
+        binding.rvMajors.adapter = adapter
+        binding.rvMajors.layoutManager = LinearLayoutManager(this)
+
+        viewModel.majors.observe(this) { majors ->
+            adapter.submitList(majors)
+        }
+    }
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun setListMajor(majors: List<Major>) {
-        val adapter = ListMajorAdapter()
-        adapter.submitList(majors)
-        binding.rvMajors.adapter = adapter
-
+    companion object {
+        const val TAG = "PengantarJurusanActivity"
     }
 }

@@ -1,0 +1,52 @@
+package com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel
+
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import com.capstone.compassionly.models.DataItem
+import com.capstone.compassionly.repository.core.network.MajorRepository
+import com.capstone.compassionly.utility.Resources
+
+class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : ViewModel() {
+
+    //fun getMajors() = majorRepository.getMajors()
+//    fun getMajors(): LiveData<Resources<Any?>> {
+//        return majorRepository.getMajors()
+//    }
+
+    private val _majors = MutableLiveData<List<DataItem>>()
+    val majors: LiveData<List<DataItem>> = _majors
+
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
+    fun getMajors() {
+        majorRepository.getMajors().observeForever { resource ->
+            when (resource) {
+                is Resources.Success -> {
+                    _majors.value = resource.data as List<DataItem>?
+                    _isLoading.value = false
+                }
+
+                is Resources.Error -> {
+                    Log.e(TAG, "${resource.error}")
+                    _isLoading.value = false
+                }
+
+                is Resources.Loading -> {
+                    _isLoading.value = true
+                    Log.e(TAG, "Loading to get the major list...")
+
+                }
+            }
+        }
+    }
+
+    fun getMajor(searchQuery: String) = majorRepository.getMajor(searchQuery)
+
+    companion object {
+        const val TAG = "pengantar jurusan view model"
+    }
+
+}
