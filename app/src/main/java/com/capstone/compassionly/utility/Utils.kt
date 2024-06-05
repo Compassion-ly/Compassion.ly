@@ -55,4 +55,10 @@ object Utils {
         Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
     }
 
+    fun getHeader(token: String): Map<String, String> {
+        val header = mutableMapOf<String, String>()
+        header["Authorization"] = "Bearer $token"
+        return header
+    }
+
 }

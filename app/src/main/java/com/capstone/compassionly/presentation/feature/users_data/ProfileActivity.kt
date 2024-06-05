@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,6 @@ import com.capstone.compassionly.databinding.ActivityProfileBinding
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.di.UserInjector
-import com.capstone.compassionly.utility.ResourcesResponse
 import com.capstone.compassionly.utility.Utils
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -50,37 +48,20 @@ class ProfileActivity : AppCompatActivity() {
         val photoProfile = mAuth.currentUser?.photoUrl
         setPhotoProfile(photoProfile)
         binding.apply {
-            userVM.getMe().observe(this@ProfileActivity) {
-                when (it) {
-                    is ResourcesResponse.OnSuccess -> {
-                        it.data?.data?.apply {
-                            this.user.apply {
-                                userFullName.text = "${this.firstName} ${this.lastName}"
-                                userEmail.text = this.email
-                                edPhoneNumber.text = this.phoneNumber
-                            }
-                            this.school?.apply {
-                                edSchool.text = this.schoolName
-                                edNpsn.text = this.npsn
-                                edProvince.text = this.schoolProvince
-                                edCity.text = this.schoolCity
-                            }
-                            this.schoolMajor?.apply {
-                                edMajor.text = this.schoolMajorName
-                            }
-                        }
-                    }
-
-                    is ResourcesResponse.OnFailure -> {
-                        Utils.showToast(this@ProfileActivity, it.message)
-                    }
-
-                    is ResourcesResponse.Loading -> {
-                        indicatorProgress.visibility = View.VISIBLE
-                    }
+            userVM.getDataUser().observe(this@ProfileActivity) {
+                it[0].apply {
+                    userFullName.text = "${this.firstName} ${this.lastName}"
+                    userEmail.text = this.email
+                    edPhoneNumber.text = this.phoneNumber
+                    edGnder.text = this.gender
+                    edSchool.text = this.schoolName
+                    edNpsn.text = this.npsn
+                    edMajor.text = this.schoolMajorName
+                    edProvince.text = this.schoolProvince
+                    edCity.text = this.schoolCity
+                    btnLogout.setOnClickListener { removeToken() }
                 }
             }
-            btnLogout.setOnClickListener { removeToken() }
         }
     }
 
@@ -94,17 +75,14 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun removeToken() {
         userVM.apply {
-            getAccessToken().value.also {
-                if (it != null) {
-                    this.removeTokenApi(it)     // INVALIDATE API TOKEN
-                }
-            }
-            removeAccessToken()                 // REMOTE TOKEN IN DATASTORE
+            removeAccessToken()                 // REMOVE TOKEN IN DATASTORE
+            mAuth.signOut()                     // SIGN OUT FIREBASE AUTHENTICATION
+
+            val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
+            startActivity(intent)
+            userVM.deleteUser()
+            finishAffinity()
         }
-        mAuth.signOut()                         // SIGN OUT FIREBASE AUTHENTICATION
-        val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
-        startActivity(intent)
-        finishAffinity()
     }
 
     override fun onDestroy() {

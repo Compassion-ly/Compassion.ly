@@ -1,5 +1,6 @@
 package com.capstone.compassionly.models
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 data class UserModel(
@@ -13,6 +14,7 @@ data class UserModel(
 	val user: User
 )
 
+@Entity
 data class User(
 
 	@field:SerializedName("uid")
@@ -41,4 +43,17 @@ data class User(
 
 	@field:SerializedName("email")
 	val email: String? = null
+)
+
+data class DetailUserModel (
+
+	@field:SerializedName("school")
+	val school: SchoolModel?,
+
+	@field:SerializedName("school_major")
+	val schoolMajor: SchoolMajor?,
+
+	@field:SerializedName("user")
+	val user: User?
+
 )

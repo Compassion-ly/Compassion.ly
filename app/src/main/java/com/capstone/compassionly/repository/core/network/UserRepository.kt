@@ -1,12 +1,18 @@
 package com.capstone.compassionly.repository.core.network
 
-import com.capstone.compassionly.datasource.network.ApiConfiguration
+import android.util.Log
+import androidx.lifecycle.liveData
+import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
 import com.capstone.compassionly.models.DetailUserModel
-import com.capstone.compassionly.models.SchoolMajor
-import com.capstone.compassionly.models.SchoolModel
+import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.SuccessResponse
-import com.capstone.compassionly.models.UserModel
+import com.capstone.compassionly.models.User
+import com.capstone.compassionly.models.forsending.AccessToken
 import com.capstone.compassionly.models.forsending.UserUpdateSend
+import com.capstone.compassionly.utility.Resources
+import com.capstone.compassionly.utility.Utils
+import com.google.gson.Gson
+import retrofit2.HttpException
 import retrofit2.Response
 
 class UserRepository {
@@ -18,8 +24,10 @@ class UserRepository {
         gender: String,
         userSchoolId: Int,
         userSchoolMajorId: Int,
-    ): Response<SuccessResponse<UserModel>> {
-        return ApiConfiguration.hitPointService.updatePersonalData(
+        token: String
+    ): Response<SuccessResponse<User>> {
+        return hitPointService.updatePersonalData(
+            Utils.getHeader(token),
             UserUpdateSend(
                 firstName = firstname,
                 lastName = lastName,
@@ -31,27 +39,19 @@ class UserRepository {
         )
     }
 
-    suspend fun getMe(): Response<SuccessResponse<DetailUserModel>> {
-        return ApiConfiguration.hitPointService.getMe()
+    suspend fun getMe(token: String): Response<SuccessResponse<DetailUserModel>> {
+        return hitPointService.getMe(Utils.getHeader(token))
     }
 
     suspend fun removeTokenApi(token: String): Response<SuccessResponse<String>> {
-        return ApiConfiguration.hitPointService.logout(token)
-    }
-
-    suspend fun getSchoolList(): Response<SuccessResponse<List<SchoolModel>>> {
-        return ApiConfiguration.hitPointService.getSchoolList()
-    }
-
-    suspend fun getSchoolMajor(): Response<SuccessResponse<List<SchoolMajor>>> {
-        return ApiConfiguration.hitPointService.getSchoolMajorList()
+        return hitPointService.logout(token)
     }
 
     fun sendToken(token: String) = liveData {
         emit(Resources.Loading)
         try {
             val accessToken = AccessToken(token)
-            val response = hitPointService.accesToken(accessToken)
+            val response = hitPointService.accessToken(accessToken)
             Log.d("UserRepository", "$response")
             emit(Resources.Success(response))
         } catch (e: HttpException) {
@@ -61,6 +61,7 @@ class UserRepository {
             emit(Resources.Error(errorMessage!!))
         }
     }
+
     companion object {
         @Volatile
         private var instance: UserRepository? = null

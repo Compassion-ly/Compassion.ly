@@ -9,9 +9,9 @@ import com.capstone.compassionly.repository.core.network.SchoolRepository
 import com.capstone.compassionly.repository.core.network.UserRepository
 import com.capstone.compassionly.utility.viewmodelfactory.CommonViewModelFactory
 
-object UserInjector {
+object CommonInjector {
 
-    fun userInjector(context : Context) : CommonViewModelFactory {
+    fun dashboardInjector(context: Context) : CommonViewModelFactory {
         val userRep = UserRepository.getInstance()!!
         val schoolRep = SchoolRepository.getInstance()!!
         val state = StateAppPreference(context.datastore)
@@ -20,6 +20,5 @@ object UserInjector {
 
         return CommonViewModelFactory(userRep, schoolRep, localDataSource!!, state)
     }
-
 
 }
