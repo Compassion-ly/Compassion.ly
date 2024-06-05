@@ -45,6 +45,28 @@ class MajorRepository {
         }
     }
 
+    fun getCollegesByMajor(token: String, majorId: Int) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = hitPointService.getCollegesByMajor(Utils.getHeader(token), majorId)
+            response.data?.let {
+                if (it.isNotEmpty()) {
+                    emit(Resources.Success(it.filterNotNull()))
+                } else {
+                    Log.e(TAG, "No data available")
+                    emit(Resources.Error("No data available"))
+                }
+            } ?: run {
+                Log.e(TAG, "Response data is null")
+                emit(Resources.Error("No data available"))
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage))
+        }
+    }
 
     companion object {
         const val TAG = "Major Repository"

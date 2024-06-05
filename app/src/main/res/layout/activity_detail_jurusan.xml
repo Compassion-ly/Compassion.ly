@@ -75,6 +75,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_course"
+            tools:listitem="@layout/item_course"/>
+
+        <TextView
+            android:id="@+id/tv_college"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/kampus"
+            android:textColor="@color/md_theme_secondary"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/rv_courses" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_colleges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_course"
             tools:listitem="@layout/item_course" />
 
         <ProgressBar

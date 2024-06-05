@@ -67,4 +67,6 @@
     <string name="tab_ketertarikan">Ketertarikan</string>
     <string name="tab_jurusan">Jurusan</string>
     <string name="hasil">Hasil</string>
+    <string name="matakuliah_terkait">Matakuliah Terkait</string>
+    <string name="kampus">Kampus</string>
 </resources>
