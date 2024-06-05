@@ -17,7 +17,7 @@ import com.capstone.compassionly.presentation.feature.topic.TopicActivity
 import com.capstone.compassionly.presentation.feature.topic_histories.TopicHistoriesActivity
 import com.capstone.compassionly.presentation.feature.users_data.ProfileActivity
 import com.capstone.compassionly.repository.di.CommonInjector
-import com.capstone.compassionly.utility.Utils
+import com.capstone.compassionly.utility.Utils.startActivityWithToken
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.firebase.auth.FirebaseAuth
@@ -66,25 +66,27 @@ class DashboardActivity : AppCompatActivity() {
             Log.d(TAG, "User token : $userToken")
 
             learnFeature.setOnClickListener {
-                val intent = Intent(this@DashboardActivity, TopicActivity::class.java)
-                startActivity(intent)
+                startActivityWithToken(TopicActivity::class.java, userToken)
+            }
+            binding.searchBar.setOnClickListener {
+                startActivityWithToken(PengantarJurusanActivity::class.java, userToken)
+
             }
             pengantarJurusanFeature.setOnClickListener {
-                val intent = Intent(this@DashboardActivity, PengantarJurusanActivity::class.java)
-                intent.putExtra("token", userToken)
-                startActivity(intent)
+                startActivityWithToken(PengantarJurusanActivity::class.java, userToken)
+
             }
             binding.recomendationFeature.setOnClickListener {
-                val intent = Intent(this@DashboardActivity, ShowRecommendationActivity::class.java)
-                startActivity(intent)
+                startActivityWithToken(ShowRecommendationActivity::class.java, userToken)
+
             }
             binding.fab.setOnClickListener {
-                val intent = Intent(this@DashboardActivity, TopicHistoriesActivity::class.java)
-                startActivity(intent)
+                startActivityWithToken(TopicHistoriesActivity::class.java, userToken)
+
             }
             ivProfilePhoto.setOnClickListener {
-                val intent = Intent(this@DashboardActivity, ProfileActivity::class.java)
-                startActivity(intent)
+                startActivityWithToken(ProfileActivity::class.java, userToken)
+
             }
         }
     }

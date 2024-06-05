@@ -3,12 +3,14 @@ package com.capstone.compassionly.utility
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.WindowCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.LayoutDialogRateTopicBinding
@@ -61,4 +63,9 @@ object Utils {
         return header
     }
 
+    fun Context.startActivityWithToken(targetActivity: Class<*>, userToken: String) {
+        val intent = Intent(this, targetActivity)
+        intent.putExtra("token", userToken)
+        startActivity(intent)
+    }
 }

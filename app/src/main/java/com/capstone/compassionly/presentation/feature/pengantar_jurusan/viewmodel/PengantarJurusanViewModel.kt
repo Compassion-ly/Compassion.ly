@@ -13,6 +13,9 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
     private val _majors = MutableLiveData<List<DataItem>>()
     val majors: LiveData<List<DataItem>> = _majors
 
+    private val _findMajor = MutableLiveData<List<DataItem>>()
+    val findMajor: LiveData<List<DataItem>> = _findMajor
+
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
@@ -38,10 +41,29 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
         }
     }
 
-    fun getMajor(searchQuery: String) = majorRepository.getMajor(searchQuery)
+    fun getMajor(searchQuery: String, token: String) {
+        majorRepository.getMajor(searchQuery,token).observeForever{ resource ->
+            when (resource) {
+                is Resources.Success -> {
+                    _findMajor.value = resource.data as List<DataItem>?
+                    _isLoading.value = false
+                }
 
+                is Resources.Error -> {
+                    Log.e(TAG, "${resource.error}")
+                    _isLoading.value = false
+                }
+
+                is Resources.Loading -> {
+                    _isLoading.value = true
+                    Log.e(TAG, "Loading to get the majors you are looking for")
+
+                }
+            }
+        }
+
+    }
     companion object {
         const val TAG = "pengantar jurusan view model"
     }
-
 }
