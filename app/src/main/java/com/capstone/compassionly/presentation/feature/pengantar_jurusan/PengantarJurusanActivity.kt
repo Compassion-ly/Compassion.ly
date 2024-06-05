@@ -1,6 +1,8 @@
 package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -50,16 +52,33 @@ class PengantarJurusanActivity : AppCompatActivity() {
         setListMajors()
         showRecyclerView()
 
-        binding.searchBar.requestFocus()
-        binding.searchBar.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                searchMajor = binding.searchBar.text.toString()
-                Log.d(TAG, "find major : $searchMajor")
-                findMajor(searchMajor)
-                return@setOnEditorActionListener true
+//        binding.searchBar.requestFocus()
+//        binding.searchBar.setOnEditorActionListener { v, actionId, event ->
+//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                searchMajor = binding.searchBar.text.toString()
+//                Log.d(TAG, "find major : $searchMajor")
+//                findMajor(searchMajor)
+//                return@setOnEditorActionListener true
+//            }
+//            false
+//        }
+
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-            false
-        }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                searchMajor = s.toString()
+                findMajor(searchMajor)
+
+                Log.d(TAG, "find major : $searchMajor")
+            }
+
+
+        })
 
     }
 
