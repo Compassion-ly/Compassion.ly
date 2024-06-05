@@ -21,8 +21,8 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun getMajors() {
-        majorRepository.getMajors().observeForever { resource ->
+    fun getMajors(token: String) {
+        majorRepository.getMajors(token).observeForever { resource ->
             when (resource) {
                 is Resources.Success -> {
                     _majors.value = resource.data as List<DataItem>?

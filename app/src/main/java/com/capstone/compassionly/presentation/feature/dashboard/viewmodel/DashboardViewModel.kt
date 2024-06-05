@@ -8,7 +8,7 @@ import com.capstone.compassionly.repository.core.local.LocalDataSource
 class DashboardViewModel(
     private val localDataSource: LocalDataSource,
     private val stateAppPreferences: StateAppPreference
-): ViewModel() {
+) : ViewModel() {
 
     fun getUserData() = localDataSource.getUser()
 

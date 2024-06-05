@@ -2,15 +2,16 @@ package com.capstone.compassionly.repository.core.network
 
 import android.util.Log
 import androidx.lifecycle.liveData
-import com.capstone.compassionly.datasource.network.HitPointService
+import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.utility.Resources
+import com.capstone.compassionly.utility.Utils
 import com.google.gson.Gson
 import retrofit2.HttpException
 
-class MajorRepository(private val hitPointService: HitPointService) {
+class MajorRepository {
 
-//    fun getMajors(): LiveData<List<DataItem>> {
+    //    fun getMajors(): LiveData<List<DataItem>> {
 //        return liveData(Dispatchers.IO) {
 //            val response = hitPointService.getMajors()
 //            response.data?.let {
@@ -19,10 +20,11 @@ class MajorRepository(private val hitPointService: HitPointService) {
 //        }
 //    }
 
-    fun getMajors() = liveData {
+
+    fun getMajors(token: String) = liveData {
         emit(Resources.Loading)
         try {
-            val response = hitPointService.getMajors()
+            val response = hitPointService.getMajors(Utils.getHeader(token))
             response.data?.let {
                 emit(Resources.Success(it.filterNotNull()))
             } ?: emit(Resources.Error("No data available"))
@@ -68,10 +70,9 @@ class MajorRepository(private val hitPointService: HitPointService) {
         private var instance: MajorRepository? = null
 
         fun getInstance(
-            hitPointService: HitPointService
         ): MajorRepository =
             instance ?: synchronized(this) {
-                instance ?: MajorRepository(hitPointService)
+                instance ?: MajorRepository()
             }.also { instance = it }
     }
 

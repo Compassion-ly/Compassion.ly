@@ -37,7 +37,9 @@ interface HitPointService {
 
     //major
     @GET("/api/v1/colleges/list-college-majors")
-    suspend fun getMajors(): MajorResponse
+    suspend fun getMajors(
+        @HeaderMap headerMap: Map<String, String>,
+        ): MajorResponse
 
     @GET("/api/v1/colleges/list-college-majors/{search_query}")
     suspend fun getMajor(@Path("search_query") searchQuery : String): MajorResponse

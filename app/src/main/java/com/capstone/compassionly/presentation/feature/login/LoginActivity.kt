@@ -62,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
                         is Resources.Loading -> {
                             Log.d("LoginActivity", "Loading...")
                         }
+
                         is Resources.Success -> {
                             Log.d("LoginActivity", "$resources")
                             viewModel.loginResult.observe(this) { user ->
@@ -73,6 +74,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
                             }
                         }
+
                         is Resources.Error -> {
                             Toast.makeText(
                                 application,
@@ -103,7 +105,8 @@ class LoginActivity : AppCompatActivity() {
             user.user.lastName == null ||
             user.user.phoneNumber == null ||
             user.user.schoolId == null ||
-            user.user.schoolMajorId == null) {
+            user.user.schoolMajorId == null
+        ) {
             updateUI(true, token!!)
         } else {
             updateUI(false, null)

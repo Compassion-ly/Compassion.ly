@@ -3,6 +3,7 @@ package com.capstone.compassionly.presentation.feature.dashboard
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -35,20 +36,34 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        Utils.changeStatusBarColorWhite(this)
         binding = ActivityDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setStatusBarColor()
         auth = Firebase.auth
 
-        val imageList = ArrayList<SlideModel>().apply {
-            add(SlideModel(R.drawable.slider1))
-            add(SlideModel(R.drawable.slider2))
-            add(SlideModel(R.drawable.slider3))
+        viewModel.getToken().observe(this) { token ->
+            if (token != null) {
+                Log.d(TAG, "User Token: $token")
+                menu(token)
+
+            } else {
+                Log.e(TAG, "User Token not found")
+
+            }
         }
 
+    }
+
+    private fun menu(userToken: String) {
         binding.apply {
+            val imageList = ArrayList<SlideModel>().apply {
+                add(SlideModel(R.drawable.slider1))
+                add(SlideModel(R.drawable.slider2))
+                add(SlideModel(R.drawable.slider3))
+            }
             slider.setImageList(imageList, ScaleTypes.CENTER_CROP)
+
+            Log.d(TAG, "User token : $userToken")
 
             learnFeature.setOnClickListener {
                 val intent = Intent(this@DashboardActivity, TopicActivity::class.java)
@@ -56,6 +71,7 @@ class DashboardActivity : AppCompatActivity() {
             }
             pengantarJurusanFeature.setOnClickListener {
                 val intent = Intent(this@DashboardActivity, PengantarJurusanActivity::class.java)
+                intent.putExtra("token", userToken)
                 startActivity(intent)
             }
             binding.recomendationFeature.setOnClickListener {
@@ -72,6 +88,7 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun setStatusBarColor() {
         window.statusBarColor = getColor(R.color.md_theme_primaryContainer)
     }
@@ -94,4 +111,7 @@ class DashboardActivity : AppCompatActivity() {
         }
     }
 
+    companion object {
+        const val TAG = "Dashboard Activity Test"
+    }
 }

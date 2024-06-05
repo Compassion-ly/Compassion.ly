@@ -10,16 +10,20 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityPengantarJurusanBinding
-import com.capstone.compassionly.models.DataItem
 import com.capstone.compassionly.presentation.adapter.ListMajorAdapter
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
-import com.capstone.compassionly.repository.di.StateInjection
+import com.capstone.compassionly.repository.di.MajorInjector
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
 
 class PengantarJurusanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPengantarJurusanBinding
     private val viewModel: PengantarJurusanViewModel by viewModels {
-        StateInjection.majorInjection(this)
+        MajorInjector.majorInjector(this)
     }
+    private lateinit var token: String
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,10 @@ class PengantarJurusanActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this) {
             showLoading(it)
         }
+        if (intent.hasExtra("token")) {
+            token = intent.getStringExtra("token").toString()
+        }
+        auth = Firebase.auth
 
         setup()
         setStatusBarColor()
@@ -45,7 +53,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
     }
 
     private fun setup() {
-        viewModel.getMajors()
+        viewModel.getMajors(token)
     }
 
 
