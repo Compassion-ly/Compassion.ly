@@ -50,7 +50,7 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
                 }
 
                 is Resources.Error -> {
-                    Log.e(TAG, "${resource.error}")
+                    Log.e(TAG, "error : ${resource.error}")
                     _isLoading.value = false
                 }
 

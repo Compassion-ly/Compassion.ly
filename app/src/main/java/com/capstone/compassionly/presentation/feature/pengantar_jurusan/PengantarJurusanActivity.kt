@@ -24,6 +24,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
         MajorInjector.majorInjector(this)
     }
     private lateinit var token: String
+    private lateinit var search_major: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +51,18 @@ class PengantarJurusanActivity : AppCompatActivity() {
         setStatusBarColor()
         setListMajors()
         showRecyclerView()
-        binding.apply {
-            btnSearch.setOnClickListener {
-                val userInput = binding.searchBar.text.toString()
-                Log.d(TAG, "User Input: $userInput")
+
+        binding.searchBar.requestFocus()
+        binding.searchBar.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                search_major = binding.searchBar.text.toString()
+                Log.d(TAG, "find major : $search_major")
+                findMajor(search_major)
+                return@setOnEditorActionListener true
             }
+            false
         }
+
     }
 
     private fun setup() {
@@ -70,6 +77,20 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
     private fun setStatusBarColor() {
         window.statusBarColor = getColor(R.color.customs_tatusbar)
+
+    }
+
+    private fun searchMajor() {
+        binding.searchBar.requestFocus()
+        binding.searchBar.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                search_major = binding.searchBar.text.toString()
+                Log.d(TAG, "find major : $search_major")
+                return@setOnEditorActionListener true
+            }
+            false
+        }
+        findMajor(search_major)
 
     }
 
@@ -93,10 +114,9 @@ class PengantarJurusanActivity : AppCompatActivity() {
         }
     }
 
-    private fun findMajor() {
+    private fun findMajor(search_query: String) {
         with(binding) {
-            val major = searchBar.text.toString()
-            viewModel.getMajor(token, major)
+            viewModel.getMajor(token, search_query)
             Log.d(TAG, "findMajor(), token: $token")
             setListFindMajors()
 
