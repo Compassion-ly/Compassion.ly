@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+    id("kotlin-kapt")
 }
 
 android {
@@ -105,7 +106,8 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     // Room
-    implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0")
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
 }

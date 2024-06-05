@@ -1,7 +1,6 @@
 package com.capstone.compassionly.repository.di
 
 import android.content.Context
-import com.capstone.compassionly.datasource.network.ApiConfiguration
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.repository.core.network.UserRepository
@@ -14,9 +13,8 @@ object StateInjection {
         return StateViewModelFactory(stateAppPreference)
     }
 
-    fun provideRepository(): UserRepository {
-        val apiService = ApiConfiguration.hitPointService
-        return UserRepository.getInstance(apiService)
+    fun provideRepository(): UserRepository? {
+        return UserRepository.getInstance()
     }
 
 }
