@@ -13,39 +13,34 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.GetCredentialRequest
 import androidx.credentials.GetCredentialResponse
 import androidx.credentials.exceptions.GetCredentialException
-import com.capstone.compassionly.utility.Resources
 import androidx.lifecycle.lifecycleScope
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityLoginBinding
+import com.capstone.compassionly.models.DataLogin
+import com.capstone.compassionly.models.LoginResponse
+import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
-import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
-import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
 import com.capstone.compassionly.presentation.feature.users_data.FormCompleteUserProfile
-import com.capstone.compassionly.repository.di.StateInjection
+import com.capstone.compassionly.repository.di.UserInjector
+import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
-import com.capstone.compassionly.utility.viewmodelfactory.ViewModelFactory
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
-    private val factory: ViewModelFactory = ViewModelFactory.getInstance()
+
     private val viewModel: LoginViewModel by viewModels {
-        factory
-    }
-    private val onBoardViewModel: OnBoardViewModel by viewModels {
-        StateInjection.onBoardInjection(this)
+        UserInjector.userInjector(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        stateCheck()
         Utils.changeStatusBarColorWhite(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -67,14 +62,17 @@ class LoginActivity : AppCompatActivity() {
                         is Resources.Loading -> {
                             Log.d("LoginActivity", "Loading...")
                         }
-
                         is Resources.Success -> {
                             Log.d("LoginActivity", "$resources")
                             viewModel.loginResult.observe(this) { user ->
-                                updateUI(user)
+                                if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
+                                    val result = resources.data as LoginResponse
+                                    checkState(result.data, token = result.data?.accessToken)
+                                } else {
+                                    updateUI(false, null)
+                                }
                             }
                         }
-
                         is Resources.Error -> {
                             Toast.makeText(
                                 application,
@@ -88,10 +86,28 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        val currentUser = auth.currentUser
-        updateUI(currentUser)
+//    override fun onStart() {
+//        super.onStart()
+//        viewModel.getUser().observe(this) {
+//            if (it.isNotEmpty()) {
+//                if (it[0].gender != null && it[0].phoneNumber != null) {
+//                    updateUI(false, null)
+//                }
+//            }
+//        }
+//    }
+
+    private fun checkState(user: DataLogin?, token: String? = null) {
+        if (
+            user?.user?.firstName == null ||
+            user.user.lastName == null ||
+            user.user.phoneNumber == null ||
+            user.user.schoolId == null ||
+            user.user.schoolMajorId == null) {
+            updateUI(true, token!!)
+        } else {
+            updateUI(false, null)
+        }
     }
 
     private fun signIn() {
@@ -119,20 +135,17 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(currentUser: FirebaseUser?) {
-        if (currentUser != null) {
-            startActivity(Intent(this@LoginActivity, FormCompleteUserProfile::class.java))
-            finish()
+    private fun updateUI(needUpdateData: Boolean, token: String?) {
+        if (needUpdateData) {
+            val intent = Intent(this@LoginActivity, FormCompleteUserProfile::class.java)
+            intent.putExtra("token", token)
+            startActivity(intent)
+            finishAffinity()
+        } else {
+            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+            finishAffinity()
         }
     }
 
-    private fun stateCheck() {
-        onBoardViewModel.getOnBoardState().observe(this) {
-            if (it.isNullOrBlank()) {
-                val intent = Intent(this@LoginActivity, OnBoardingActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
+
 }

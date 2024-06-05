@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "223463197253-3vq9tlh3vfaeqc51jbfejcbbbelolsdl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.capstone.compassionly",
+            "certificate_hash": "7100663f25db51c5033cdc8ca7643750fa882434"
+          }
+        },
+        {
           "client_id": "223463197253-hrce5hgpv7jtarp0318nl29k53ovj2kd.apps.googleusercontent.com",
           "client_type": 3
         }

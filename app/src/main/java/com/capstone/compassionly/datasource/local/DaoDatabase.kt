@@ -4,20 +4,25 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.capstone.compassionly.models.LocalHistoryTopic
+import com.capstone.compassionly.models.local.LocalHistoryTopic
+import com.capstone.compassionly.models.local.LocalUser
 
-@Database(entities = [LocalHistoryTopic::class], version = 1, exportSchema = false)
+@Database(entities = [LocalHistoryTopic::class, LocalUser::class], version = 3, exportSchema = false)
 abstract class DaoDatabase : RoomDatabase() {
     abstract fun daoService() : DaoService
 
     companion object {
+        @Volatile
         private var instance : DaoDatabase? = null
         fun getInstance(context: Context) = instance ?: synchronized(this) {
-            instance ?: Room.databaseBuilder(
+            val instances = Room.databaseBuilder(
                 context,
                 DaoDatabase::class.java,
-                "LocalHistoryTopic"
-            ).fallbackToDestructiveMigration().build().also { instance = it }
+                "Compassionly"
+            ).fallbackToDestructiveMigration().build()
+            instance = instances
+            instances
         }
     }
+
 }

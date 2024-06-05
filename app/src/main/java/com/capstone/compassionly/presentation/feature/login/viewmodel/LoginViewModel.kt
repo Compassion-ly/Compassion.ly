@@ -6,6 +6,7 @@ import androidx.credentials.GetCredentialResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.UserRepository
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -15,7 +16,12 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
 
-class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
+class LoginViewModel(
+    private val userRepository: UserRepository,
+    private val localDataSource: LocalDataSource,
+) : ViewModel() {
+
+    // API
 
     private val _loginResult = MutableLiveData<FirebaseUser?>()
     val loginResult: LiveData<FirebaseUser?> = _loginResult
@@ -78,6 +84,10 @@ class LoginViewModel(private val userRepository: UserRepository) : ViewModel() {
                 }
             }
     }
+
+    // LOCAL
+
+    fun getUser() = localDataSource.getUser()
 
     companion object {
         const val TAG = "LOGIN VIEW MODEL TEST"
