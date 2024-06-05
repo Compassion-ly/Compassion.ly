@@ -10,11 +10,6 @@ import com.capstone.compassionly.utility.Resources
 
 class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : ViewModel() {
 
-    //fun getMajors() = majorRepository.getMajors()
-//    fun getMajors(): LiveData<Resources<Any?>> {
-//        return majorRepository.getMajors()
-//    }
-
     private val _majors = MutableLiveData<List<DataItem>>()
     val majors: LiveData<List<DataItem>> = _majors
 

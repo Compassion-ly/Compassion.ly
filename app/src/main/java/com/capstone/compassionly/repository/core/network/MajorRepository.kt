@@ -11,16 +11,6 @@ import retrofit2.HttpException
 
 class MajorRepository {
 
-    //    fun getMajors(): LiveData<List<DataItem>> {
-//        return liveData(Dispatchers.IO) {
-//            val response = hitPointService.getMajors()
-//            response.data?.let {
-//                emit(it.filterNotNull())
-//            } ?: emit(emptyList())
-//        }
-//    }
-
-
     fun getMajors(token: String) = liveData {
         emit(Resources.Loading)
         try {
