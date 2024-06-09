@@ -67,7 +67,7 @@ interface HitPointService {
     @GET("/api/v1/schools/list-school-majors")
     suspend fun getSchoolMajorList(): Response<SuccessResponse<List<SchoolMajor>>>
 
-    @POST("/api/v1/auth/access-token")
+    @POST("/api/v1/predict/quick-recommendation")
     suspend fun quickRecommendation(
         @HeaderMap headerMap: Map<String, String>,
         @Body text: UserDesc
