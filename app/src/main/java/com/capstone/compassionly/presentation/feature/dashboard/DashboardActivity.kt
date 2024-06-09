@@ -1,7 +1,6 @@
 package com.capstone.compassionly.presentation.feature.dashboard
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -10,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
-import com.capstone.compassionly.presentation.feature.QuickRecActivity
+import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
 import com.capstone.compassionly.presentation.feature.show_recommendation.ShowRecommendationActivity
@@ -79,7 +78,6 @@ class DashboardActivity : AppCompatActivity() {
             }
             binding.recomendationFeature.setOnClickListener {
                 startActivityWithToken(ShowRecommendationActivity::class.java, userToken)
-
             }
             binding.quickRecomendationFeature.setOnClickListener {
                 startActivityWithToken(QuickRecActivity::class.java, userToken)

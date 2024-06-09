@@ -70,4 +70,11 @@
     <string name="matakuliah_terkait">Matakuliah Terkait</string>
     <string name="kampus">Kampus</string>
     <string name="quick_recommendation">Quick \nRecommendation</string>
+    <string name="quick_rec">Quick Recommendation</string>
+    <string name="question1_quickrec">Apa saja hobi atau minat yang kamu miliki?</string>
+    <string name="question2_quickrec">Hal apa yang ingin kamu pelajari lebih lanjut?</string>
+    <string name="question3_quickrec">Coba deskripsikan kepribadian mu!</string>
+    <string name="submit">Submit</string>
+    <string name="result_quickrec_explain">Setelah menganalisis deskripsi yang telah kamu berikan, kami melihat bahwa kamu memiliki ketertarikan pada bidang berikut :</string>
+    <string name="image">image</string>
 </resources>
