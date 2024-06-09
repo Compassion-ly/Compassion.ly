@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
+import com.capstone.compassionly.presentation.feature.QuickRecActivity
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
 import com.capstone.compassionly.presentation.feature.show_recommendation.ShowRecommendationActivity
@@ -78,6 +79,10 @@ class DashboardActivity : AppCompatActivity() {
             }
             binding.recomendationFeature.setOnClickListener {
                 startActivityWithToken(ShowRecommendationActivity::class.java, userToken)
+
+            }
+            binding.quickRecomendationFeature.setOnClickListener {
+                startActivityWithToken(QuickRecActivity::class.java, userToken)
 
             }
             binding.fab.setOnClickListener {
