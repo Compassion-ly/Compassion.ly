@@ -6,6 +6,7 @@ import com.capstone.compassionly.datasource.preference.datasupport.StateAppPrefe
 import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.MajorRepository
+import com.capstone.compassionly.repository.core.network.QuickRecRepository
 import com.capstone.compassionly.repository.core.network.SchoolRepository
 import com.capstone.compassionly.repository.core.network.UserRepository
 import com.capstone.compassionly.utility.viewmodelfactory.CommonViewModelFactory
@@ -19,7 +20,8 @@ object CommonInjector {
         val daoDatabase = DaoDatabase.getInstance(context)
         val localDataSource = LocalDataSource.getInstance(daoDatabase.daoService())
         val majorRep = MajorRepository.getInstance()
-        return CommonViewModelFactory(userRep, schoolRep, localDataSource!!, state, majorRep)
+        val quickRecRep = QuickRecRepository.getInstance()
+        return CommonViewModelFactory(userRep, schoolRep, localDataSource!!, state, majorRep,quickRecRep)
     }
 
 }

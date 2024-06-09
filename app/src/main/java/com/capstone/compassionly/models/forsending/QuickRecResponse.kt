@@ -22,3 +22,7 @@ data class Data(
 	@field:SerializedName("additionalProp2")
 	val additionalProp2: List<String?>? = null
 )
+
+data class UserDesc(
+	val text: String
+)

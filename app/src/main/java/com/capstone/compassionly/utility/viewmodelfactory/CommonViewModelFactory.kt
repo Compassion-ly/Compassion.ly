@@ -7,9 +7,11 @@ import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.Dashbo
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
+import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.MajorRepository
+import com.capstone.compassionly.repository.core.network.QuickRecRepository
 import com.capstone.compassionly.repository.core.network.SchoolRepository
 import com.capstone.compassionly.repository.core.network.UserRepository
 
@@ -18,7 +20,8 @@ class CommonViewModelFactory(
     private val schoolRepository: SchoolRepository,
     private val localDataSource: LocalDataSource,
     private val state: StateAppPreference,
-    private val majorRepository: MajorRepository
+    private val majorRepository: MajorRepository,
+    private val quickRecRepository: QuickRecRepository
 
 ): ViewModelProvider.NewInstanceFactory() {
 
@@ -43,6 +46,9 @@ class CommonViewModelFactory(
 
             DetailJurusanViewModel::class.java-> {
                 DetailJurusanViewModel(majorRepository) as T
+            }
+            QuickRecViewModel::class.java-> {
+                QuickRecViewModel(quickRecRepository) as T
             }
 
             else -> throw IllegalArgumentException("Class does't match")

@@ -9,6 +9,8 @@ import com.capstone.compassionly.models.SchoolMajor
 import com.capstone.compassionly.models.SchoolModel
 import com.capstone.compassionly.models.SuccessResponse
 import com.capstone.compassionly.models.forsending.AccessToken
+import com.capstone.compassionly.models.forsending.QuickRecResponse
+import com.capstone.compassionly.models.forsending.UserDesc
 import com.capstone.compassionly.models.forsending.UserUpdateSend
 import retrofit2.Response
 import retrofit2.http.Body
@@ -64,4 +66,10 @@ interface HitPointService {
 
     @GET("/api/v1/schools/list-school-majors")
     suspend fun getSchoolMajorList(): Response<SuccessResponse<List<SchoolMajor>>>
+
+    @POST("/api/v1/auth/access-token")
+    suspend fun quickRecommendation(
+        @HeaderMap headerMap: Map<String, String>,
+        @Body text: UserDesc
+    ): QuickRecResponse
 }
