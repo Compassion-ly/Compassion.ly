@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.liveData
 import com.capstone.compassionly.datasource.network.ApiConfiguration
 import com.capstone.compassionly.models.ErrorModel
+import com.capstone.compassionly.models.forsending.AccessToken
 import com.capstone.compassionly.models.forsending.UserDesc
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
@@ -15,8 +16,8 @@ class QuickRecRepository {
     fun sendUserDesc(token: String, text: String) = liveData {
         emit(Resources.Loading)
         try {
-            val text = UserDesc(text)
-            val response = ApiConfiguration.hitPointService.quickRecommendation(Utils.getHeader(token), text)
+            val textDesc = UserDesc(text)
+            val response = ApiConfiguration.hitPointService.quickRecommendation(Utils.getHeader(token),textDesc)
             Log.d("QuickRecRepo", "$response")
             emit(Resources.Success(response))
         } catch (e: HttpException) {

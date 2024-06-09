@@ -15,6 +15,7 @@ import com.capstone.compassionly.models.forsending.UserUpdateSend
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.HeaderMap
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -67,7 +68,7 @@ interface HitPointService {
     @GET("/api/v1/schools/list-school-majors")
     suspend fun getSchoolMajorList(): Response<SuccessResponse<List<SchoolMajor>>>
 
-    @POST("/api/v1/auth/access-token")
+    @POST("/api/v1/predict/quick-recommendation")
     suspend fun quickRecommendation(
         @HeaderMap headerMap: Map<String, String>,
         @Body text: UserDesc
