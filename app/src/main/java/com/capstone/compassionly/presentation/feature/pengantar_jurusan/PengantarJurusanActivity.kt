@@ -1,5 +1,6 @@
 package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityPengantarJurusanBinding
 import com.capstone.compassionly.presentation.adapter.ListMajorAdapter
+import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
 import com.capstone.compassionly.repository.di.MajorInjector
 
@@ -45,12 +47,36 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
         if (intent.hasExtra("token")) {
             token = intent.getStringExtra("token").toString()
+            setup()
+            setStatusBarColor()
+            setListMajors()
+            showRecyclerView()
+            binding.searchBar.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                    searchMajor = s.toString()
+                    findMajor(searchMajor)
+
+                    Log.d(TAG, "find major : $searchMajor")
+                }
+
+
+            })
+        } else {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
-        setup()
-        setStatusBarColor()
-        setListMajors()
-        showRecyclerView()
 
 //        binding.searchBar.requestFocus()
 //        binding.searchBar.setOnEditorActionListener { v, actionId, event ->
@@ -62,23 +88,6 @@ class PengantarJurusanActivity : AppCompatActivity() {
 //            }
 //            false
 //        }
-
-        binding.searchBar.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                searchMajor = s.toString()
-                findMajor(searchMajor)
-
-                Log.d(TAG, "find major : $searchMajor")
-            }
-
-
-        })
 
     }
 
@@ -98,7 +107,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
     }
 
     private fun setListMajors() {
-        val adapter = ListMajorAdapter()
+        val adapter = ListMajorAdapter(token)
         binding.rvMajors.adapter = adapter
         binding.rvMajors.layoutManager = LinearLayoutManager(this)
 
@@ -108,7 +117,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
     }
 
     private fun setListFindMajors() {
-        val adapter = ListMajorAdapter()
+        val adapter = ListMajorAdapter(token)
         binding.rvMajors.adapter = adapter
         binding.rvMajors.layoutManager = LinearLayoutManager(this)
 
@@ -118,11 +127,9 @@ class PengantarJurusanActivity : AppCompatActivity() {
     }
 
     private fun findMajor(search_query: String) {
-        with(binding) {
-            viewModel.getMajor(token, search_query)
-            Log.d(TAG, "findMajor(), token: $token")
-            setListFindMajors()
-        }
+        viewModel.getMajor(token, search_query)
+        Log.d(TAG, "findMajor(), token: $token")
+        setListFindMajors()
     }
 
     private fun showLoading(isLoading: Boolean) {

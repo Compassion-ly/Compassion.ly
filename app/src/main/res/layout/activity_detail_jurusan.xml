@@ -32,7 +32,7 @@
             android:paddingVertical="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="60dp"
-            android:text="Teknik Informatika"
+            tools:text="Teknik Informatika"
             android:textColor="@color/md_theme_primary"
             android:textSize="14sp"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
             android:layout_marginVertical="20dp"
             android:fontFamily="@font/poppins"
             android:justificationMode="inter_word"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere."
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere.Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere."
             android:textColor="@color/black"
             android:textSize="13sp"
             android:textStyle="normal"
@@ -58,9 +58,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins"
-            android:text="Matakuliah Terkait"
+            android:text="@string/matakuliah_terkait"
             android:textColor="@color/md_theme_secondary"
             android:textSize="15sp"
             android:textStyle="bold"
@@ -98,8 +98,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_course"
-            tools:listitem="@layout/item_course" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_college"
+            tools:listitem="@layout/item_college" />
 
         <ProgressBar
             android:id="@+id/progressBar"

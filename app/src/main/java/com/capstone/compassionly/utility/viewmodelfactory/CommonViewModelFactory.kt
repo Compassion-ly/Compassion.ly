@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
+import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.core.local.LocalDataSource
@@ -38,6 +39,10 @@ class CommonViewModelFactory(
 
             PengantarJurusanViewModel::class.java-> {
                 PengantarJurusanViewModel(majorRepository) as T
+            }
+
+            DetailJurusanViewModel::class.java-> {
+                DetailJurusanViewModel(majorRepository) as T
             }
 
             else -> throw IllegalArgumentException("Class does't match")
