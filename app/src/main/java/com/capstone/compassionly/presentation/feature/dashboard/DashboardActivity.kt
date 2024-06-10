@@ -1,6 +1,7 @@
 package com.capstone.compassionly.presentation.feature.dashboard
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -67,13 +68,14 @@ class DashboardActivity : AppCompatActivity() {
             }
 
             slider.setImageList(sliderList, ScaleTypes.CENTER_CROP)
-            slider.setItemClickListener(object: ItemClickListener {
+            slider.setItemClickListener(object : ItemClickListener {
                 override fun doubleClick(position: Int) {
 
                 }
 
                 override fun onItemSelected(position: Int) {
-                    val intent = Intent(this@DashboardActivity, IntroductionFeaturesActivity::class.java)
+                    val intent =
+                        Intent(this@DashboardActivity, IntroductionFeaturesActivity::class.java)
                     intent.putExtra("datas", UtilsData.getIntroduction()[position])
                     startActivity(intent)
                 }

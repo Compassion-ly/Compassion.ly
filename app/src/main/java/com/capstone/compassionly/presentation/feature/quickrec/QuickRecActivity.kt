@@ -11,11 +11,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityQuickRecBinding
+import com.capstone.compassionly.models.forsending.Data
+import com.capstone.compassionly.models.forsending.QuickRecResponse
 import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
+import com.capstone.compassionly.presentation.feature.topic.TopicActivity
 import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.utility.Resources
+import com.capstone.compassionly.utility.Utils.startActivityWithToken
 
 class QuickRecActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuickRecBinding
@@ -43,11 +47,11 @@ class QuickRecActivity : AppCompatActivity() {
                 requireMinChar()
             }
         } else {
+            Toast.makeText(this, "Token not found. Please login again.", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
-
-
     }
 
     private fun setStatusBarColor() {
@@ -73,8 +77,28 @@ class QuickRecActivity : AppCompatActivity() {
 
                         is Resources.Success -> {
                             Log.d(TAG, "$resources")
-                        }
+                            val quickRecResponse: QuickRecResponse? = resources.data as? QuickRecResponse
+                            Log.d(TAG, "quickRecResponse : $quickRecResponse")
 
+                            if (quickRecResponse?.data != null) {
+                                val predictionList = quickRecResponse.data.prediction.orEmpty()
+
+                                Log.d(TAG, "predictionList : $predictionList")
+                                val newQuickRecResponse = QuickRecResponse(Data(prediction = predictionList))
+                                Log.d(TAG, "newQuickRecResponse : $newQuickRecResponse")
+                                viewModel.saveQuickRecResult(newQuickRecResponse)
+
+//                                viewModel.getQuickRecResult().observe(this){result ->
+//                                    Log.d(TAG, "getResult : $result")
+//                                }
+
+                                startActivityWithToken(QuickRecResultActivity::class.java, token)
+
+
+                            } else {
+                                Log.d(TAG, "quickRecResponse or quickRecResponse.data is null")
+                            }
+                        }
                         is Resources.Error -> {
                             Toast.makeText(
                                 application, "Error: ${resources.error}", Toast.LENGTH_LONG

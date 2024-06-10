@@ -2,6 +2,7 @@ package com.capstone.compassionly.repository.di
 
 import android.content.Context
 import com.capstone.compassionly.datasource.local.DaoDatabase
+import com.capstone.compassionly.datasource.local.QuickRecPreference
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.repository.core.local.LocalDataSource
@@ -19,7 +20,7 @@ object MajorInjector {
         val daoDatabase = DaoDatabase.getInstance(context)
         val localDataSource = LocalDataSource.getInstance(daoDatabase.daoService())
         val majorRep = MajorRepository.getInstance()
-        val quickRecRep = QuickRecRepository.getInstance()
+        val quickRecRep = QuickRecRepository.getInstance(context)
         return CommonViewModelFactory(userRep, schoolRep, localDataSource!!, state, majorRep, quickRecRep)
     }
 }

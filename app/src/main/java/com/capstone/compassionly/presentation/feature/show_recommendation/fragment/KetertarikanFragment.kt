@@ -40,8 +40,8 @@ class KetertarikanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val listInterest = DataDummyUtil.getCategory()
-        setListInterest(listInterest)
-        showRecyclerView()
+        //setListInterest(listInterest)
+        //showRecyclerView()
     }
 
     private fun showRecyclerView() {
@@ -55,7 +55,7 @@ class KetertarikanFragment : Fragment() {
 
     private fun setListInterest(categories: List<Category>) {
         val adapter = ListCategoryAdapter()
-        adapter.submitList(categories)
+        //adapter.submitList(categories)
         binding.rvInterests.adapter = adapter
     }
 

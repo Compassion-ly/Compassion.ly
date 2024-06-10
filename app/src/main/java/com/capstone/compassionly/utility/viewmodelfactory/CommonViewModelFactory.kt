@@ -2,6 +2,7 @@ package com.capstone.compassionly.utility.viewmodelfactory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.capstone.compassionly.datasource.local.QuickRecPreference
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
