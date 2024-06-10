@@ -18,14 +18,14 @@ import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Utils
 
 class MainActivity : AppCompatActivity() {
-    private val onBoardViewModel : OnBoardViewModel by viewModels {
+    private val onBoardViewModel: OnBoardViewModel by viewModels {
         StateInjection.onBoardInjection(this)
     }
     private val userViewModel: UserViewModel by viewModels {
         UserInjector.userInjector(this)
     }
 
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,26 +43,45 @@ class MainActivity : AppCompatActivity() {
     private fun stateCheck() {
         onBoardViewModel.getOnBoardState().observe(this) {
             if (it.isNullOrBlank()) {
+                println("is Board $it")
                 val intent = Intent(this@MainActivity, OnBoardingActivity::class.java)
                 startActivity(intent)
                 finish()
             } else {
-                userViewModel.getDataUser().observe(this) { data ->
-                    if (data.isNotEmpty()) {
-                        if (data[0].gender != null && data[0].phoneNumber != null) {
-                            val intent = Intent(this@MainActivity, DashboardActivity::class.java)
-                            startActivity(intent)
-                            finishAffinity()
-                        } else {
-                            binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
-                            Utils.changeStatusBarColorWhite(this)
-                            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
+//                userViewModel.getDataUser().observe(this) { data ->
+//                    if (data.isNotEmpty()) {
+//                        if (data[0].data?.user?.gender != null && data[0].data?.user?.phoneNumber != null) {
+//                            val intent = Intent(this@MainActivity, DashboardActivity::class.java)
+//                            startActivity(intent)
+//                            finishAffinity()
+//                        } else {
+//                            binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
+//                            Utils.changeStatusBarColorWhite(this)
+//                            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+//                            startActivity(intent)
+//                        }
+//                    } else {
+//                        binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
+//                        Utils.changeStatusBarColorWhite(this)
+//                        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+//                        startActivity(intent)
+//                        finish()
+//                    }
+//                }
+                userViewModel.getAccessToken().observe(this@MainActivity) { token ->
+                    println("maain $token")
+                    if (token.isNullOrEmpty()) {
+                        binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
+                        Utils.changeStatusBarColorWhite(this)
+                        val intent = Intent(this@MainActivity, LoginActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        val intent = Intent(this@MainActivity, DashboardActivity::class.java)
+                        startActivity(intent)
+                        finishAffinity()
                     }
                 }
-
             }
         }
     }

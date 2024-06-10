@@ -16,7 +16,7 @@ class ApiConfiguration {
             .addInterceptor(interceptor)
             .build()
         private val retrofit = Retrofit.Builder()
-            .baseUrl(BuildConfig.BASEURL)
+            .baseUrl("https://compassionly-api-test-zue4vcwkfa-et.a.run.app/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
