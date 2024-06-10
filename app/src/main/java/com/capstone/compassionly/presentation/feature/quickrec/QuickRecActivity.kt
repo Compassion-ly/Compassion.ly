@@ -115,7 +115,7 @@ class QuickRecActivity : AppCompatActivity() {
                                 viewModel.saveQuickRecResult(newQuickRecResponse)
 
                                 startActivityWithToken(QuickRecResultActivity::class.java, token)
-
+                                finish()
 
                             } else {
                                 Log.d(TAG, "quickRecResponse or quickRecResponse.data is null")
