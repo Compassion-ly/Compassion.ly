@@ -4,16 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.capstone.compassionly.models.DataItem
-import com.capstone.compassionly.models.forsending.Data
 import com.capstone.compassionly.models.forsending.QuickRecResponse
 import com.capstone.compassionly.models.local.Interest
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Category
 import com.capstone.compassionly.repository.core.network.QuickRecRepository
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class QuickRecViewModel(
@@ -23,6 +17,7 @@ class QuickRecViewModel(
 
     private val _interests = MutableLiveData<List<Interest>>()
     val interests: LiveData<List<Interest>> = _interests
+
     fun sendUserDesc(token: String, text: String) = quickRecRepository.sendUserDesc(token, text)
 
     fun saveQuickRecResult(result: QuickRecResponse) {

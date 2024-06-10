@@ -77,4 +77,6 @@
     <string name="submit">Submit</string>
     <string name="result_quickrec_explain">Setelah menganalisis deskripsi yang telah kamu berikan, kami melihat bahwa kamu memiliki ketertarikan pada bidang berikut :</string>
     <string name="image">image</string>
+    <string name="nol">0</string>
+    <string name="quickrec_hint">Tuliskan minimal dalam 50 karakter</string>
 </resources>

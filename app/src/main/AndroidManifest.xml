@@ -20,7 +20,8 @@
             android:exported="false" />
         <activity
             android:name=".presentation.feature.quickrec.QuickRecActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustPan"/>
         <activity
             android:name=".presentation.feature.topic.TopicSuccessActivity"
             android:exported="false" />
