@@ -29,7 +29,7 @@ class CommonViewModelFactory(
             }
 
             LoginViewModel::class.java -> {
-                LoginViewModel(repo, localDataSource) as T
+                LoginViewModel(repo, localDataSource, state) as T
             }
 
             DashboardViewModel::class.java -> {

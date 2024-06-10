@@ -177,22 +177,9 @@ class FormCompleteUserProfile : AppCompatActivity() {
     }
 
     private fun generateLocalUser(detailResponse: DetailUserModel) : LocalUser {
-        val user = detailResponse.user!!
-        val school = detailResponse.school!!
-        val major = detailResponse.schoolMajor!!
         return LocalUser(
             0,
-            gender = user.gender,
-            userSchoolsId =  user.userSchoolsId,
-            lastName =  user.lastName,
-            firstName =  user.firstName,
-            phoneNumber =  user.phoneNumber,
-            email =  user.email,
-            schoolName =  school.schoolName,
-            schoolCity =  school.schoolCity,
-            npsn =  school.npsn,
-            schoolProvince =  school.schoolProvince,
-            schoolMajorName = major.schoolMajorName
+            detailResponse
         )
     }
 

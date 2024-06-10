@@ -11,14 +11,18 @@ import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
+import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
 import com.capstone.compassionly.presentation.feature.show_recommendation.ShowRecommendationActivity
 import com.capstone.compassionly.presentation.feature.topic.TopicActivity
 import com.capstone.compassionly.presentation.feature.topic_histories.TopicHistoriesActivity
 import com.capstone.compassionly.presentation.feature.users_data.ProfileActivity
 import com.capstone.compassionly.repository.di.CommonInjector
+import com.capstone.compassionly.utility.Utils
 import com.capstone.compassionly.utility.Utils.startActivityWithToken
+import com.capstone.compassionly.utility.UtilsData
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -40,7 +44,7 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(binding.root)
         setStatusBarColor()
         auth = Firebase.auth
-
+        Utils.changeStatusBarColorWhite(this)
         viewModel.getToken().observe(this) { token ->
             if (token != null) {
                 Log.d(TAG, "User Token: $token")
@@ -56,12 +60,25 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun menu(userToken: String) {
         binding.apply {
-            val imageList = ArrayList<SlideModel>().apply {
-                add(SlideModel(R.drawable.slider1))
-                add(SlideModel(R.drawable.slider2))
-                add(SlideModel(R.drawable.slider3))
+
+            val sliderList = ArrayList<SlideModel>()
+            UtilsData.getIntroduction().forEach {
+                sliderList.add(SlideModel(it.cover))
             }
-            slider.setImageList(imageList, ScaleTypes.CENTER_CROP)
+
+            slider.setImageList(sliderList, ScaleTypes.CENTER_CROP)
+            slider.setItemClickListener(object: ItemClickListener {
+                override fun doubleClick(position: Int) {
+
+                }
+
+                override fun onItemSelected(position: Int) {
+                    val intent = Intent(this@DashboardActivity, IntroductionFeaturesActivity::class.java)
+                    intent.putExtra("datas", UtilsData.getIntroduction()[position])
+                    startActivity(intent)
+                }
+
+            })
 
             Log.d(TAG, "User token : $userToken")
 
@@ -97,20 +114,15 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        viewModel.getUserData().observe(this) {
-            val data = it[0]
-            println("dashboard $data")
-            binding.apply {
-                tvUsername.text = "${data.firstName} ${data.lastName}"
-                Glide.with(applicationContext)
-                    .load(auth.currentUser?.photoUrl)
-                    .placeholder(resources.getDrawable(R.drawable.image_placeholder_profile, null))
-                    .into(ivProfilePhoto)
-            }
+        val userDetail = auth.currentUser
+        binding.apply {
+            tvUsername.text = userDetail?.displayName
+            Glide.with(applicationContext)
+                .load(auth.currentUser?.photoUrl)
+                .placeholder(resources.getDrawable(R.drawable.image_placeholder_profile, null))
+                .into(ivProfilePhoto)
         }
-        viewModel.getToken().observe(this) {
-            println(it!!)
-        }
+
     }
 
     companion object {

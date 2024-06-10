@@ -6,19 +6,30 @@ import androidx.credentials.GetCredentialResponse
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import androidx.lifecycle.viewModelScope
+import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
+import com.capstone.compassionly.models.ErrorModel
+import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.UserRepository
+import com.capstone.compassionly.utility.Resources
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.gson.Gson
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 
 class LoginViewModel(
     private val userRepository: UserRepository,
     private val localDataSource: LocalDataSource,
+    private val stateAppPreference: StateAppPreference,
+
 ) : ViewModel() {
 
     // API
@@ -85,9 +96,30 @@ class LoginViewModel(
             }
     }
 
-    // LOCAL
+    fun getMe(token: String) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = userRepository.getMe(token)
+            if (response.isSuccessful) {
+                response.body().apply {
+                    emit(Resources.Success(this))
+                }
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+            emit(Resources.Error(errorBody))
+        }
 
-    fun getUser() = localDataSource.getUser()
+    }
+
+    // LOCAL
+    fun store (localUser: LocalUser?) = viewModelScope.launch {
+        localDataSource.insertUser(localUser)
+    }
+    fun storeToken(token: String) = viewModelScope.launch{
+        stateAppPreference.setAccessToken(token)
+    }
 
     companion object {
         const val TAG = "LOGIN VIEW MODEL TEST"
