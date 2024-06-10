@@ -29,6 +29,9 @@ data class User(
 	@field:SerializedName("user_schools_id")
 	val userSchoolsId: Int,
 
+	@field:SerializedName("user_topic_weight")
+	val userTopicWeight: List<Int>,
+
 	@field:SerializedName("last_name")
 	val lastName: String? = null,
 

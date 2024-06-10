@@ -9,9 +9,11 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityProfileBinding
+import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.di.UserInjector
@@ -40,28 +42,41 @@ class ProfileActivity : AppCompatActivity() {
             insets
         }
         mAuth = Firebase.auth
-        setDisplayView()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        check()
     }
 
     @SuppressLint("SetTextI18n")
-    private fun setDisplayView() {
+    private fun check() {
         val photoProfile = mAuth.currentUser?.photoUrl
         setPhotoProfile(photoProfile)
-        binding.apply {
-            userVM.getDataUser().observe(this@ProfileActivity) {
-                it[0].apply {
-                    userFullName.text = "${this.firstName} ${this.lastName}"
-                    userEmail.text = this.email
-                    edPhoneNumber.text = this.phoneNumber
-                    edGnder.text = this.gender
-                    edSchool.text = this.schoolName
-                    edNpsn.text = this.npsn
-                    edMajor.text = this.schoolMajorName
-                    edProvince.text = this.schoolProvince
-                    edCity.text = this.schoolCity
-                    btnLogout.setOnClickListener { removeToken() }
+        val localUser = Observer<List<LocalUser>> { value ->
+            binding.apply {
+                if (value.isNotEmpty()) {
+                    val it : LocalUser = value[0]
+                    userFullName.text = "${it.data?.user?.firstName} ${it.data?.user?.lastName}"
+                    userEmail.text = it.data?.user?.email
+                    edPhoneNumber.text = it.data?.user?.phoneNumber
+                    edGnder.text = it.data?.user?.gender
+                    edSchool.text = it.data?.school?.schoolName
+                    edNpsn.text = it.data?.school?.npsn
+                    edMajor.text = it.data?.schoolMajor?.schoolMajorName
+                    edProvince.text = it.data?.school?.schoolProvince
+                    edCity.text = it.data?.school?.schoolCity
+                } else {
+                    Utils.showToast(this@ProfileActivity, "Berhasil Logout")
                 }
             }
+        }
+        userVM.getDataUser().apply {
+            observe(this@ProfileActivity, localUser)
+        }
+        binding.btnLogout.setOnClickListener {
+            removeToken()
         }
     }
 
@@ -74,14 +89,13 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun removeToken() {
+        val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
+        startActivity(intent)
+        finishAffinity()
         userVM.apply {
             removeAccessToken()                 // REMOVE TOKEN IN DATASTORE
             mAuth.signOut()                     // SIGN OUT FIREBASE AUTHENTICATION
-
-            val intent = Intent(this@ProfileActivity, LoginActivity::class.java)
-            startActivity(intent)
-            userVM.deleteUser()
-            finishAffinity()
+            deleteUser()
         }
     }
 

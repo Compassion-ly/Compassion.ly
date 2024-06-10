@@ -4,10 +4,10 @@ import com.capstone.compassionly.models.CollegesByMajorResponse
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.LoginResponse
 import com.capstone.compassionly.models.MajorResponse
-import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.SchoolMajor
 import com.capstone.compassionly.models.SchoolModel
 import com.capstone.compassionly.models.SuccessResponse
+import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.forsending.AccessToken
 import com.capstone.compassionly.models.forsending.QuickRecResponse
 import com.capstone.compassionly.models.forsending.UserDesc

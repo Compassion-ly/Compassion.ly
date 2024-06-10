@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.WindowCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.LayoutDialogRateTopicBinding
@@ -68,4 +67,5 @@ object Utils {
         intent.putExtra("token", userToken)
         startActivity(intent)
     }
+
 }

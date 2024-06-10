@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.ErrorModel
+import com.capstone.compassionly.models.ErrorUnDocumentedModel
 import com.capstone.compassionly.models.SuccessResponse
 import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.forsending.AccessToken
@@ -55,10 +56,17 @@ class UserRepository {
             Log.d("UserRepository", "$response")
             emit(Resources.Success(response))
         } catch (e: HttpException) {
-            val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
-            val errorMessage = errorBody.detail
-            emit(Resources.Error(errorMessage!!))
+            if (e.code() == 500) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                val errorMessage = errorBody.detail
+                emit(Resources.Error(errorMessage!!))
+            } else {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+                val errorMessage = errorBody.detail
+                emit(Resources.Error(errorMessage!!))
+            }
         }
     }
 

@@ -17,7 +17,10 @@ import androidx.lifecycle.lifecycleScope
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityLoginBinding
 import com.capstone.compassionly.models.DataLogin
+import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.LoginResponse
+import com.capstone.compassionly.models.SuccessResponse
+import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.users_data.FormCompleteUserProfile
@@ -29,6 +32,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -49,6 +53,8 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
         auth = Firebase.auth
 
         binding.signInButton.setOnClickListener {
@@ -66,11 +72,11 @@ class LoginActivity : AppCompatActivity() {
                         is Resources.Success -> {
                             Log.d("LoginActivity", "$resources")
                             viewModel.loginResult.observe(this) { user ->
+                                val result = resources.data as LoginResponse
                                 if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
-                                    val result = resources.data as LoginResponse
                                     checkState(result.data, token = result.data?.accessToken)
                                 } else {
-                                    updateUI(false, null)
+                                    updateUI(false, result.data?.accessToken)
                                 }
                             }
                         }
@@ -109,7 +115,7 @@ class LoginActivity : AppCompatActivity() {
         ) {
             updateUI(true, token!!)
         } else {
-            updateUI(false, null)
+            updateUI(false, token!!)
         }
     }
 
@@ -145,10 +151,34 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finishAffinity()
         } else {
+            storeUserToLocal(token!!)
             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
             finishAffinity()
         }
     }
 
+    private fun storeUserToLocal(token: String) = runBlocking {
+        viewModel.getMe(token).observe(this@LoginActivity) { resources ->
+            when (resources) {
+                is Resources.Loading -> {
+                    Log.d("LoginActivity", "Loading...")
+                }
 
+                is Resources.Success -> {
+                    val data = resources.data as SuccessResponse<*>
+                    val detailUser = data.data as DetailUserModel
+                    viewModel.store(LocalUser(0, detailUser))
+                    viewModel.storeToken(token)
+                }
+
+                is Resources.Error -> {
+                    Toast.makeText(
+                        application,
+                        "Error: ${resources.error}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
 }
