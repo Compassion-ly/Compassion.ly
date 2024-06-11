@@ -46,6 +46,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
         if (intent.hasExtra("token")) {
             token = intent.getStringExtra("token").toString()
+            Log.d(TAG,"token : $token")
             setup()
             setStatusBarColor()
             setListMajors()
