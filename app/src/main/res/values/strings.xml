@@ -72,4 +72,14 @@
     <string name="cari_topic">Cari topic</string>
     <string name="data_topic_tidak_ditemukan_silahkan_refresh_halaman">Terjadi kesalahan, mohon periksa kembali koneksi anda</string>
     <string name="muat_ulang">Muat Ulang</string>
+    <string name="quick_recommendation">Quick \nRecommendation</string>
+    <string name="quick_rec">Quick Recommendation</string>
+    <string name="question1_quickrec">Apa saja hobi atau minat yang kamu miliki?</string>
+    <string name="question2_quickrec">Hal apa yang ingin kamu pelajari lebih lanjut?</string>
+    <string name="question3_quickrec">Coba deskripsikan kepribadian mu!</string>
+    <string name="submit">Submit</string>
+    <string name="result_quickrec_explain">Setelah menganalisis deskripsi yang telah kamu berikan, kami melihat bahwa kamu memiliki ketertarikan pada bidang berikut :</string>
+    <string name="image">image</string>
+    <string name="nol">0</string>
+    <string name="quickrec_hint">Tuliskan minimal dalam 50 karakter</string>
 </resources>

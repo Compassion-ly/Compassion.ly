@@ -145,4 +145,5 @@
     <color name="md_theme_surfaceContainerHigh_highContrast">#E8E7ED</color>
     <color name="md_theme_surfaceContainerHighest_highContrast">#E3E2E7</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
+    <color name="lightblue">#E5F3FD</color>
 </resources>

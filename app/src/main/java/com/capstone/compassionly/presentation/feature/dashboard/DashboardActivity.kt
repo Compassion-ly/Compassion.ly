@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
+import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
@@ -68,13 +69,14 @@ class DashboardActivity : AppCompatActivity() {
             }
 
             slider.setImageList(sliderList, ScaleTypes.CENTER_CROP)
-            slider.setItemClickListener(object: ItemClickListener {
+            slider.setItemClickListener(object : ItemClickListener {
                 override fun doubleClick(position: Int) {
 
                 }
 
                 override fun onItemSelected(position: Int) {
-                    val intent = Intent(this@DashboardActivity, IntroductionFeaturesActivity::class.java)
+                    val intent =
+                        Intent(this@DashboardActivity, IntroductionFeaturesActivity::class.java)
                     intent.putExtra("datas", UtilsData.getIntroduction()[position])
                     startActivity(intent)
                 }
@@ -96,6 +98,9 @@ class DashboardActivity : AppCompatActivity() {
             }
             binding.recomendationFeature.setOnClickListener {
                 startActivityWithToken(ShowRecommendationActivity::class.java, userToken)
+            }
+            binding.quickRecomendationFeature.setOnClickListener {
+                startActivityWithToken(QuickRecActivity::class.java, userToken)
 
             }
             binding.fab.setOnClickListener {

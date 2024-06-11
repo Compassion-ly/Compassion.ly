@@ -11,9 +11,10 @@ import com.capstone.compassionly.databinding.ItemMajorBinding
 import com.capstone.compassionly.models.DataItem
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.DetailJurusanActivity
 
-class ListMajorAdapter : ListAdapter<DataItem, ListMajorAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class ListMajorAdapter(private val token: String) :
+    ListAdapter<DataItem, ListMajorAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding: ItemMajorBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(majors: DataItem) {
+        fun bind(token: String, majors: DataItem) {
             binding.tvMajorname.text = majors.majorName
             Glide.with(binding.root.context)
                 .load(majors.majorImage)
@@ -21,6 +22,7 @@ class ListMajorAdapter : ListAdapter<DataItem, ListMajorAdapter.MyViewHolder>(DI
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailJurusanActivity::class.java)
                 intent.putExtra(DetailJurusanActivity.MAJOR_ID, majors.id)
+                intent.putExtra("token", token)
                 itemView.context.startActivity(intent)
             }
         }
@@ -34,7 +36,7 @@ class ListMajorAdapter : ListAdapter<DataItem, ListMajorAdapter.MyViewHolder>(DI
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val jurusan = getItem(position)
         if (jurusan != null) {
-            holder.bind(jurusan)
+            holder.bind(token, jurusan)
         }
     }
 
