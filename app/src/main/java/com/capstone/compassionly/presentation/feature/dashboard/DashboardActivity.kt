@@ -48,6 +48,7 @@ class DashboardActivity : AppCompatActivity() {
         viewModel.getToken().observe(this) { token ->
             if (token != null) {
                 Log.d(TAG, "User Token: $token")
+                viewModel.updateUserHistory(this@DashboardActivity, token)
                 menu(token)
 
             } else {

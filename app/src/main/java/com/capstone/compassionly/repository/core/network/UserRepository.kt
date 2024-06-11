@@ -6,7 +6,9 @@ import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.h
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.ErrorUnDocumentedModel
+import com.capstone.compassionly.models.RatingModel
 import com.capstone.compassionly.models.SuccessResponse
+import com.capstone.compassionly.models.TopicModel
 import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.forsending.AccessToken
 import com.capstone.compassionly.models.forsending.UserUpdateSend
@@ -68,6 +70,14 @@ class UserRepository {
                 emit(Resources.Error(errorMessage!!))
             }
         }
+    }
+
+    suspend fun getUserHistoryTopic(token: String) : Response<SuccessResponse<List<RatingModel>>> {
+        return hitPointService.getHistoryTopic(Utils.getHeader(token))
+    }
+
+    suspend fun getUserTopicById(token : String,id: Int): Response<SuccessResponse<TopicModel>> {
+        return hitPointService.getTopicById(Utils.getHeader(token), id)
     }
 
     companion object {

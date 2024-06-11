@@ -9,7 +9,7 @@ import com.capstone.compassionly.models.local.LocalHistoryTopic
 import com.capstone.compassionly.models.local.LocalUser
 
 @TypeConverters(LocalUserConverter::class)
-@Database(entities = [LocalHistoryTopic::class, LocalUser::class], version = 1, exportSchema = false)
+@Database(entities = [LocalHistoryTopic::class, LocalUser::class], version = 2, exportSchema = false)
 abstract class DaoDatabase : RoomDatabase() {
     abstract fun daoService() : DaoService
 

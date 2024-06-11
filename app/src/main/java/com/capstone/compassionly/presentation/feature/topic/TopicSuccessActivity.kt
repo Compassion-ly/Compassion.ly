@@ -30,8 +30,8 @@ class TopicSuccessActivity : AppCompatActivity() {
 
         binding.btnMoreExploreTopic.setOnClickListener {
             val intent = Intent(this, TopicActivity::class.java)
+            finishAffinity()
             startActivity(intent)
-            finish()
         }
     }
 

@@ -5,19 +5,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.capstone.compassionly.databinding.ItemRandomTopicBinding
 import com.capstone.compassionly.models.TopicModel
 
-class RandomTopicAdapter : RecyclerView.Adapter<RandomTopicAdapter.TopicViewHolder>(){
+class RandomTopicAdapter() : RecyclerView.Adapter<RandomTopicAdapter.TopicViewHolder>(){
 
     private val asyncDiffer = AsyncListDiffer(this, diffUtil)
 
     inner class TopicViewHolder (private val binding: ItemRandomTopicBinding) : RecyclerView.ViewHolder(binding.root) {
         fun setData(data: TopicModel) {
             binding.apply {
-                imageTopic.setImageResource(data.picture)
-                topicName.text = data.topic
-                shortDescription.text = data.short
+//                imageTopic.setImageResource(data.picture)
+                Glide.with(binding.root.context)
+                    .load(data.topicImage)
+                    .into(imageTopic)
+                topicName.text = data.topicName
+                shortDescription.text = data.shortIntroduction
             }
         }
     }

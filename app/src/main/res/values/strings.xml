@@ -69,4 +69,7 @@
     <string name="hasil">Hasil</string>
     <string name="matakuliah_terkait">Matakuliah Terkait</string>
     <string name="kampus">Kampus</string>
+    <string name="cari_topic">Cari topic</string>
+    <string name="data_topic_tidak_ditemukan_silahkan_refresh_halaman">Terjadi kesalahan, mohon periksa kembali koneksi anda</string>
+    <string name="muat_ulang">Muat Ulang</string>
 </resources>

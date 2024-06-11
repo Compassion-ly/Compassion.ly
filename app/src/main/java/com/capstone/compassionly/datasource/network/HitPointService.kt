@@ -4,11 +4,14 @@ import com.capstone.compassionly.models.CollegesByMajorResponse
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.LoginResponse
 import com.capstone.compassionly.models.MajorResponse
+import com.capstone.compassionly.models.RatingModel
 import com.capstone.compassionly.models.SchoolMajor
 import com.capstone.compassionly.models.SchoolModel
 import com.capstone.compassionly.models.SuccessResponse
+import com.capstone.compassionly.models.TopicModel
 import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.forsending.AccessToken
+import com.capstone.compassionly.models.forsending.RatingModelSend
 import com.capstone.compassionly.models.forsending.UserUpdateSend
 import retrofit2.Response
 import retrofit2.http.Body
@@ -58,6 +61,30 @@ interface HitPointService {
     suspend fun logout(
         @Query("token") token: String
     ): Response<SuccessResponse<String>>
+
+    @GET("/api/v1/topics/topics")
+    suspend fun getAllTopic(
+        @HeaderMap headerMap: Map<String, String>,
+        @Query("limit") limit: Int,
+        @Query("offset") offset: Int
+    ): Response<SuccessResponse<List<TopicModel>>>
+
+    @POST("/api/v1/topics/user-topic-rating")
+    suspend fun postRating(
+        @HeaderMap headerMap: Map<String, String>,
+        @Body ratingModelSend: RatingModelSend
+    ): Response<SuccessResponse<RatingModel>>
+
+    @GET("/api/v1/topics/user-topic-rating/user-history")
+    suspend fun getHistoryTopic(
+        @HeaderMap headerMap: Map<String, String>,
+    ): Response<SuccessResponse<List<RatingModel>>>
+
+    @GET("/api/v1/topics/topics/{id}")
+    suspend fun getTopicById(
+        @HeaderMap headerMap: Map<String, String>,
+        @Path("id") id: Int
+    ): Response<SuccessResponse<TopicModel>>
 
     @GET("/api/v1/schools/list-schools")
     suspend fun getSchoolList(): Response<SuccessResponse<List<SchoolModel>>>

@@ -5,6 +5,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 class ApiConfiguration {
 
@@ -14,9 +15,11 @@ class ApiConfiguration {
         }
         private val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
+            .writeTimeout(5, TimeUnit.MINUTES)
+            .readTimeout(5, TimeUnit.MINUTES)
             .build()
         private val retrofit = Retrofit.Builder()
-            .baseUrl("https://compassionly-api-test-zue4vcwkfa-et.a.run.app/")
+            .baseUrl("https://compassionly-api-test-zue4vcwkfa-et.a.run.app")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
