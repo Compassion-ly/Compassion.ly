@@ -24,7 +24,7 @@ class CommonViewModelFactory(
     private val localDataSource: LocalDataSource,
     private val state: StateAppPreference,
     private val majorRepository: MajorRepository,
-    private val topicRepository: TopicRepository
+    private val topicRepository: TopicRepository,
     private val quickRecRepository: QuickRecRepository
 
 ): ViewModelProvider.NewInstanceFactory() {
@@ -41,7 +41,7 @@ class CommonViewModelFactory(
             }
 
             DashboardViewModel::class.java -> {
-                DashboardViewModel(localDataSource, state) as T
+                DashboardViewModel(localDataSource, state, repo) as T
             }
 
             PengantarJurusanViewModel::class.java-> {

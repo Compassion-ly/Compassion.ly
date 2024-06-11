@@ -34,7 +34,8 @@ object CommonInjector {
         val localDataSource = LocalDataSource.getInstance(daoDatabase.daoService())!!
         val topicRepository = TopicRepository.getInstance()!!
         val majorRep = MajorRepository.getInstance()
-        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository)
+        val quickRecRep = QuickRecRepository.getInstance(context)
+        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository, quickRecRep)
     }
 
 }
