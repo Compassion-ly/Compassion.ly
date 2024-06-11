@@ -7,9 +7,9 @@ import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.Dashbo
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
+import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
 import com.capstone.compassionly.presentation.feature.topic.view_model.TopicViewModel
 import com.capstone.compassionly.presentation.feature.topic_histories.view_model.TopicHistoryViewModel
-import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.MajorRepository

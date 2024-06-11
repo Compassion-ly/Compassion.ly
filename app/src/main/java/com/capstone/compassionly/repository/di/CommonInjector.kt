@@ -2,7 +2,6 @@ package com.capstone.compassionly.repository.di
 
 import android.content.Context
 import com.capstone.compassionly.datasource.local.DaoDatabase
-import com.capstone.compassionly.datasource.local.QuickRecPreference
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.repository.core.local.LocalDataSource

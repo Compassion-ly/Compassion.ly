@@ -11,14 +11,13 @@ import com.capstone.compassionly.models.SuccessResponse
 import com.capstone.compassionly.models.TopicModel
 import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.forsending.AccessToken
-import com.capstone.compassionly.models.forsending.RatingModelSend
 import com.capstone.compassionly.models.forsending.QuickRecResponse
+import com.capstone.compassionly.models.forsending.RatingModelSend
 import com.capstone.compassionly.models.forsending.UserDesc
 import com.capstone.compassionly.models.forsending.UserUpdateSend
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.HeaderMap
 import retrofit2.http.POST
 import retrofit2.http.Path

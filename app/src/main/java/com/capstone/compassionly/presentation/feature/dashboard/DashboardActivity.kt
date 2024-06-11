@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
-import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
+import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
 import com.capstone.compassionly.presentation.feature.show_recommendation.ShowRecommendationActivity
 import com.capstone.compassionly.presentation.feature.topic.TopicActivity
 import com.capstone.compassionly.presentation.feature.topic_histories.TopicHistoriesActivity
