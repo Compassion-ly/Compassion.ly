@@ -3,17 +3,20 @@ package com.capstone.compassionly.presentation.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.capstone.compassionly.databinding.ItemImageDetailBinding
-import com.capstone.compassionly.models.ImageMaterial
 
-class ImageMaterialAdapter : RecyclerView.Adapter<ImageMaterialAdapter.ImageViewHolder>() {
+class ImageMaterialAdapter() : RecyclerView.Adapter<ImageMaterialAdapter.ImageViewHolder>() {
 
-    private var imageList : List<ImageMaterial>? = null
+    private var imageList : List<String>? = null
 
     inner class ImageViewHolder (private val binding: ItemImageDetailBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun setData(data: ImageMaterial) {
+        fun setData(data: String) {
             binding.apply {
-                binding.detailTopicPicture.setImageResource(data.detailImage)
+                Glide.with(binding.root.context)
+                    .load(data)
+                    .into(binding.detailTopicPicture)
+
             }
         }
     }
@@ -30,7 +33,7 @@ class ImageMaterialAdapter : RecyclerView.Adapter<ImageMaterialAdapter.ImageView
         imageList?.let { holder.setData(it[position]) }
     }
 
-    fun save (data : List<ImageMaterial>) {
+    fun save (data : List<String>) {
         imageList = data
     }
 }

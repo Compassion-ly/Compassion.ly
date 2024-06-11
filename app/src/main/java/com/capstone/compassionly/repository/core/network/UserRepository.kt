@@ -2,20 +2,19 @@ package com.capstone.compassionly.repository.core.network
 
 import android.util.Log
 import androidx.lifecycle.liveData
-import com.capstone.compassionly.datasource.local.QuickRecPreference
 import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.ErrorUnDocumentedModel
+import com.capstone.compassionly.models.RatingModel
 import com.capstone.compassionly.models.SuccessResponse
+import com.capstone.compassionly.models.TopicModel
 import com.capstone.compassionly.models.User
 import com.capstone.compassionly.models.forsending.AccessToken
-import com.capstone.compassionly.models.forsending.Data
 import com.capstone.compassionly.models.forsending.UserUpdateSend
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import com.google.gson.Gson
-import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 import retrofit2.Response
 
@@ -71,6 +70,14 @@ class UserRepository {
                 emit(Resources.Error(errorMessage!!))
             }
         }
+    }
+
+    suspend fun getUserHistoryTopic(token: String) : Response<SuccessResponse<List<RatingModel>>> {
+        return hitPointService.getHistoryTopic(Utils.getHeader(token))
+    }
+
+    suspend fun getUserTopicById(token : String,id: Int): Response<SuccessResponse<TopicModel>> {
+        return hitPointService.getTopicById(Utils.getHeader(token), id)
     }
 
 

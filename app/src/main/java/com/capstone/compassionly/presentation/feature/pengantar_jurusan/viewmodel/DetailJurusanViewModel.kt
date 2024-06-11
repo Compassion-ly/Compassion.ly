@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.capstone.compassionly.models.DataItem
 import com.capstone.compassionly.models.DataItemCollegesByMajor
 import com.capstone.compassionly.repository.core.network.MajorRepository
 import com.capstone.compassionly.utility.Resources

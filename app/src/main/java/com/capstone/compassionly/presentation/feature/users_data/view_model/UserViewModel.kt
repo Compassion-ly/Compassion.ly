@@ -106,6 +106,8 @@ class UserViewModel(
 
     }
 
+    // Local and State
+
     fun store (localUser: LocalUser?) = viewModelScope.launch {
         localDataSource.insertUser(localUser)
     }

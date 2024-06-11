@@ -30,7 +30,7 @@ data class User(
 	val userSchoolsId: Int,
 
 	@field:SerializedName("user_topic_weight")
-	val userTopicWeight: List<Int>,
+	val userTopicWeight: List<Any>,
 
 	@field:SerializedName("last_name")
 	val lastName: String? = null,

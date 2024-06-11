@@ -1,25 +1,33 @@
 package com.capstone.compassionly.models
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class TopicModel (
-    val id: Int,
-    val topic: String,
-    val picture: Int,
-    val short: String,
-    val material: List<Material>
-): Parcelable
+data class TopicModel(
 
-@Parcelize
-data class Material (
-    val id: Int,
-    val course: String,
-    val listImage : List<ImageMaterial>
-): Parcelable
+	@field:SerializedName("topic_category_id")
+	val topicCategoryId: Int? = null,
 
-@Parcelize
-data class ImageMaterial (
-    val detailImage: Int
-):Parcelable
+	@field:SerializedName("topic_explanation")
+	val topicExplanation: String? = null,
+
+	@field:SerializedName("topic_name")
+	val topicName: String? = null,
+
+	@field:SerializedName("topic_weight")
+	val topicWeight: List<Float>? = null,
+
+	@field:SerializedName("id")
+	val id: Int? = null,
+
+	@field:SerializedName("topic_image2")
+	val topicImage2: String? = null,
+
+	@field:SerializedName("short_introduction")
+	val shortIntroduction: String? = null,
+
+	@field:SerializedName("topic_image")
+	val topicImage: String? = null
+): Parcelable

@@ -48,26 +48,6 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-//                userViewModel.getDataUser().observe(this) { data ->
-//                    if (data.isNotEmpty()) {
-//                        if (data[0].data?.user?.gender != null && data[0].data?.user?.phoneNumber != null) {
-//                            val intent = Intent(this@MainActivity, DashboardActivity::class.java)
-//                            startActivity(intent)
-//                            finishAffinity()
-//                        } else {
-//                            binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
-//                            Utils.changeStatusBarColorWhite(this)
-//                            val intent = Intent(this@MainActivity, LoginActivity::class.java)
-//                            startActivity(intent)
-//                        }
-//                    } else {
-//                        binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
-//                        Utils.changeStatusBarColorWhite(this)
-//                        val intent = Intent(this@MainActivity, LoginActivity::class.java)
-//                        startActivity(intent)
-//                        finish()
-//                    }
-//                }
                 userViewModel.getAccessToken().observe(this@MainActivity) { token ->
                     println("maain $token")
                     if (token.isNullOrEmpty()) {

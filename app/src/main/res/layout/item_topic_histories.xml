@@ -19,11 +19,12 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/topicName"
+            style="@style/Theme.Compassionly.Poppins_12_bold_onPrimary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/coding"
-            style="@style/Theme.Compassionly.Poppins_12_bold_onPrimary"/>
-        
+            android:text="@string/coding" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,6 +39,7 @@
                 android:contentDescription="@string/desc_icon_star"/>
 
             <TextView
+                android:id="@+id/topicStar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
