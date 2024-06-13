@@ -1,14 +1,18 @@
 package com.capstone.compassionly.presentation.feature.dashboard.viewmodel
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.ErrorUnDocumentedModel
+import com.capstone.compassionly.models.local.Interest
 import com.capstone.compassionly.models.local.LocalHistoryTopic
 import com.capstone.compassionly.repository.core.local.LocalDataSource
+import com.capstone.compassionly.repository.core.network.MajorRecRepository
 import com.capstone.compassionly.repository.core.network.UserRepository
 import com.capstone.compassionly.utility.Utils
 import com.google.gson.Gson
@@ -18,8 +22,12 @@ import retrofit2.HttpException
 class DashboardViewModel(
     private val localDataSource: LocalDataSource,
     private val stateAppPreferences: StateAppPreference,
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val majorRecRepository: MajorRecRepository
 ) : ViewModel() {
+
+    private val _majorrec = MutableLiveData<List<Interest>>()
+    val interests: LiveData<List<Interest>> = _majorrec
 
     fun getUserData() = localDataSource.getUser()
 
@@ -57,5 +65,7 @@ class DashboardViewModel(
             }
         }
     }
+
+
 
 }

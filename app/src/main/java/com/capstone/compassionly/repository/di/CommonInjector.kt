@@ -5,6 +5,7 @@ import com.capstone.compassionly.datasource.local.DaoDatabase
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.repository.core.local.LocalDataSource
+import com.capstone.compassionly.repository.core.network.MajorRecRepository
 import com.capstone.compassionly.repository.core.network.MajorRepository
 import com.capstone.compassionly.repository.core.network.QuickRecRepository
 import com.capstone.compassionly.repository.core.network.SchoolRepository
@@ -23,7 +24,8 @@ object CommonInjector {
         val topicRepository = TopicRepository.getInstance()!!
         val majorRep = MajorRepository.getInstance()
         val quickRecRep = QuickRecRepository.getInstance(context)
-        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository ,quickRecRep)
+        val majorRecRep = MajorRecRepository.getInstance(context)
+        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository ,quickRecRep, majorRecRep)
     }
     fun common(context: Context) : CommonViewModelFactory {
         val userRep = UserRepository.getInstance()!!
@@ -34,7 +36,8 @@ object CommonInjector {
         val topicRepository = TopicRepository.getInstance()!!
         val majorRep = MajorRepository.getInstance()
         val quickRecRep = QuickRecRepository.getInstance(context)
-        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository, quickRecRep)
+        val majorRecRep = MajorRecRepository.getInstance(context)
+        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository, quickRecRep, majorRecRep)
     }
 
 }

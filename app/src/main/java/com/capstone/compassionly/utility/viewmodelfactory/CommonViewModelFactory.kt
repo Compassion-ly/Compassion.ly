@@ -12,6 +12,7 @@ import com.capstone.compassionly.presentation.feature.topic.view_model.TopicView
 import com.capstone.compassionly.presentation.feature.topic_histories.view_model.TopicHistoryViewModel
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.core.local.LocalDataSource
+import com.capstone.compassionly.repository.core.network.MajorRecRepository
 import com.capstone.compassionly.repository.core.network.MajorRepository
 import com.capstone.compassionly.repository.core.network.QuickRecRepository
 import com.capstone.compassionly.repository.core.network.SchoolRepository
@@ -25,7 +26,8 @@ class CommonViewModelFactory(
     private val state: StateAppPreference,
     private val majorRepository: MajorRepository,
     private val topicRepository: TopicRepository,
-    private val quickRecRepository: QuickRecRepository
+    private val quickRecRepository: QuickRecRepository,
+    private val majorRecRepository: MajorRecRepository
 
 ): ViewModelProvider.NewInstanceFactory() {
 
@@ -41,7 +43,7 @@ class CommonViewModelFactory(
             }
 
             DashboardViewModel::class.java -> {
-                DashboardViewModel(localDataSource, state, repo) as T
+                DashboardViewModel(localDataSource, state, repo, majorRecRepository) as T
             }
 
             PengantarJurusanViewModel::class.java-> {

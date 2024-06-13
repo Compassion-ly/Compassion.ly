@@ -1,4 +1,4 @@
-package com.capstone.compassionly.datasource.local
+package com.capstone.compassionly.datasource.preference.datasupport
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.map
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "quickrecResult")
 
-class QuickRecPreference constructor(private val dataStore: DataStore<Preferences>) {
+class QuickRecPreference (private val dataStore: DataStore<Preferences>) {
 
     suspend fun saveQuickRecResult(result: QuickRecResponse) {
         val predictionList: List<String?>? = result.data?.prediction

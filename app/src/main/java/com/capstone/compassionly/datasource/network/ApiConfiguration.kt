@@ -11,7 +11,8 @@ class ApiConfiguration {
 
     companion object {
         private val interceptor = HttpLoggingInterceptor().apply {
-            if (BuildConfig.DEBUG) level = HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            if (BuildConfig.DEBUG) level =
+                HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
         }
         private val client = OkHttpClient.Builder()
             .addInterceptor(interceptor)
@@ -19,11 +20,12 @@ class ApiConfiguration {
             .readTimeout(5, TimeUnit.MINUTES)
             .build()
         private val retrofit = Retrofit.Builder()
+            //.baseUrl(BuildConfig.BASEURL)
             .baseUrl("https://compassionly-api-test-zue4vcwkfa-et.a.run.app")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-        val hitPointService : HitPointService by lazy {
+        val hitPointService: HitPointService by lazy {
             retrofit.create(HitPointService::class.java)
         }
     }
