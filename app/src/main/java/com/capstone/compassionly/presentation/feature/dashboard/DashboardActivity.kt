@@ -149,16 +149,12 @@ class DashboardActivity : AppCompatActivity() {
 
                                 is Resources.Error -> {
                                     binding.progressBar.visibility = View.GONE
-                                    Toast.makeText(
-                                        application, "Error: ${resources.error}", Toast.LENGTH_LONG
-                                    ).show()
+                                    startActivityWithToken(
+                                        NoDataRecActivity::class.java, userToken
+                                    )
+                                    finish()
                                 }
                             }
-                        } else {
-                            startActivityWithToken(
-                                NoDataRecActivity::class.java, userToken
-                            )
-                            finish()
                         }
 
                     }
