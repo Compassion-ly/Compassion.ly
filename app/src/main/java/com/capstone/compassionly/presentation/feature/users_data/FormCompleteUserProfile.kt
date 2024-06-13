@@ -18,6 +18,7 @@ import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.adapter.CustomAutoCompleteAdapter
 import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
+import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
@@ -31,7 +32,7 @@ class FormCompleteUserProfile : AppCompatActivity() {
     private var _binding: ActivityFormCompleteUserProfileBinding? = null
     private val binding get() = _binding!!
     private val userVM: UserViewModel by viewModels {
-        UserInjector.userInjector(this)
+        CommonInjector.common(this)
     }
     private lateinit var auth: FirebaseAuth
     private var schoolId: Int? = null

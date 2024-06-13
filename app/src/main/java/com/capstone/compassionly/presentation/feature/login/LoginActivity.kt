@@ -24,6 +24,7 @@ import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.users_data.FormCompleteUserProfile
+import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
@@ -39,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     private val viewModel: LoginViewModel by viewModels {
-        UserInjector.userInjector(this)
+        CommonInjector.common(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,28 +95,21 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        viewModel.getUser().observe(this) {
-//            if (it.isNotEmpty()) {
-//                if (it[0].gender != null && it[0].phoneNumber != null) {
-//                    updateUI(false, null)
-//                }
-//            }
-//        }
-//    }
-
     private fun checkState(user: DataLogin?, token: String? = null) {
-        if (
-            user?.user?.firstName == null ||
-            user.user.lastName == null ||
-            user.user.phoneNumber == null ||
-            user.user.schoolId == null ||
-            user.user.schoolMajorId == null
-        ) {
-            updateUI(true, token!!)
+        if (token.isNullOrEmpty()) {
+            Utils.showToast(this@LoginActivity, "Terjadi kesalahan, harap coba lagi")
         } else {
-            updateUI(false, token!!)
+            if (
+                user?.user?.firstName == null ||
+                user.user.lastName == null ||
+                user.user.phoneNumber == null ||
+                user.user.schoolId == null ||
+                user.user.schoolMajorId == null
+            ) {
+                updateUI(true, token)
+            } else {
+                updateUI(false, token)
+            }
         }
     }
 

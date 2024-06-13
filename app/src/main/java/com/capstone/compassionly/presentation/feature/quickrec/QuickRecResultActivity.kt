@@ -20,7 +20,7 @@ import com.capstone.compassionly.repository.di.CommonInjector
 class QuickRecResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuickRecResultBinding
     private val viewModel: QuickRecViewModel by viewModels {
-        CommonInjector.dashboardInjector(this)
+        CommonInjector.common(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

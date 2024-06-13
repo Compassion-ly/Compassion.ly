@@ -16,6 +16,7 @@ import com.capstone.compassionly.databinding.ActivityProfileBinding
 import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
+import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Utils
 import com.google.firebase.Firebase
@@ -26,7 +27,7 @@ class ProfileActivity : AppCompatActivity() {
     private var _binding: ActivityProfileBinding? = null
     private val binding get() = _binding!!
     private val userVM: UserViewModel by viewModels {
-        UserInjector.userInjector(this)
+        CommonInjector.common(this)
     }
     private lateinit var mAuth: FirebaseAuth
 

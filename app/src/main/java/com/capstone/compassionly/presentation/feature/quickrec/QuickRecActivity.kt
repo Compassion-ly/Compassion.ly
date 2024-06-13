@@ -28,7 +28,7 @@ class QuickRecActivity : AppCompatActivity() {
     private lateinit var binding: ActivityQuickRecBinding
     private lateinit var token: String
     private val viewModel: QuickRecViewModel by viewModels {
-        CommonInjector.dashboardInjector(this)
+        CommonInjector.common(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
