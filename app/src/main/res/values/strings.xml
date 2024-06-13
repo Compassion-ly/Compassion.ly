@@ -82,4 +82,10 @@
     <string name="image">image</string>
     <string name="nol">0</string>
     <string name="quickrec_hint">Tuliskan minimal dalam 50 karakter</string>
+    <string name="rekomendasi_jurusan">Rekomendasi Jurusan</string>
+    <string name="majorrec">Kami merekomendasikan kamu untuk mempertimbangkan beberapa jurusan di bawah ini :</string>
+    <string name="hint_recommendation">Tingkat akurasi rekomendasi yang diberikan akan meningkat seiring dengan jumlah pembelajaran yang dilakukan pada fitur learn..</string>
+    <string name="hint_recommendation2">Kami memberikan rekomendasi dengan menganalisa hasil pembelajaranmu pada setiap topik yang kamu pelajari.</string>
+    <string name="evaluasi">Evaluasi</string>
+    <string name="interestrec">Hasil dari pembelajaran yang telah kamu lakukan menunjukan bahwa kamu memiliki ketertarikan pada bidang berikut :</string>
 </resources>

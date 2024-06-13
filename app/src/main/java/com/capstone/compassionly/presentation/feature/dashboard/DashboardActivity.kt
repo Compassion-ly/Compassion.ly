@@ -14,11 +14,11 @@ import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
 import com.capstone.compassionly.models.DataMajorRec
 import com.capstone.compassionly.models.MajorRecResponse
-import com.capstone.compassionly.models.forsending.Data
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
 import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
+import com.capstone.compassionly.presentation.feature.show_recommendation.NoDataRecActivity
 import com.capstone.compassionly.presentation.feature.show_recommendation.ShowRecommendationActivity
 import com.capstone.compassionly.presentation.feature.topic.TopicActivity
 import com.capstone.compassionly.presentation.feature.topic_histories.TopicHistoriesActivity
@@ -118,8 +118,7 @@ class DashboardActivity : AppCompatActivity() {
                                     val majorRecResponse: MajorRecResponse? =
                                         resources.data as? MajorRecResponse
                                     Log.d(
-                                        QuickRecActivity.TAG,
-                                        "majorRecResponse : $majorRecResponse"
+                                        TAG, "majorRecResponse : $majorRecResponse"
                                     )
 
                                     if (majorRecResponse?.data != null) {
@@ -127,26 +126,23 @@ class DashboardActivity : AppCompatActivity() {
                                             majorRecResponse.data.prediction.orEmpty()
 
                                         Log.d(
-                                            QuickRecActivity.TAG,
-                                            "predictionList : $predictionList"
+                                            TAG, "predictionList : $predictionList"
                                         )
                                         val newMajorRecResponse =
                                             MajorRecResponse(DataMajorRec(prediction = predictionList))
                                         Log.d(
-                                            QuickRecActivity.TAG,
+                                            TAG,
                                             "newMajorRecResponse : $newMajorRecResponse"
                                         )
                                         viewModel.saveMajorRecResult(newMajorRecResponse)
                                         startActivityWithToken(
-                                            ShowRecommendationActivity::class.java,
-                                            userToken
+                                            ShowRecommendationActivity::class.java, userToken
                                         )
                                         finish()
 
                                     } else {
                                         Log.d(
-                                            TAG,
-                                            "response data major recommendation is null"
+                                            TAG, "response data major recommendation is null"
                                         )
                                     }
                                 }
@@ -158,6 +154,11 @@ class DashboardActivity : AppCompatActivity() {
                                     ).show()
                                 }
                             }
+                        } else {
+                            startActivityWithToken(
+                                NoDataRecActivity::class.java, userToken
+                            )
+                            finish()
                         }
 
                     }
@@ -187,8 +188,7 @@ class DashboardActivity : AppCompatActivity() {
         val userDetail = auth.currentUser
         binding.apply {
             tvUsername.text = userDetail?.displayName
-            Glide.with(applicationContext)
-                .load(auth.currentUser?.photoUrl)
+            Glide.with(applicationContext).load(auth.currentUser?.photoUrl)
                 .placeholder(resources.getDrawable(R.drawable.image_placeholder_profile, null))
                 .into(ivProfilePhoto)
         }

@@ -30,9 +30,6 @@ class DashboardViewModel(
     private val majorRecRepository: MajorRecRepository
 ) : ViewModel() {
 
-    private val _majorrec = MutableLiveData<List<PredictionItem>>()
-    val majorrec: LiveData<List<PredictionItem>> = _majorrec
-
     fun getUserData() = localDataSource.getUser()
 
     fun getToken() = stateAppPreferences.getAccessToken().asLiveData()
@@ -78,15 +75,6 @@ class DashboardViewModel(
         Log.d(TAG, "save() $result")
         viewModelScope.launch {
             majorRecRepository.saveMajorRecResult(result)
-        }
-    }
-
-    fun getMajorRecResult() {
-        viewModelScope.launch {
-            Log.d(TAG, "getMajorRecResult()")
-            majorRecRepository.getMajorRecResult().collect { predictionList ->
-                _majorrec.value = predictionList
-            }
         }
     }
 

@@ -8,6 +8,7 @@ import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewM
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
 import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
+import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
 import com.capstone.compassionly.presentation.feature.topic.view_model.TopicViewModel
 import com.capstone.compassionly.presentation.feature.topic_histories.view_model.TopicHistoryViewModel
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
@@ -64,6 +65,10 @@ class CommonViewModelFactory(
 
             QuickRecViewModel::class.java-> {
                 QuickRecViewModel(quickRecRepository) as T
+            }
+
+            JurusanFragmentViewModel::class.java->{
+                JurusanFragmentViewModel(majorRecRepository) as T
             }
 
             else -> throw IllegalArgumentException("Class does't match")
