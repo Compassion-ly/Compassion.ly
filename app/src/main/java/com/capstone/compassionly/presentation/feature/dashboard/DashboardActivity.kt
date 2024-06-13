@@ -32,7 +32,7 @@ import com.google.firebase.ktx.Firebase
 class DashboardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardBinding
     private val viewModel: DashboardViewModel by viewModels {
-        CommonInjector.dashboardInjector(this)
+        CommonInjector.common(this)
     }
 
     private lateinit var auth: FirebaseAuth

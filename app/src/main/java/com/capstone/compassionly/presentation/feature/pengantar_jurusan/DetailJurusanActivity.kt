@@ -25,7 +25,7 @@ import com.capstone.compassionly.repository.di.CommonInjector
 class DetailJurusanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailJurusanBinding
     private val viewModel: DetailJurusanViewModel by viewModels {
-        CommonInjector.dashboardInjector(this)
+        CommonInjector.common(this)
     }
     private lateinit var token: String
     override fun onCreate(savedInstanceState: Bundle?) {
