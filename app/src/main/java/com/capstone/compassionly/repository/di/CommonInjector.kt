@@ -27,6 +27,18 @@ object CommonInjector {
         val majorRecRep = MajorRecRepository.getInstance(context)
         return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository ,quickRecRep, majorRecRep)
     }
+//    fun dashboardInjector(context: Context) : CommonViewModelFactory {
+//        val userRep = UserRepository.getInstance()!!
+//        val schoolRep = SchoolRepository.getInstance()!!
+//        val state = StateAppPreference(context.datastore)
+//        val daoDatabase = DaoDatabase.getInstance(context)
+//        val localDataSource = LocalDataSource.getInstance(daoDatabase.daoService())!!
+//        val topicRepository = TopicRepository.getInstance()!!
+//        val majorRep = MajorRepository.getInstance()
+//        val quickRecRep = QuickRecRepository.getInstance(context)
+//        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository ,quickRecRep)
+//    }
+
     fun common(context: Context) : CommonViewModelFactory {
         val userRep = UserRepository.getInstance()!!
         val schoolRep = SchoolRepository.getInstance()!!

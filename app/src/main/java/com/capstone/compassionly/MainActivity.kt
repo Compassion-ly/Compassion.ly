@@ -13,6 +13,7 @@ import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.onboarding.OnBoardingActivity
 import com.capstone.compassionly.presentation.feature.onboarding.viewmodel.OnBoardViewModel
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
+import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.repository.di.StateInjection
 import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Utils
@@ -22,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         StateInjection.onBoardInjection(this)
     }
     private val userViewModel: UserViewModel by viewModels {
-        UserInjector.userInjector(this)
+        CommonInjector.common(this  )
     }
 
     private lateinit var binding: ActivityMainBinding
@@ -49,7 +50,6 @@ class MainActivity : AppCompatActivity() {
                 finish()
             } else {
                 userViewModel.getAccessToken().observe(this@MainActivity) { token ->
-                    println("maain $token")
                     if (token.isNullOrEmpty()) {
                         binding.main.setBackgroundColor(resources.getColor(R.color.md_theme_primary))
                         Utils.changeStatusBarColorWhite(this)
@@ -57,6 +57,9 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
+                        if (Utils.checkConnection(this@MainActivity)) {
+                            userViewModel.storeToken(token)
+                        }
                         val intent = Intent(this@MainActivity, DashboardActivity::class.java)
                         startActivity(intent)
                         finishAffinity()
