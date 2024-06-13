@@ -6,27 +6,36 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.capstone.compassionly.models.forsending.MajorRecResponse
+import com.capstone.compassionly.models.MajorRecResponse
+import com.capstone.compassionly.models.PredictionItem
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 val Context.dataStoreMajor: DataStore<Preferences> by preferencesDataStore("majorRec")
 
 class MajorRecPreference(private val dataStore: DataStore<Preferences>) {
+    private val gson = Gson()
+
     suspend fun saveMajorRecResult(result: MajorRecResponse) {
-        val predictionList: List<String?>? = result.data?.prediction
-        val predictionString: String = predictionList?.joinToString(",") ?: ""
+        val predictionList: List<PredictionItem?>? = result.data?.prediction
+        val predictionString: String = gson.toJson(predictionList)
 
         dataStore.edit { preferences ->
             preferences[RESULT_MAJORREC] = predictionString
         }
     }
 
-    fun getMajorRecResult(): Flow<List<String>> {
+    fun getMajorRecResult(): Flow<List<PredictionItem>> {
         return dataStore.data.map { preferences ->
             val predictionString: String = preferences[RESULT_MAJORREC] ?: ""
-            val predictionList: List<String> = predictionString.split(",")
-            predictionList
+            if (predictionString.isNotEmpty()) {
+                val type = object : TypeToken<List<PredictionItem>>() {}.type
+                gson.fromJson(predictionString, type)
+            } else {
+                emptyList()
+            }
         }
     }
 

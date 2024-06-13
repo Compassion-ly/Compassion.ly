@@ -3,6 +3,7 @@ package com.capstone.compassionly.datasource.network
 import com.capstone.compassionly.models.CollegesByMajorResponse
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.LoginResponse
+import com.capstone.compassionly.models.MajorRecResponse
 import com.capstone.compassionly.models.MajorResponse
 import com.capstone.compassionly.models.RatingModel
 import com.capstone.compassionly.models.SchoolMajor
@@ -45,7 +46,7 @@ interface HitPointService {
     @GET("/api/v1/colleges/list-college-majors")
     suspend fun getMajors(
         @HeaderMap headerMap: Map<String, String>,
-        ): MajorResponse
+    ): MajorResponse
 
     @GET("/api/v1/colleges/list-college-majors")
     suspend fun getMajor(
@@ -99,4 +100,10 @@ interface HitPointService {
         @HeaderMap headerMap: Map<String, String>,
         @Body text: UserDesc
     ): QuickRecResponse
+
+    @POST("/api/v1/predict/major-recommendation")
+    suspend fun majorRecommendation(
+        @HeaderMap headerMap: Map<String, String>,
+        @Body requestBody: Unit = Unit
+    ): MajorRecResponse
 }

@@ -4,12 +4,17 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
+import com.capstone.compassionly.models.DataMajorRec
+import com.capstone.compassionly.models.MajorRecResponse
+import com.capstone.compassionly.models.forsending.Data
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
@@ -19,6 +24,7 @@ import com.capstone.compassionly.presentation.feature.topic.TopicActivity
 import com.capstone.compassionly.presentation.feature.topic_histories.TopicHistoriesActivity
 import com.capstone.compassionly.presentation.feature.users_data.ProfileActivity
 import com.capstone.compassionly.repository.di.CommonInjector
+import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import com.capstone.compassionly.utility.Utils.startActivityWithToken
 import com.capstone.compassionly.utility.UtilsData
@@ -97,8 +103,66 @@ class DashboardActivity : AppCompatActivity() {
 
             }
             binding.recomendationFeature.setOnClickListener {
-                startActivityWithToken(ShowRecommendationActivity::class.java, userToken)
+                viewModel.requestMajorRecommendation(userToken)
+                    .observe(this@DashboardActivity) { resources ->
+                        if (resources != null) {
+                            when (resources) {
+                                is Resources.Loading -> {
+                                    Log.d(TAG, "Loading...")
+                                    binding.progressBar.visibility = View.VISIBLE
+                                }
+
+                                is Resources.Success -> {
+                                    Log.d(TAG, "$resources")
+                                    binding.progressBar.visibility = View.GONE
+                                    val majorRecResponse: MajorRecResponse? =
+                                        resources.data as? MajorRecResponse
+                                    Log.d(
+                                        QuickRecActivity.TAG,
+                                        "majorRecResponse : $majorRecResponse"
+                                    )
+
+                                    if (majorRecResponse?.data != null) {
+                                        val predictionList =
+                                            majorRecResponse.data.prediction.orEmpty()
+
+                                        Log.d(
+                                            QuickRecActivity.TAG,
+                                            "predictionList : $predictionList"
+                                        )
+                                        val newMajorRecResponse =
+                                            MajorRecResponse(DataMajorRec(prediction = predictionList))
+                                        Log.d(
+                                            QuickRecActivity.TAG,
+                                            "newMajorRecResponse : $newMajorRecResponse"
+                                        )
+                                        viewModel.saveMajorRecResult(newMajorRecResponse)
+                                        startActivityWithToken(
+                                            ShowRecommendationActivity::class.java,
+                                            userToken
+                                        )
+                                        finish()
+
+                                    } else {
+                                        Log.d(
+                                            TAG,
+                                            "response data major recommendation is null"
+                                        )
+                                    }
+                                }
+
+                                is Resources.Error -> {
+                                    binding.progressBar.visibility = View.GONE
+                                    Toast.makeText(
+                                        application, "Error: ${resources.error}", Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
+                        }
+
+                    }
             }
+
             binding.quickRecomendationFeature.setOnClickListener {
                 startActivityWithToken(QuickRecActivity::class.java, userToken)
 
