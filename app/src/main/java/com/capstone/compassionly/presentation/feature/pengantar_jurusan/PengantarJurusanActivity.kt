@@ -18,7 +18,6 @@ import com.capstone.compassionly.presentation.adapter.ListMajorAdapter
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
-import com.capstone.compassionly.repository.di.MajorInjector
 
 class PengantarJurusanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPengantarJurusanBinding

@@ -10,14 +10,15 @@ import com.capstone.compassionly.databinding.ItemMajorRecBinding
 import com.capstone.compassionly.models.PredictionItem
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.DetailJurusanActivity
 
-class ListMajorRecAdapter :
+class ListMajorRecAdapter(private val token: String) :
     ListAdapter<PredictionItem, ListMajorRecAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding: ItemMajorRecBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(major: PredictionItem) {
+        fun bind(token: String, major: PredictionItem) {
             binding.tvMajorname.text = major.majorName
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailJurusanActivity::class.java)
                 intent.putExtra(DetailJurusanActivity.MAJOR_ID, major.id)
+                intent.putExtra("token", token)
                 itemView.context.startActivity(intent)
             }
         }
@@ -31,7 +32,7 @@ class ListMajorRecAdapter :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val jurusan = getItem(position)
-        holder.bind(jurusan)
+        holder.bind(token,jurusan)
     }
 
     companion object {

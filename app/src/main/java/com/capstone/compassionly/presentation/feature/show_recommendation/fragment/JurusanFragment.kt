@@ -5,15 +5,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.databinding.FragmentJurusanBinding
+import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
+import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.presentation.adapter.ListMajorRecAdapter
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Major
 import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
 
@@ -32,6 +31,7 @@ class JurusanFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var _binding: FragmentJurusanBinding? = null
+    private lateinit var token: String
     private val binding get() = _binding!!
     private val viewModel: JurusanFragmentViewModel by viewModels {
         CommonInjector.common(requireContext())
@@ -43,11 +43,18 @@ class JurusanFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        token = getToken()
+
+        if (token.isNotEmpty()) {
+            Log.d("Jurusan Fragment", token)
+        } else {
+            Toast.makeText(context, "Token not found", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setListMajor()
+        setListMajor(token)
         showRecyclerView()
     }
 
@@ -56,9 +63,14 @@ class JurusanFragment : Fragment() {
         binding.rvMajors.layoutManager = layoutManager
     }
 
+    private fun getToken(): String {
+        val state = context?.let { StateAppPreference(it.datastore) }
+        return state?.getAccessToken().toString()
+    }
 
-    private fun setListMajor() {
-        val adapter = ListMajorRecAdapter()
+
+    private fun setListMajor(token: String) {
+        val adapter = ListMajorRecAdapter(token)
         binding.rvMajors.adapter = adapter
 
         viewModel.getMajorRecResult()
@@ -72,7 +84,7 @@ class JurusanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentJurusanBinding.inflate(inflater, container, false)
         return binding.root

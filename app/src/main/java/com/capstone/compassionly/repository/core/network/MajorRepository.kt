@@ -3,6 +3,7 @@ package com.capstone.compassionly.repository.core.network
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
+import com.capstone.compassionly.models.ErrorMajorRecResponse
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
@@ -62,7 +63,7 @@ class MajorRepository {
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorRecResponse::class.java)
             val errorMessage = errorBody.detail
             emit(Resources.Error(errorMessage))
         }
