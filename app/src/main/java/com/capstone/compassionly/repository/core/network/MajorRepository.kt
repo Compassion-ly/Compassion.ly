@@ -85,7 +85,7 @@ class MajorRepository {
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorDetailModel::class.java)
             val errorMessage = errorBody.detail
             emit(Resources.Error(errorMessage))
         }
