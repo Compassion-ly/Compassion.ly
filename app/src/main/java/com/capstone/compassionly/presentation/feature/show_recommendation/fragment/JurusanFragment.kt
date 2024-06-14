@@ -10,8 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.databinding.FragmentJurusanBinding
-import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
-import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.presentation.adapter.ListMajorRecAdapter
 import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
@@ -31,7 +29,6 @@ class JurusanFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var _binding: FragmentJurusanBinding? = null
-    private lateinit var token: String
     private val binding get() = _binding!!
     private val viewModel: JurusanFragmentViewModel by viewModels {
         CommonInjector.common(requireContext())
@@ -43,29 +40,27 @@ class JurusanFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        token = getToken()
 
-        if (token.isNotEmpty()) {
-            Log.d("Jurusan Fragment", token)
-        } else {
-            Toast.makeText(context, "Token not found", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setListMajor(token)
-        showRecyclerView()
+
+        viewModel.getToken().observe(viewLifecycleOwner) { userToken ->
+            if (userToken != null) {
+                setListMajor(userToken)
+                showRecyclerView()
+                Log.d("Jurusan Fragment", "User Token: $userToken")
+            } else {
+                Toast.makeText(context, "Token not found", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     private fun showRecyclerView() {
         val layoutManager = LinearLayoutManager(context)
         binding.rvMajors.layoutManager = layoutManager
-    }
-
-    private fun getToken(): String {
-        val state = context?.let { StateAppPreference(it.datastore) }
-        return state?.getAccessToken().toString()
     }
 
 
