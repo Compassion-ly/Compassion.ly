@@ -137,8 +137,6 @@ class DashboardActivity : AppCompatActivity() {
                                         startActivityWithToken(
                                             ShowRecommendationActivity::class.java, userToken
                                         )
-                                        finish()
-
                                     } else {
                                         Log.d(
                                             TAG, "response data major recommendation is null"

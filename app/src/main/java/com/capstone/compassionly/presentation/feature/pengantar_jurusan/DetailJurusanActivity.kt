@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -42,16 +43,17 @@ class DetailJurusanActivity : AppCompatActivity() {
         viewModel.isLoading.observe(this) {
             showLoading(it)
         }
+        startActivity()
+    }
 
+    private fun startActivity() {
         if (intent.hasExtra("token")) {
             token = intent.getStringExtra("token").toString()
 
             val majorId = intent.getIntExtra(MAJOR_ID, -1)
             if (majorId != -1) {
-                val major = findDetailMajor(majorId)
-                major?.let { displayMajorDetails(it) }
-
                 findCollegesMajor(token, majorId)
+                findDetailMajor(token, majorId)
             } else {
                 //
             }
@@ -60,15 +62,29 @@ class DetailJurusanActivity : AppCompatActivity() {
             setListCourse(listMatkul)
             showRecyclerViewCourse()
         } else {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(this, "No token found", Toast.LENGTH_SHORT).show()
         }
-
 
     }
 
-    private fun findDetailMajor(id: Int): Major? {
-        return DataDummyUtil.getMajors().find { it.majorId == id }
+
+    private fun findDetailMajor(token: String, id: Int) {
+
+        viewModel.getDetailMajor(token, id)
+        viewModel.detailMajor.observe(this) { detailMajor ->
+            val peminat = getString(R.string.peminat_format, detailMajor.majorInterest)
+            val forwho = getString(R.string.forwho_format, detailMajor.forWho.toString())
+            binding.apply {
+                Glide.with(binding.root.context)
+                    .load(detailMajor.majorImage)
+                    .into(binding.ivMajor)
+                tvMajorName.text = detailMajor.majorName.toString()
+                tvPeminat.text = peminat
+                tvMajorDef.text = detailMajor.majorDefinition.toString()
+                tvForwho.text = forwho
+                tvMajorLevel.text = detailMajor.majorLevel.toString()
+            }
+        }
     }
 
     private fun findCollegesMajor(token: String, majorId: Int) {
@@ -82,6 +98,7 @@ class DetailJurusanActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvCourses.layoutManager = layoutManager
     }
+
     private fun showRecyclerViewCollege() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvColleges.layoutManager = layoutManager

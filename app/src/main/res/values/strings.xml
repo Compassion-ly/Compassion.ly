@@ -88,4 +88,6 @@
     <string name="hint_recommendation2">Kami memberikan rekomendasi dengan menganalisa hasil pembelajaranmu pada setiap topik yang kamu pelajari.</string>
     <string name="evaluasi">Evaluasi</string>
     <string name="interestrec">Hasil dari pembelajaran yang telah kamu lakukan menunjukan bahwa kamu memiliki ketertarikan pada bidang berikut :</string>
+    <string name="peminat_format">%1$d Peminat</string>
+    <string name="forwho_format">Cocok untuk %s.</string>
 </resources>

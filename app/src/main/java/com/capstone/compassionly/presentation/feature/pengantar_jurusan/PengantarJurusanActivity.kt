@@ -46,7 +46,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
         if (intent.hasExtra("token")) {
             token = intent.getStringExtra("token").toString()
-            Log.d(TAG,"token : $token")
+            Log.d(TAG, "token : $token")
             setup()
             setStatusBarColor()
             setListMajors()
@@ -126,8 +126,8 @@ class PengantarJurusanActivity : AppCompatActivity() {
         }
     }
 
-    private fun findMajor(search_query: String) {
-        viewModel.getMajor(token, search_query)
+    private fun findMajor(searchquery: String) {
+        viewModel.searchMajors(searchquery)
         Log.d(TAG, "findMajor(), token: $token")
         setListFindMajors()
     }
