@@ -1,6 +1,7 @@
 package com.capstone.compassionly.datasource.network
 
 import com.capstone.compassionly.models.CollegesByMajorResponse
+import com.capstone.compassionly.models.DetailMajorResponse
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.LoginResponse
 import com.capstone.compassionly.models.MajorRecResponse
@@ -42,17 +43,16 @@ interface HitPointService {
         @HeaderMap headerMap: Map<String, String>,
     ): Response<SuccessResponse<DetailUserModel>>
 
-    //major
-    @GET("/api/v1/colleges/list-college-majors")
+    @GET("/api/v1/majors/majors")
     suspend fun getMajors(
         @HeaderMap headerMap: Map<String, String>,
     ): MajorResponse
 
-    @GET("/api/v1/colleges/list-college-majors")
-    suspend fun getMajor(
+    @GET("/api/v1/majors/majors/{major_id}")
+    suspend fun getdetailMajor(
         @HeaderMap headerMap: Map<String, String>,
-        @Query("search_query") searchQuery: String
-    ): MajorResponse
+        @Path("major_id") majorId: Int
+    ): DetailMajorResponse
 
     @GET("/api/v1/colleges/list-colleges-by-major/{major_id}")
     suspend fun getCollegesByMajor(

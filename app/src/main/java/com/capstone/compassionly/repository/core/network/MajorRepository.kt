@@ -8,6 +8,7 @@ import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import com.google.gson.Gson
 import retrofit2.HttpException
+import com.capstone.compassionly.models.ErrorMajorDetailModel
 
 class MajorRepository {
 
@@ -26,24 +27,46 @@ class MajorRepository {
         }
     }
 
-    fun getMajor(token: String, searchQuery: String) = liveData {
+//    fun getMajor(token: String, searchQuery: String) = liveData {
+//        emit(Resources.Loading)
+//        try {
+//            val response = hitPointService.getMajor(Utils.getHeader(token), searchQuery)
+//            val data = response.data
+//            if (!data.isNullOrEmpty()) {
+//                emit(Resources.Success(data))
+//            } else {
+//                Log.e(TAG, "Data not found")
+//                emit(Resources.Error("Data not found"))
+//            }
+//        } catch (e: HttpException) {
+//            val jsonInString = e.response()?.errorBody()?.string()
+//            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+//            val errorMessage = errorBody.detail
+//            emit(Resources.Error(errorMessage))
+//        }
+//    }
+
+    fun getDetailMajor(token: String, majorId: Int) = liveData {
         emit(Resources.Loading)
         try {
-            val response = hitPointService.getMajor(Utils.getHeader(token), searchQuery)
-            val data = response.data
-            if (!data.isNullOrEmpty()) {
-                emit(Resources.Success(data))
-            } else {
-                Log.e(TAG, "Data not found")
-                emit(Resources.Error("Data not found"))
+            val response = hitPointService.getdetailMajor(Utils.getHeader(token), majorId)
+            response.data?.let {
+                emit(Resources.Success(it))
+                Log.d(TAG, "Detail major : ${response.data}")
+            } ?: run {
+                Log.e(TAG, "Response data is null")
+                emit(Resources.Error("No data available"))
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
-            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorDetailModel::class.java)
             val errorMessage = errorBody.detail
             emit(Resources.Error(errorMessage))
         }
     }
+
+
+
 
     fun getCollegesByMajor(token: String, majorId: Int) = liveData {
         emit(Resources.Loading)
