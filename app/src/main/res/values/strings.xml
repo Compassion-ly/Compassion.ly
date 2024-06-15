@@ -97,4 +97,6 @@
     <string name="data_mata_kuliah">Data Mata Kuliah</string>
     <string name="nama_major">Nama Major</string>
     <string name="_100">100</string>
+    <string name="peminat_format">%1$d Peminat</string>
+    <string name="forwho_format">Cocok untuk %s.</string>
 </resources>

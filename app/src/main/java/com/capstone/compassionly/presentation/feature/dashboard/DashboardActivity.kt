@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -138,8 +137,6 @@ class DashboardActivity : AppCompatActivity() {
                                         startActivityWithToken(
                                             ShowRecommendationActivity::class.java, userToken
                                         )
-                                        finish()
-
                                     } else {
                                         Log.d(
                                             TAG, "response data major recommendation is null"

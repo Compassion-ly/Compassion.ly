@@ -5,15 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.databinding.FragmentJurusanBinding
 import com.capstone.compassionly.presentation.adapter.ListMajorRecAdapter
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Major
 import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
 
@@ -43,12 +40,22 @@ class JurusanFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setListMajor()
-        showRecyclerView()
+
+        viewModel.getToken().observe(viewLifecycleOwner) { userToken ->
+            if (userToken != null) {
+                setListMajor(userToken)
+                showRecyclerView()
+                Log.d("Jurusan Fragment", "User Token: $userToken")
+            } else {
+                Toast.makeText(context, "Token not found", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     private fun showRecyclerView() {
@@ -57,8 +64,8 @@ class JurusanFragment : Fragment() {
     }
 
 
-    private fun setListMajor() {
-        val adapter = ListMajorRecAdapter()
+    private fun setListMajor(token: String) {
+        val adapter = ListMajorRecAdapter(token)
         binding.rvMajors.adapter = adapter
 
         viewModel.getMajorRecResult()
@@ -72,7 +79,7 @@ class JurusanFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentJurusanBinding.inflate(inflater, container, false)
         return binding.root

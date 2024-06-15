@@ -18,7 +18,6 @@ import com.capstone.compassionly.presentation.adapter.ListMajorAdapter
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
-import com.capstone.compassionly.repository.di.MajorInjector
 
 class PengantarJurusanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPengantarJurusanBinding
@@ -47,7 +46,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
         if (intent.hasExtra("token")) {
             token = intent.getStringExtra("token").toString()
-            Log.d(TAG,"token : $token")
+            Log.d(TAG, "token : $token")
             setup()
             setStatusBarColor()
             setListMajors()
@@ -127,8 +126,8 @@ class PengantarJurusanActivity : AppCompatActivity() {
         }
     }
 
-    private fun findMajor(search_query: String) {
-        viewModel.getMajor(token, search_query)
+    private fun findMajor(searchquery: String) {
+        viewModel.searchMajors(searchquery)
         Log.d(TAG, "findMajor(), token: $token")
         setListFindMajors()
     }

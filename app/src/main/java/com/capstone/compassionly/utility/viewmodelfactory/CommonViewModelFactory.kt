@@ -33,7 +33,7 @@ class CommonViewModelFactory(
     private val majorRecRepository: MajorRecRepository,
     private val collageRepository: CollageRepository,
 
-): ViewModelProvider.NewInstanceFactory() {
+) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -50,7 +50,7 @@ class CommonViewModelFactory(
                 DashboardViewModel(localDataSource, state, repo, majorRecRepository) as T
             }
 
-            PengantarJurusanViewModel::class.java-> {
+            PengantarJurusanViewModel::class.java -> {
                 PengantarJurusanViewModel(majorRepository) as T
             }
 
@@ -62,16 +62,16 @@ class CommonViewModelFactory(
                 TopicHistoryViewModel(localDataSource) as T
             }
 
-            DetailJurusanViewModel::class.java-> {
+            DetailJurusanViewModel::class.java -> {
                 DetailJurusanViewModel(majorRepository) as T
             }
 
-            QuickRecViewModel::class.java-> {
+            QuickRecViewModel::class.java -> {
                 QuickRecViewModel(quickRecRepository) as T
             }
 
-            JurusanFragmentViewModel::class.java->{
-                JurusanFragmentViewModel(majorRecRepository) as T
+            JurusanFragmentViewModel::class.java -> {
+                JurusanFragmentViewModel(majorRecRepository, state) as T
             }
 
             CollageViewModel::class.java -> {
