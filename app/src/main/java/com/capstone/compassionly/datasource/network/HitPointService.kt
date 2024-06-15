@@ -1,5 +1,6 @@
 package com.capstone.compassionly.datasource.network
 
+import com.capstone.compassionly.models.CollageModel
 import com.capstone.compassionly.models.CollegesByMajorResponse
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.LoginResponse
@@ -94,6 +95,19 @@ interface HitPointService {
 
     @GET("/api/v1/schools/list-school-majors")
     suspend fun getSchoolMajorList(): Response<SuccessResponse<List<SchoolMajor>>>
+
+    @GET("/api/v1/colleges/colleges")
+    suspend fun getCollage(
+        @HeaderMap headerMap: Map<String, String>
+    ): Response<SuccessResponse<List<CollageModel>>>
+
+    @GET("/api/v1/colleges/colleges/{id}")
+    suspend fun getCollageDetail(
+        @HeaderMap headerMap: Map<String, String>,
+        @Path("id") id: Int
+    ): Response<SuccessResponse<List<CollageModel>>>
+
+
 
     @POST("/api/v1/predict/quick-recommendation")
     suspend fun quickRecommendation(

@@ -16,12 +16,18 @@
         android:theme="@style/Theme.Compassionly"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.feature.collage.DetailCollageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.collage.CollageActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.feature.quickrec.QuickRecResultActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.feature.quickrec.QuickRecActivity"
             android:exported="false"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".presentation.feature.topic.TopicSuccessActivity"
             android:exported="false" />
