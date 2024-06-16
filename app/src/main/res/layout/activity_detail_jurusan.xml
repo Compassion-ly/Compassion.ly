@@ -28,14 +28,13 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="215dp"
             android:background="@drawable/majorname_bg"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_bold"
             android:paddingVertical="10dp"
             android:paddingStart="15dp"
             android:paddingEnd="60dp"
-            android:text="Teknik Informatika"
+            tools:text="Teknik Informatika"
             android:textColor="@color/md_theme_primary"
             android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,11 +44,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins"
-            android:text="10 Peminat"
+            android:fontFamily="@font/poppins_bold"
+            tools:text="10 Peminat"
             android:textColor="@color/md_theme_primary"
             android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_major_name" />
 
@@ -59,11 +57,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_bold"
             tools:text="Undergraduate"
             android:textColor="@color/md_theme_primary"
             android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_major_name" />
 
@@ -101,11 +98,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/matakuliah_terkait"
             android:textColor="@color/md_theme_secondary"
             android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/tv_forwho" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -125,11 +121,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="20dp"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/kampus"
             android:textColor="@color/md_theme_secondary"
             android:textSize="15sp"
-            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/rv_courses" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -137,11 +132,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_college"
             tools:listitem="@layout/item_college"
+            tools:itemCount="5"/>
+
+        <TextView
+            android:id="@+id/tv_prospect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/prospek_kerja"
+            android:textColor="@color/md_theme_secondary"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/rv_colleges" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_prospect"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_prospect"
+            tools:listitem="@layout/item_prospect"
             tools:itemCount="5"/>
 
         <ProgressBar

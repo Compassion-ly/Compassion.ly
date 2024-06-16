@@ -25,6 +25,10 @@ class DetailMatkulActivity : AppCompatActivity() {
             insets
         }
 
+        startActivity()
+    }
+
+    private fun startActivity(){
         val courseId = intent.getIntExtra(COURSE_ID, -1)
         if (courseId != -1) {
             val course = findDetailCourse(courseId)

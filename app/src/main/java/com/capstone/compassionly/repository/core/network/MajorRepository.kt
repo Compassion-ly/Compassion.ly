@@ -65,6 +65,25 @@ class MajorRepository {
         }
     }
 
+    fun getDetailCourse(token: String, courseId: Int) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = hitPointService.getdetailCourse(Utils.getHeader(token), courseId)
+            response.data?.let {
+                emit(Resources.Success(it))
+                Log.d(TAG, "Detail course : ${response.data}")
+            } ?: run {
+                Log.e(TAG, "Response data is null")
+                emit(Resources.Error("No data available"))
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorDetailModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage))
+        }
+    }
+
 
 
 

@@ -63,31 +63,33 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.token.observe(this) { token ->
-            viewModel.sendToken(token!!).observe(this) { resources ->
-                if (resources != null) {
-                    when (resources) {
-                        is Resources.Loading -> {
-                            Log.d("LoginActivity", "Loading...")
-                        }
+            token?.let {
+                viewModel.sendToken(it).observe(this) { resources ->
+                    if (resources != null) {
+                        when (resources) {
+                            is Resources.Loading -> {
+                                Log.d("LoginActivity", "Loading...")
+                            }
 
-                        is Resources.Success -> {
-                            Log.d("LoginActivity", "$resources")
-                            viewModel.loginResult.observe(this) { user ->
-                                val result = resources.data as LoginResponse
-                                if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
-                                    checkState(result.data, token = result.data?.accessToken)
-                                } else {
-                                    updateUI(false, result.data?.accessToken)
+                            is Resources.Success -> {
+                                Log.d("LoginActivity", "$resources")
+                                viewModel.loginResult.observe(this) { user ->
+                                    val result = resources.data as LoginResponse
+                                    if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
+                                        checkState(result.data, token = result.data?.accessToken)
+                                    } else {
+                                        updateUI(false, result.data?.accessToken)
+                                    }
                                 }
                             }
-                        }
 
-                        is Resources.Error -> {
-                            Toast.makeText(
-                                application,
-                                "Error: ${resources.error}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            is Resources.Error -> {
+                                Toast.makeText(
+                                    application,
+                                    "Error: ${resources.error}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 }

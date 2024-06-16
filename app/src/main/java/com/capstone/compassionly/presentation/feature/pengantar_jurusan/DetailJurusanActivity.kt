@@ -1,6 +1,5 @@
 package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -14,12 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailJurusanBinding
+import com.capstone.compassionly.models.CoursesItem
+import com.capstone.compassionly.models.ProspectsItem
 import com.capstone.compassionly.presentation.adapter.ListCollegeAdapter
 import com.capstone.compassionly.presentation.adapter.ListCourseAdapter
-import com.capstone.compassionly.presentation.feature.login.LoginActivity
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Course
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Major
+import com.capstone.compassionly.presentation.adapter.ListProspectAdapter
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
 
@@ -57,10 +55,6 @@ class DetailJurusanActivity : AppCompatActivity() {
             } else {
                 //
             }
-
-            val listMatkul = DataDummyUtil.getCourses()
-            setListCourse(listMatkul)
-            showRecyclerViewCourse()
         } else {
             Toast.makeText(this, "No token found", Toast.LENGTH_SHORT).show()
         }
@@ -72,18 +66,27 @@ class DetailJurusanActivity : AppCompatActivity() {
 
         viewModel.getDetailMajor(token, id)
         viewModel.detailMajor.observe(this) { detailMajor ->
-            val peminat = getString(R.string.peminat_format, detailMajor.majorInterest)
-            val forwho = getString(R.string.forwho_format, detailMajor.forWho.toString())
+            val peminat = getString(R.string.peminat_format, detailMajor.major?.majorInterest)
+            val listCourses = detailMajor.courses
+            val listProspect = detailMajor.prospects
+
             binding.apply {
                 Glide.with(binding.root.context)
-                    .load(detailMajor.majorImage)
+                    .load(detailMajor.major?.majorImage)
                     .into(binding.ivMajor)
-                tvMajorName.text = detailMajor.majorName.toString()
+                tvMajorName.text = detailMajor.major?.majorName.toString()
                 tvPeminat.text = peminat
-                tvMajorDef.text = detailMajor.majorDefinition.toString()
-                tvForwho.text = forwho
-                tvMajorLevel.text = detailMajor.majorLevel.toString()
+                tvMajorDef.text = detailMajor.major?.majorDefinition.toString()
+                tvForwho.text = detailMajor.major?.forWho.toString()
+                tvMajorLevel.text = detailMajor.major?.majorLevel.toString()
             }
+
+            setListCourse(listCourses)
+            showRecyclerViewCourse()
+
+            setListProspect(listProspect)
+            showRecyclerViewProspect()
+
         }
     }
 
@@ -98,24 +101,27 @@ class DetailJurusanActivity : AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvCourses.layoutManager = layoutManager
     }
+    private fun showRecyclerViewProspect() {
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvProspect.layoutManager = layoutManager
+    }
 
     private fun showRecyclerViewCollege() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvColleges.layoutManager = layoutManager
     }
 
-    private fun displayMajorDetails(major: Major) {
-        binding.tvMajorName.text = major.majorName
-        binding.tvMajorDef.text = major.majorDefinition
-        Glide.with(this)
-            .load(major.majorImage)
-            .into(binding.ivMajor)
+
+    private fun setListCourse(courses: List<CoursesItem?>?) {
+        val adapter = ListCourseAdapter()
+        adapter.submitList(courses)
+        binding.rvCourses.adapter = adapter
     }
 
-    private fun setListCourse(majors: List<Course>) {
-        val adapter = ListCourseAdapter()
-        adapter.submitList(majors)
-        binding.rvCourses.adapter = adapter
+    private fun setListProspect(prospect: List<ProspectsItem?>?) {
+        val adapter = ListProspectAdapter()
+        adapter.submitList(prospect)
+        binding.rvProspect.adapter = adapter
     }
 
     private fun setListColleges() {

@@ -7,17 +7,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.capstone.compassionly.databinding.ItemCourseBinding
+import com.capstone.compassionly.models.CoursesItem
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.DetailMatkulActivity
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Course
 
 class ListCourseAdapter :
-    ListAdapter<Course, ListCourseAdapter.MyViewHolder>(ListCourseAdapter.DIFF_CALLBACK) {
+    ListAdapter<CoursesItem, ListCourseAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding: ItemCourseBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(course: Course) {
+        fun bind(course: CoursesItem) {
             binding.tvCoursename.text = course.courseName
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailMatkulActivity::class.java)
-                intent.putExtra(DetailMatkulActivity.COURSE_ID, course.courseId)
+                intent.putExtra(DetailMatkulActivity.COURSE_ID, course.id)
                 itemView.context.startActivity(intent)
             }
         }
@@ -34,12 +34,12 @@ class ListCourseAdapter :
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Course>() {
-            override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<CoursesItem>() {
+            override fun areItemsTheSame(oldItem: CoursesItem, newItem: CoursesItem): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
+            override fun areContentsTheSame(oldItem: CoursesItem, newItem: CoursesItem): Boolean {
                 return oldItem == newItem
             }
         }

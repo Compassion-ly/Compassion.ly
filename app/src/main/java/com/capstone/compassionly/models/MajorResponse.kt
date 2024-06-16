@@ -22,6 +22,6 @@ data class DataItem(
 	@field:SerializedName("major_image")
 	val majorImage: String? = null,
 
-	@field:SerializedName("major_definition")
-	val majorDefinition: String? = null
+//	@field:SerializedName("major_definition")
+//	val majorDefinition: String? = null
 )
