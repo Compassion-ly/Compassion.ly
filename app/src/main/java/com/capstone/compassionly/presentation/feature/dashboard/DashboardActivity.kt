@@ -5,15 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
 import com.capstone.compassionly.models.DataMajorRec
 import com.capstone.compassionly.models.MajorRecResponse
+import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
@@ -176,17 +177,35 @@ class DashboardActivity : AppCompatActivity() {
         window.statusBarColor = getColor(R.color.md_theme_primaryContainer)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onStart() {
         super.onStart()
         val userDetail = auth.currentUser
+
+        val localUserObserver = Observer<List<LocalUser>> { userList ->
+            if (userList.isNotEmpty()) {
+                val localUser = userList[0]
+                val fullName =
+                    "${localUser.data?.user?.firstName} ${localUser.data?.user?.lastName}"
+                binding.tvUsername.text = fullName
+            } else {
+                binding.tvUsername.text = userDetail?.displayName
+            }
+        }
+        viewModel.getDataUser().observe(this@DashboardActivity, localUserObserver)
+
         binding.apply {
-            tvUsername.text = userDetail?.displayName
             Glide.with(applicationContext).load(auth.currentUser?.photoUrl)
-                .placeholder(resources.getDrawable(R.drawable.image_placeholder_profile, null))
+                .placeholder(
+                    resources.getDrawable(
+                        R.drawable.image_placeholder_profile,
+                        null
+                    )
+                )
                 .into(ivProfilePhoto)
         }
-
     }
+
 
     companion object {
         const val TAG = "Dashboard Activity Test"
