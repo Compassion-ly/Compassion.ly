@@ -39,8 +39,6 @@ class QuickRecResultActivity : AppCompatActivity() {
 
     private fun btnBack() {
         binding.iconBack.setOnClickListener {
-            val intent = Intent(this, DashboardActivity::class.java)
-            startActivity(intent)
             finish()
         }
     }

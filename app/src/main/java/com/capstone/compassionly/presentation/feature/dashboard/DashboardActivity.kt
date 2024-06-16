@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -17,6 +18,7 @@ import com.capstone.compassionly.models.MajorRecResponse
 import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
+import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
 import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
 import com.capstone.compassionly.presentation.feature.show_recommendation.NoDataRecActivity
@@ -60,8 +62,19 @@ class DashboardActivity : AppCompatActivity() {
                 menu(token)
 
             } else {
-                Log.e(TAG, "User Token not found")
-
+                AlertDialog.Builder(this).apply {
+                    setTitle(getString(R.string.token_not_found))
+                    setMessage(R.string.ask_login)
+                    setPositiveButton(R.string.signIn) { _, _ ->
+                        val intent = Intent(context, LoginActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                        finish()
+                    }
+                    create()
+                    show()
+                }
             }
         }
 

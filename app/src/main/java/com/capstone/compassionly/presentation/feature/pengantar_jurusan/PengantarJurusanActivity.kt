@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -73,8 +74,19 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
             })
         } else {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.token_not_found))
+                setMessage(R.string.ask_login)
+                setPositiveButton(R.string.signIn) { _, _ ->
+                    val intent = Intent(context, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                create()
+                show()
+            }
         }
 
 

@@ -69,7 +69,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere." />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

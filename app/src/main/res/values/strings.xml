@@ -90,4 +90,6 @@
     <string name="interestrec">Hasil dari pembelajaran yang telah kamu lakukan menunjukan bahwa kamu memiliki ketertarikan pada bidang berikut :</string>
     <string name="peminat_format">%1$d Peminat</string>
     <string name="prospek_kerja">Prospek Kerja</string>
+    <string name="token_not_found">Terdapat kesalahan</string>
+    <string name="ask_login">Silahkan login kembali</string>
 </resources>
