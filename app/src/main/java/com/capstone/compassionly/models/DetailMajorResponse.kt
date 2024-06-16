@@ -24,21 +24,11 @@ data class Data(
 )
 
 data class CoursesItem(
-
-	@field:SerializedName("course_explain")
-	val courseExplain: Any? = null,
-
-	@field:SerializedName("course_definition")
-	val courseDefinition: String? = null,
-
 	@field:SerializedName("course_name")
 	val courseName: String? = null,
 
 	@field:SerializedName("id")
 	val id: Int? = null,
-
-	@field:SerializedName("course_image")
-	val courseImage: Any? = null
 )
 
 data class ProspectsItem(

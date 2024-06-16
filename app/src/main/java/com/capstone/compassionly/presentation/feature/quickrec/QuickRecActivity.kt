@@ -42,6 +42,7 @@ class QuickRecActivity : AppCompatActivity() {
             insets
         }
         startActivity()
+
     }
 
     private fun startActivity() {

@@ -150,7 +150,6 @@ class DashboardActivity : AppCompatActivity() {
                                     startActivityWithToken(
                                         NoDataRecActivity::class.java, userToken
                                     )
-                                    finish()
                                 }
                             }
                         }

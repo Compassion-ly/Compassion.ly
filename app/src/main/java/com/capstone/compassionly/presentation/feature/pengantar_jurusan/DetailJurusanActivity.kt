@@ -81,7 +81,7 @@ class DetailJurusanActivity : AppCompatActivity() {
                 tvMajorLevel.text = detailMajor.major?.majorLevel.toString()
             }
 
-            setListCourse(listCourses)
+            setListCourse(token,listCourses)
             showRecyclerViewCourse()
 
             setListProspect(listProspect)
@@ -112,8 +112,8 @@ class DetailJurusanActivity : AppCompatActivity() {
     }
 
 
-    private fun setListCourse(courses: List<CoursesItem?>?) {
-        val adapter = ListCourseAdapter()
+    private fun setListCourse(token: String, courses: List<CoursesItem?>?) {
+        val adapter = ListCourseAdapter(token)
         adapter.submitList(courses)
         binding.rvCourses.adapter = adapter
     }

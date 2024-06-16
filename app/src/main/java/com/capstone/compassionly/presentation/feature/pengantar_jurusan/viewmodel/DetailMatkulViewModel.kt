@@ -15,8 +15,8 @@ class DetailMatkulViewModel(private val majorRepository: MajorRepository) : View
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    fun getDetailMajor(token: String, majorId: Int) {
-        majorRepository.getDetailMajor(token, majorId).observeForever { resource ->
+    fun getDetailMatkul(token: String, matkulId: Int) {
+        majorRepository.getDetailCourse(token, matkulId).observeForever { resource ->
             when (resource) {
                 is Resources.Success -> {
                     _detailMatkul.value = resource.data as DataCourse?
