@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Compassionly"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.feature.collage.DetailCollageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.collage.CollageActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.feature.pengantar_jurusan.DetailProspectActivity"
             android:exported="false" />
         <activity

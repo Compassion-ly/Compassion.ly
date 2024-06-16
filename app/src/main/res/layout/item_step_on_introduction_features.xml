@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/image_instroduction"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:src="@drawable/image_system_recommendation_sample"
             android:scaleType="centerCrop"
             android:contentDescription="@string/desc_features_iamge"/>

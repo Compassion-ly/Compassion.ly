@@ -3,7 +3,6 @@ package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -13,7 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailMatkulBinding
-import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailMatkulViewModel
 import com.capstone.compassionly.repository.di.CommonInjector

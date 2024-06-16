@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -113,7 +112,9 @@ class DetailJurusanActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerViewCourse() {
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = object: LinearLayoutManager(this) {
+            override fun canScrollVertically() = false
+        }
         binding.rvCourses.layoutManager = layoutManager
     }
     private fun showRecyclerViewProspect() {

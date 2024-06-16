@@ -7,7 +7,6 @@ import com.capstone.compassionly.datasource.network.ApiConfiguration
 import com.capstone.compassionly.datasource.preference.datasupport.MajorRecPreference
 import com.capstone.compassionly.datasource.preference.datasupport.dataStoreMajor
 import com.capstone.compassionly.models.ErrorMajorRecResponse
-import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.MajorRecResponse
 import com.capstone.compassionly.models.PredictionItem
 import com.capstone.compassionly.utility.Resources

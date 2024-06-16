@@ -7,7 +7,6 @@ import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
@@ -16,9 +15,9 @@ import com.capstone.compassionly.databinding.ActivityDashboardBinding
 import com.capstone.compassionly.models.DataMajorRec
 import com.capstone.compassionly.models.MajorRecResponse
 import com.capstone.compassionly.models.local.LocalUser
+import com.capstone.compassionly.presentation.feature.collage.CollageActivity
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
-import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
 import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
 import com.capstone.compassionly.presentation.feature.show_recommendation.NoDataRecActivity
@@ -61,7 +60,7 @@ class DashboardActivity : AppCompatActivity() {
                 viewModel.updateUserHistory(this@DashboardActivity, token)
                 menu(token)
 
-            } 
+            }
         }
 
     }
@@ -150,6 +149,7 @@ class DashboardActivity : AppCompatActivity() {
                                     startActivityWithToken(
                                         NoDataRecActivity::class.java, userToken
                                     )
+                                    finish()
                                 }
                             }
                         }
@@ -167,7 +167,9 @@ class DashboardActivity : AppCompatActivity() {
             }
             ivProfilePhoto.setOnClickListener {
                 startActivityWithToken(ProfileActivity::class.java, userToken)
-
+            }
+            binding.listCollage.setOnClickListener {
+                startActivity(Intent(this@DashboardActivity, CollageActivity::class.java))
             }
         }
     }
@@ -204,7 +206,6 @@ class DashboardActivity : AppCompatActivity() {
                 .into(ivProfilePhoto)
         }
     }
-
 
     companion object {
         const val TAG = "Dashboard Activity Test"
