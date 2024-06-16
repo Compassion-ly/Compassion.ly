@@ -60,15 +60,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/poppins"
                 android:justificationMode="inter_word"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere."
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere." />
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_courseimg"
@@ -90,12 +90,12 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins"
                 android:justificationMode="inter_word"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere."
                 android:textColor="@color/black"
                 android:textSize="14sp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_courseimg" />
+                app:layout_constraintTop_toBottomOf="@id/iv_courseimg"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sagittis ornare neque et posuere." />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

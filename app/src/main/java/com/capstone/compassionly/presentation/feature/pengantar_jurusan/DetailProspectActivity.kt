@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.capstone.compassionly.R
-import com.capstone.compassionly.databinding.ActivityDetailMatkulBinding
 import com.capstone.compassionly.databinding.ActivityDetailProspectBinding
 
 class DetailProspectActivity : AppCompatActivity() {
@@ -22,22 +21,31 @@ class DetailProspectActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        startActivity()
+        btnBack()
+    }
 
-        val prospectId = intent.getIntExtra(PROSPECT_ID, -1)
-        if (prospectId != -1) {
-//            val prospect = findDetailCourse(prospectId)
-//            prospect?.let { displayCourseDetails(it) }
-        }else{
-            //
+
+    private fun startActivity() {
+        val prospectName = intent.getStringExtra(PROSPECT_NAME)
+        val prospectDesc = intent.getStringExtra(PROSPECT_DESC)
+
+        if (prospectName != null && prospectDesc != null) {
+            binding.apply {
+                toolbarTitle.text = prospectName
+                tvDesc.text = prospectDesc
+            }
         }
     }
 
-
-    private fun findDetailCourse(prospectId: Int): Any {
-        TODO("Not yet implemented")
+    private fun btnBack() {
+        binding.iconBack.setOnClickListener {
+            finish()
+        }
     }
 
     companion object {
-        const val PROSPECT_ID = "prospect id"
+        const val PROSPECT_NAME = "prospect name"
+        const val PROSPECT_DESC = "prospect description"
     }
 }

@@ -17,7 +17,8 @@ class ListProspectAdapter :
             binding.tvProspectname.text = prospect.futureProspectName
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailProspectActivity::class.java)
-                intent.putExtra(DetailProspectActivity.PROSPECT_ID, prospect.id)
+                intent.putExtra(DetailProspectActivity.PROSPECT_NAME, prospect.futureProspectName)
+                intent.putExtra(DetailProspectActivity.PROSPECT_DESC, prospect.description)
                 itemView.context.startActivity(intent)
             }
         }
