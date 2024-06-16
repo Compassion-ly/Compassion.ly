@@ -61,21 +61,7 @@ class DashboardActivity : AppCompatActivity() {
                 viewModel.updateUserHistory(this@DashboardActivity, token)
                 menu(token)
 
-            } else {
-                AlertDialog.Builder(this).apply {
-                    setTitle(getString(R.string.token_not_found))
-                    setMessage(R.string.ask_login)
-                    setPositiveButton(R.string.signIn) { _, _ ->
-                        val intent = Intent(context, LoginActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
-                        finish()
-                    }
-                    create()
-                    show()
-                }
-            }
+            } 
         }
 
     }
