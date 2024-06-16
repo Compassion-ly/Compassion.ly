@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailCollageBinding
-import com.capstone.compassionly.models.CollageModel
 import com.capstone.compassionly.models.DetailCollageModel
 import com.capstone.compassionly.presentation.feature.collage.viewmodel.CollageViewModel
 import com.capstone.compassionly.repository.di.CommonInjector

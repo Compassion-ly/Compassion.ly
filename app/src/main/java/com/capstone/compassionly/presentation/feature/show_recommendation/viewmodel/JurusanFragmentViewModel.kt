@@ -7,12 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
-import com.capstone.compassionly.models.Data
 import com.capstone.compassionly.models.PredictionItem
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.repository.core.network.MajorRecRepository
-import com.capstone.compassionly.repository.core.network.MajorRepository
-import com.capstone.compassionly.utility.Resources
 import kotlinx.coroutines.launch
 
 class JurusanFragmentViewModel(

@@ -17,7 +17,7 @@
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/tv_collegename"
+            android:id="@+id/tv_prospectname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
@@ -30,7 +30,7 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
-            tools:text="College"
+            tools:text="Prospect"
             card_view:drawableEndCompat="@drawable/arrow_right" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

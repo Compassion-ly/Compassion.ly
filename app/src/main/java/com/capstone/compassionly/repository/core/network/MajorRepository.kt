@@ -3,13 +3,12 @@ package com.capstone.compassionly.repository.core.network
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
-import com.capstone.compassionly.models.ErrorMajorRecResponse
+import com.capstone.compassionly.models.ErrorMajorDetailModel
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import com.google.gson.Gson
 import retrofit2.HttpException
-import com.capstone.compassionly.models.ErrorMajorDetailModel
 
 class MajorRepository {
 
@@ -54,6 +53,25 @@ class MajorRepository {
             response.data?.let {
                 emit(Resources.Success(it))
                 Log.d(TAG, "Detail major : ${response.data}")
+            } ?: run {
+                Log.e(TAG, "Response data is null")
+                emit(Resources.Error("No data available"))
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorDetailModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage))
+        }
+    }
+
+    fun getDetailCourse(token: String, courseId: Int) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = hitPointService.getdetailCourse(Utils.getHeader(token), courseId)
+            response.data?.let {
+                emit(Resources.Success(it))
+                Log.d(TAG, "Detail course : ${response.data}")
             } ?: run {
                 Log.e(TAG, "Response data is null")
                 emit(Resources.Error("No data available"))

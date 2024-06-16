@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -25,7 +26,6 @@ import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivit
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.users_data.FormCompleteUserProfile
 import com.capstone.compassionly.repository.di.CommonInjector
-import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
@@ -63,31 +63,33 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.token.observe(this) { token ->
-            viewModel.sendToken(token!!).observe(this) { resources ->
-                if (resources != null) {
-                    when (resources) {
-                        is Resources.Loading -> {
-                            Log.d("LoginActivity", "Loading...")
-                        }
+            token?.let {
+                viewModel.sendToken(it).observe(this) { resources ->
+                    if (resources != null) {
+                        when (resources) {
+                            is Resources.Loading -> {
+                                Log.d("LoginActivity", "Loading...")
+                            }
 
-                        is Resources.Success -> {
-                            Log.d("LoginActivity", "$resources")
-                            viewModel.loginResult.observe(this) { user ->
-                                val result = resources.data as LoginResponse
-                                if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
-                                    checkState(result.data, token = result.data?.accessToken)
-                                } else {
-                                    updateUI(false, result.data?.accessToken)
+                            is Resources.Success -> {
+                                Log.d("LoginActivity", "$resources")
+                                viewModel.loginResult.observe(this) { user ->
+                                    val result = resources.data as LoginResponse
+                                    if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
+                                        checkState(result.data, token = result.data?.accessToken)
+                                    } else {
+                                        updateUI(false, result.data?.accessToken)
+                                    }
                                 }
                             }
-                        }
 
-                        is Resources.Error -> {
-                            Toast.makeText(
-                                application,
-                                "Error: ${resources.error}",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            is Resources.Error -> {
+                                Toast.makeText(
+                                    application,
+                                    "Error: ${resources.error}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 }
@@ -97,8 +99,19 @@ class LoginActivity : AppCompatActivity() {
 
     private fun checkState(user: DataLogin?, token: String? = null) {
         if (token.isNullOrEmpty()) {
-            Utils.showToast(this@LoginActivity, "Terjadi kesalahan, harap coba lagi")
-        } else {
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.token_not_found))
+                setMessage(R.string.ask_login)
+                setPositiveButton(R.string.signIn) { _, _ ->
+                    val intent = Intent(context, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                create()
+                show()
+            }        } else {
             if (
                 user?.user?.firstName == null ||
                 user.user.lastName == null ||

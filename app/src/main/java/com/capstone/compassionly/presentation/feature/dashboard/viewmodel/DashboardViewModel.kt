@@ -2,8 +2,6 @@ package com.capstone.compassionly.presentation.feature.dashboard.viewmodel
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -11,9 +9,6 @@ import com.capstone.compassionly.datasource.preference.datasupport.StateAppPrefe
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.ErrorUnDocumentedModel
 import com.capstone.compassionly.models.MajorRecResponse
-import com.capstone.compassionly.models.PredictionItem
-import com.capstone.compassionly.models.forsending.QuickRecResponse
-import com.capstone.compassionly.models.local.Interest
 import com.capstone.compassionly.models.local.LocalHistoryTopic
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.MajorRecRepository
@@ -30,7 +25,7 @@ class DashboardViewModel(
     private val majorRecRepository: MajorRecRepository
 ) : ViewModel() {
 
-    fun getUserData() = localDataSource.getUser()
+    fun getDataUser() = localDataSource.getUser()
 
     fun getToken() = stateAppPreferences.getAccessToken().asLiveData()
 
@@ -78,7 +73,7 @@ class DashboardViewModel(
         }
     }
 
-    companion object{
+    companion object {
         const val TAG = "Dashboard VM"
     }
 

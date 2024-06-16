@@ -4,9 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailJurusanBinding
+import com.capstone.compassionly.models.CoursesItem
+import com.capstone.compassionly.models.ProspectsItem
 import com.capstone.compassionly.presentation.adapter.ListCollegeAdapter
 import com.capstone.compassionly.presentation.adapter.ListCourseAdapter
+import com.capstone.compassionly.presentation.adapter.ListProspectAdapter
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Course
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.pengantar_jurusan.datadummy.Major
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
 
@@ -57,12 +57,20 @@ class DetailJurusanActivity : AppCompatActivity() {
             } else {
                 //
             }
-
-            val listMatkul = DataDummyUtil.getCourses()
-            setListCourse(listMatkul)
-            showRecyclerViewCourse()
         } else {
-            Toast.makeText(this, "No token found", Toast.LENGTH_SHORT).show()
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.token_not_found))
+                setMessage(R.string.ask_login)
+                setPositiveButton(R.string.signIn) { _, _ ->
+                    val intent = Intent(context, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                create()
+                show()
+            }
         }
 
     }
@@ -72,18 +80,27 @@ class DetailJurusanActivity : AppCompatActivity() {
 
         viewModel.getDetailMajor(token, id)
         viewModel.detailMajor.observe(this) { detailMajor ->
-            val peminat = getString(R.string.peminat_format, detailMajor.majorInterest)
-            val forwho = getString(R.string.forwho_format, detailMajor.forWho.toString())
+            val peminat = getString(R.string.peminat_format, detailMajor.major?.majorInterest)
+            val listCourses = detailMajor.courses
+            val listProspect = detailMajor.prospects
+
             binding.apply {
                 Glide.with(binding.root.context)
-                    .load(detailMajor.majorImage)
+                    .load(detailMajor.major?.majorImage)
                     .into(binding.ivMajor)
-                tvMajorName.text = detailMajor.majorName.toString()
+                tvMajorName.text = detailMajor.major?.majorName.toString()
                 tvPeminat.text = peminat
-                tvMajorDef.text = detailMajor.majorDefinition.toString()
-                tvForwho.text = forwho
-                tvMajorLevel.text = detailMajor.majorLevel.toString()
+                tvMajorDef.text = detailMajor.major?.majorDefinition.toString()
+                tvForwho.text = detailMajor.major?.forWho.toString()
+                tvMajorLevel.text = detailMajor.major?.majorLevel.toString()
             }
+
+            setListCourse(token,listCourses)
+            showRecyclerViewCourse()
+
+            setListProspect(listProspect)
+            showRecyclerViewProspect()
+
         }
     }
 
@@ -100,24 +117,27 @@ class DetailJurusanActivity : AppCompatActivity() {
         }
         binding.rvCourses.layoutManager = layoutManager
     }
+    private fun showRecyclerViewProspect() {
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvProspect.layoutManager = layoutManager
+    }
 
     private fun showRecyclerViewCollege() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvColleges.layoutManager = layoutManager
     }
 
-    private fun displayMajorDetails(major: Major) {
-        binding.tvMajorName.text = major.majorName
-        binding.tvMajorDef.text = major.majorDefinition
-        Glide.with(this)
-            .load(major.majorImage)
-            .into(binding.ivMajor)
+
+    private fun setListCourse(token: String, courses: List<CoursesItem?>?) {
+        val adapter = ListCourseAdapter(token)
+        adapter.submitList(courses)
+        binding.rvCourses.adapter = adapter
     }
 
-    private fun setListCourse(majors: List<Course>) {
-        val adapter = ListCourseAdapter()
-        adapter.submitList(majors)
-        binding.rvCourses.adapter = adapter
+    private fun setListProspect(prospect: List<ProspectsItem?>?) {
+        val adapter = ListProspectAdapter()
+        adapter.submitList(prospect)
+        binding.rvProspect.adapter = adapter
     }
 
     private fun setListColleges() {

@@ -7,6 +7,7 @@ import com.capstone.compassionly.presentation.feature.collage.viewmodel.CollageV
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.login.viewmodel.LoginViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
+import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailMatkulViewModel
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
 import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
 import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
@@ -72,6 +73,9 @@ class CommonViewModelFactory(
 
             JurusanFragmentViewModel::class.java -> {
                 JurusanFragmentViewModel(majorRecRepository, state) as T
+            }
+            DetailMatkulViewModel::class.java->{
+                DetailMatkulViewModel(majorRepository) as T
             }
 
             CollageViewModel::class.java -> {

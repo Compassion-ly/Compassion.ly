@@ -6,10 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
-import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.ErrorUnDocumentedModel
-import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.CollageRepository
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils

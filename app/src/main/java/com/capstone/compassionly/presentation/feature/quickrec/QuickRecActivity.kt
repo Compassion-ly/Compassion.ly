@@ -10,6 +10,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -42,6 +43,7 @@ class QuickRecActivity : AppCompatActivity() {
             insets
         }
         startActivity()
+
     }
 
     private fun startActivity() {
@@ -54,10 +56,19 @@ class QuickRecActivity : AppCompatActivity() {
                 requireMinChar()
             }
         } else {
-            Toast.makeText(this, "Please login again.", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.token_not_found))
+                setMessage(R.string.ask_login)
+                setPositiveButton(R.string.signIn) { _, _ ->
+                    val intent = Intent(context, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
+                create()
+                show()
+            }
         }
     }
 

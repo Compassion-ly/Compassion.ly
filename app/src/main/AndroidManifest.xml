@@ -22,6 +22,9 @@
             android:name=".presentation.feature.collage.CollageActivity"
             android:exported="false" />
         <activity
+            android:name=".presentation.feature.pengantar_jurusan.DetailProspectActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.feature.quickrec.QuickRecResultActivity"
             android:exported="false" />
         <activity

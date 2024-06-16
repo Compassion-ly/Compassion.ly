@@ -3,6 +3,7 @@ package com.capstone.compassionly.datasource.network
 import com.capstone.compassionly.models.CollageModel
 import com.capstone.compassionly.models.CollegesByMajorResponse
 import com.capstone.compassionly.models.DetailCollageModel
+import com.capstone.compassionly.models.DetailCourseResponse
 import com.capstone.compassionly.models.DetailMajorResponse
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.LoginResponse
@@ -56,6 +57,12 @@ interface HitPointService {
         @Path("major_id") majorId: Int
     ): DetailMajorResponse
 
+    @GET("/api/v1/courses/{course_id}")
+    suspend fun getdetailCourse(
+        @HeaderMap headerMap: Map<String, String>,
+        @Path("course_id") courseId: Int
+    ): DetailCourseResponse
+
     @GET("/api/v1/colleges/list-colleges-by-major/{major_id}")
     suspend fun getCollegesByMajor(
         @HeaderMap headerMap: Map<String, String>,
@@ -97,17 +104,6 @@ interface HitPointService {
     @GET("/api/v1/schools/list-school-majors")
     suspend fun getSchoolMajorList(): Response<SuccessResponse<List<SchoolMajor>>>
 
-    @GET("/api/v1/colleges/colleges")
-    suspend fun getCollage(
-        @HeaderMap headerMap: Map<String, String>
-    ): Response<SuccessResponse<List<CollageModel>>>
-
-    @GET("/api/v1/colleges/colleges-detail/{id}")
-    suspend fun getCollageById(
-        @HeaderMap headerMap: Map<String, String>,
-        @Path("id") id: Int,
-    ): Response<SuccessResponse<DetailCollageModel>>
-
     @POST("/api/v1/predict/quick-recommendation")
     suspend fun quickRecommendation(
         @HeaderMap headerMap: Map<String, String>,
@@ -119,4 +115,15 @@ interface HitPointService {
         @HeaderMap headerMap: Map<String, String>,
         @Body requestBody: Unit = Unit
     ): MajorRecResponse
+
+    @GET("/api/v1/colleges/colleges")
+    suspend fun getCollage(
+        @HeaderMap headerMap: Map<String, String>
+    ): Response<SuccessResponse<List<CollageModel>>>
+
+    @GET("/api/v1/colleges/colleges-detail/{id}")
+    suspend fun getCollageById(
+        @HeaderMap headerMap: Map<String, String>,
+        @Path("id") id: Int
+    ): Response<SuccessResponse<DetailCollageModel>>
 }

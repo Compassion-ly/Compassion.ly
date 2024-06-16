@@ -1,6 +1,5 @@
 package com.capstone.compassionly.presentation.feature.quickrec
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityQuickRecResultBinding
 import com.capstone.compassionly.presentation.adapter.ListCategoryAdapter
-import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
 
@@ -39,8 +37,6 @@ class QuickRecResultActivity : AppCompatActivity() {
 
     private fun btnBack() {
         binding.iconBack.setOnClickListener {
-            val intent = Intent(this, DashboardActivity::class.java)
-            startActivity(intent)
             finish()
         }
     }

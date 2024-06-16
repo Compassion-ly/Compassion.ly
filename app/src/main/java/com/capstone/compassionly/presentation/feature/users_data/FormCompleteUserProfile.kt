@@ -19,7 +19,6 @@ import com.capstone.compassionly.presentation.adapter.CustomAutoCompleteAdapter
 import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
-import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import com.google.firebase.Firebase

@@ -13,7 +13,6 @@ import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityCollageBinding
 import com.capstone.compassionly.models.CollageModel
 import com.capstone.compassionly.presentation.adapter.ItemCollageMenuAdapter
-import com.capstone.compassionly.presentation.adapter.ListCollegeAdapter
 import com.capstone.compassionly.presentation.feature.collage.viewmodel.CollageViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.utility.Resources

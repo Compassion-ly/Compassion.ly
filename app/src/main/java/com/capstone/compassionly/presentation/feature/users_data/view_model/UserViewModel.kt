@@ -1,6 +1,5 @@
 package com.capstone.compassionly.presentation.feature.users_data.view_model
 
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
