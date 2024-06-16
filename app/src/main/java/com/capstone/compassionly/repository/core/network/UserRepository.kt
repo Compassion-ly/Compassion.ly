@@ -80,6 +80,8 @@ class UserRepository {
         return hitPointService.getTopicById(Utils.getHeader(token), id)
     }
 
+    suspend fun updateToken(token: String) = hitPointService.accessToken(AccessToken(token))
+
 
     companion object {
         @Volatile

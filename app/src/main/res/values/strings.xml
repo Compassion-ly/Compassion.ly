@@ -99,4 +99,5 @@
     <string name="_100">100</string>
     <string name="peminat_format">%1$d Peminat</string>
     <string name="forwho_format">Cocok untuk %s.</string>
+    <string name="daftar_kampus">Daftar Kampus</string>
 </resources>

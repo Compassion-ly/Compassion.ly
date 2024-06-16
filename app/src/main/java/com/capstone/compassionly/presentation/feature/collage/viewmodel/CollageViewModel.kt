@@ -19,39 +19,40 @@ import retrofit2.HttpException
 
 class CollageViewModel(
     private val collageRepository: CollageRepository,
-): ViewModel() {
+) : ViewModel() {
 
-    private val _result : MutableLiveData<Resources<*>> = MutableLiveData<Resources<*>>()
+    private val _result: MutableLiveData<Resources<*>> = MutableLiveData<Resources<*>>()
     val result get() = _result
 
-    fun getAllCollage(context: Context, token: String) = liveData {
+    private fun getAllCollage(context: Context, token: String) = liveData {
         emit(Resources.Loading)
-        if (Utils.checkConnection(context)) {
+        if (!Utils.checkConnection(context)) {
             emit(Resources.Error("Tidak ada koneksi internet, harap coba lagi"))
         } else {
-           try {
-               val call = collageRepository.getAllCollage(token)
-               if (call.isSuccessful) {
-                   val data = call.body()?.data
-                   data?.let {
-                       emit(Resources.Success(data))
-                   } ?: run {
-                       emit(Resources.Error("Data kosong"))
-                   }
-               }
-           } catch (e: HttpException) {
-               if (e.code() == 500) {
-                   val jsonInString = e.response()?.errorBody()?.string()
-                   val errorBody = Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
-                   val errorMessage = errorBody.detail
-                   emit(Resources.Error(errorMessage!!))
-               } else {
-                   val jsonInString = e.response()?.errorBody()?.string()
-                   val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
-                   val errorMessage = errorBody.detail
-                   emit(Resources.Error(errorMessage!!))
-               }
-           }
+            try {
+                val call = collageRepository.getAllCollage(token)
+                if (call.isSuccessful) {
+                    val data = call.body()?.data
+                    data?.let {
+                        emit(Resources.Success(data))
+                    } ?: run {
+                        emit(Resources.Error("Data kosong"))
+                    }
+                }
+            } catch (e: HttpException) {
+                if (e.code() == 500) {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody =
+                        Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                    val errorMessage = errorBody.detail
+                    emit(Resources.Error(errorMessage!!))
+                } else {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+                    val errorMessage = errorBody.detail
+                    emit(Resources.Error(errorMessage!!))
+                }
+            }
         }
     }
 
@@ -63,9 +64,11 @@ class CollageViewModel(
                         is Resources.Error -> {
                             _result.postValue(it)
                         }
+
                         is Resources.Success -> {
                             _result.postValue(it)
                         }
+
                         is Resources.Loading -> {
                             _result.postValue(it)
                         }
@@ -77,4 +80,37 @@ class CollageViewModel(
         }
     }
 
+    fun getDetailCollage(context: Context, token: String, id: Int) = liveData {
+        emit(Resources.Loading)
+        if (!Utils.checkConnection(context)) {
+            emit(Resources.Error("Tidak ada koneksi internet, harap coba lagi"))
+        } else {
+            try {
+                val call = token.let { collageRepository.getCollageById(it, id)}
+                if (call.isSuccessful) {
+                    val body = call.body()?.data
+                    body?.let {
+                        emit(Resources.Success(it))
+                    } ?: run {
+                        emit(Resources.Error("Data tidak ada"))
+                    }
+                }
+            } catch (e: HttpException) {
+                if (e.code() == 500) {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody =
+                        Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                    val errorMessage = errorBody.detail
+                    emit(Resources.Error(errorMessage!!))
+                } else {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+                    val errorMessage = errorBody.detail
+                    emit(Resources.Error(errorMessage!!))
+                }
+            }
+        }
+    }
+
+    fun getToken() = collageRepository.getToken()
 }

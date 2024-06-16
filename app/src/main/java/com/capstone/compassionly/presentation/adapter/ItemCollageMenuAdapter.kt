@@ -9,7 +9,7 @@ import com.capstone.compassionly.databinding.ItemCollageBinding
 import com.capstone.compassionly.models.CollageModel
 
 class ItemCollageMenuAdapter(
-    private val callback : (Int) -> Unit
+    private val callback : (Int, String) -> Unit
 ) : RecyclerView.Adapter<ItemCollageMenuAdapter.ViewHolder>() {
 
     val async = AsyncListDiffer(this, diffUtils)
@@ -18,7 +18,7 @@ class ItemCollageMenuAdapter(
         fun setup (data: CollageModel) {
             binding.name.text = data.collegeName
             binding.container.setOnClickListener {
-                data.id?.let { it1 -> callback(it1) }
+                data.id?.let { it1 -> data.collegeName?.let { it2 -> callback(it1, it2) } }
             }
         }
     }

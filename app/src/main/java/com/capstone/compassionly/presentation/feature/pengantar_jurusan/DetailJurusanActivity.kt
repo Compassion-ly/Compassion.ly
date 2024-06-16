@@ -95,7 +95,9 @@ class DetailJurusanActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerViewCourse() {
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = object: LinearLayoutManager(this) {
+            override fun canScrollVertically() = false
+        }
         binding.rvCourses.layoutManager = layoutManager
     }
 

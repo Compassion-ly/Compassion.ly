@@ -13,6 +13,7 @@ import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
 import com.capstone.compassionly.models.DataMajorRec
 import com.capstone.compassionly.models.MajorRecResponse
+import com.capstone.compassionly.presentation.feature.collage.CollageActivity
 import com.capstone.compassionly.presentation.feature.dashboard.viewmodel.DashboardViewModel
 import com.capstone.compassionly.presentation.feature.introduction_of_features.IntroductionFeaturesActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.PengantarJurusanActivity
@@ -167,7 +168,9 @@ class DashboardActivity : AppCompatActivity() {
             }
             ivProfilePhoto.setOnClickListener {
                 startActivityWithToken(ProfileActivity::class.java, userToken)
-
+            }
+            binding.listCollage.setOnClickListener {
+                startActivity(Intent(this@DashboardActivity, CollageActivity::class.java))
             }
         }
     }

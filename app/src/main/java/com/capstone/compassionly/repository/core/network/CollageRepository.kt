@@ -11,6 +11,8 @@ class CollageRepository(
 
     suspend fun getAllCollage(token: String) = ApiConfiguration.hitPointService.getCollage(Utils.getHeader(token))
 
+    suspend fun getCollageById(token: String, id: Int) = ApiConfiguration.hitPointService.getCollageById(Utils.getHeader(token), id)
+
     fun getToken() = stateAppPreference.getAccessToken().asLiveData()
 
     companion object {
