@@ -11,11 +11,13 @@ import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmode
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.PengantarJurusanViewModel
 import com.capstone.compassionly.presentation.feature.quickrec.viewmodel.QuickRecViewModel
 import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
+import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.KetertarikanFragmentViewModel
 import com.capstone.compassionly.presentation.feature.topic.view_model.TopicViewModel
 import com.capstone.compassionly.presentation.feature.topic_histories.view_model.TopicHistoryViewModel
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.CollageRepository
+import com.capstone.compassionly.repository.core.network.FieldRecRepository
 import com.capstone.compassionly.repository.core.network.MajorRecRepository
 import com.capstone.compassionly.repository.core.network.MajorRepository
 import com.capstone.compassionly.repository.core.network.QuickRecRepository
@@ -33,6 +35,7 @@ class CommonViewModelFactory(
     private val quickRecRepository: QuickRecRepository,
     private val majorRecRepository: MajorRecRepository,
     private val collageRepository: CollageRepository,
+    private val fieldRecRepository: FieldRecRepository
 
 ) : ViewModelProvider.NewInstanceFactory() {
 
@@ -74,6 +77,11 @@ class CommonViewModelFactory(
             JurusanFragmentViewModel::class.java -> {
                 JurusanFragmentViewModel(majorRecRepository, state) as T
             }
+
+            KetertarikanFragmentViewModel::class.java ->{
+                KetertarikanFragmentViewModel(fieldRecRepository, state) as T
+            }
+
             DetailMatkulViewModel::class.java->{
                 DetailMatkulViewModel(majorRepository) as T
             }

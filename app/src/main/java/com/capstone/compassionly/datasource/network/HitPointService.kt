@@ -6,6 +6,7 @@ import com.capstone.compassionly.models.DetailCollageModel
 import com.capstone.compassionly.models.DetailCourseResponse
 import com.capstone.compassionly.models.DetailMajorResponse
 import com.capstone.compassionly.models.DetailUserModel
+import com.capstone.compassionly.models.FieldRecResponse
 import com.capstone.compassionly.models.LoginResponse
 import com.capstone.compassionly.models.MajorRecResponse
 import com.capstone.compassionly.models.MajorResponse
@@ -115,6 +116,11 @@ interface HitPointService {
         @HeaderMap headerMap: Map<String, String>,
         @Body requestBody: Unit = Unit
     ): MajorRecResponse
+
+    @GET("/api/v1/predict/quick-recommendation")
+    suspend fun fieldRecommendation(
+        @HeaderMap headerMap: Map<String, String>
+    ): FieldRecResponse
 
     @GET("/api/v1/colleges/colleges")
     suspend fun getCollage(

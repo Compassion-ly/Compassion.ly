@@ -6,6 +6,7 @@ import com.capstone.compassionly.datasource.preference.datasupport.StateAppPrefe
 import com.capstone.compassionly.datasource.preference.datasupport.datastore
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.CollageRepository
+import com.capstone.compassionly.repository.core.network.FieldRecRepository
 import com.capstone.compassionly.repository.core.network.MajorRecRepository
 import com.capstone.compassionly.repository.core.network.MajorRepository
 import com.capstone.compassionly.repository.core.network.QuickRecRepository
@@ -27,7 +28,9 @@ object CommonInjector {
         val quickRecRep = QuickRecRepository.getInstance(context)
         val majorRecRep = MajorRecRepository.getInstance(context)
         val collageRepository = CollageRepository.getInstance(state)!!
-        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository, quickRecRep, majorRecRep, collageRepository)
+        val fieldRecRep = FieldRecRepository.getInstance(context)
+
+        return CommonViewModelFactory(userRep, schoolRep, localDataSource, state, majorRep, topicRepository, quickRecRep, majorRecRep, collageRepository, fieldRecRep)
     }
 
 }

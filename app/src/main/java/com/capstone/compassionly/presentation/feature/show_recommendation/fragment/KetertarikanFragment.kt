@@ -1,15 +1,21 @@
 package com.capstone.compassionly.presentation.feature.show_recommendation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.databinding.FragmentKetertarikanBinding
 import com.capstone.compassionly.presentation.adapter.ListCategoryAdapter
 import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Category
 import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.DataDummyUtil
+import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
+import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.KetertarikanFragmentViewModel
+import com.capstone.compassionly.repository.di.CommonInjector
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +33,9 @@ class KetertarikanFragment : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentKetertarikanBinding? = null
     private val binding get() = _binding!!
-
+    private val viewModel: KetertarikanFragmentViewModel by viewModels {
+        CommonInjector.common(requireContext())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +47,15 @@ class KetertarikanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listInterest = DataDummyUtil.getCategory()
-        //setListInterest(listInterest)
-        //showRecyclerView()
+        viewModel.getToken().observe(viewLifecycleOwner) { userToken ->
+            if (userToken != null) {
+                setListInterest()
+                showRecyclerView()
+                Log.d("Ketertarikan Fragment", "User Token: $userToken")
+            } else {
+                Toast.makeText(context, "Token not found", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun showRecyclerView() {
@@ -49,14 +63,22 @@ class KetertarikanFragment : Fragment() {
         binding.rvInterests.layoutManager = layoutManager
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
+    private fun setListInterest() {
+        Log.d("QuickRecResult", "setListInterest()")
 
-    private fun setListInterest(categories: List<Category>) {
         val adapter = ListCategoryAdapter()
-        //adapter.submitList(categories)
         binding.rvInterests.adapter = adapter
+        binding.rvInterests.layoutManager = LinearLayoutManager(requireContext())
+        binding.progressBar.visibility = View.VISIBLE
+
+
+        viewModel.getFieldRecResult()
+        viewModel.interests.observe(viewLifecycleOwner) { interests ->
+            binding.progressBar.visibility = View.GONE
+            adapter.submitList(interests)
+            Log.d("FieldRecResult", "result : $interests")
+
+        }
     }
 
     override fun onCreateView(
