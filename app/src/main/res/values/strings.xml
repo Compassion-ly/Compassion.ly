@@ -89,12 +89,12 @@
     <string name="evaluasi">Evaluasi</string>
     <string name="interestrec">Hasil dari pembelajaran yang telah kamu lakukan menunjukan bahwa kamu memiliki ketertarikan pada bidang berikut :</string>
     <string name="daftar_universitas_di_indonesia">Daftar Universitas</string>
-    <string name="berikut_merupakan_beberapa_universitas_yang_ada_pada_di_indonesia">Berikut merupakan beberapa universitas yang ada pada di indonesia</string>
+    <string name="berikut_merupakan_beberapa_universitas_yang_ada_pada_di_indonesia">Berikut merupakan beberapa universitas yang ada dan aktif di negara Indonesia</string>
     <string name="nama_universitas">Nama Universitas</string>
-    <string name="interest">interest</string>
+    <string name="interest">Ketertarikan</string>
     <string name="_1000">1000</string>
     <string name="kapaistas">Kapaistas</string>
-    <string name="data_mata_kuliah">Data Mata Kuliah</string>
+    <string name="data_jurusan">Data Jurusan</string>
     <string name="nama_major">Nama Major</string>
     <string name="_100">100</string>
     <string name="peminat_format">%1$d Peminat</string>

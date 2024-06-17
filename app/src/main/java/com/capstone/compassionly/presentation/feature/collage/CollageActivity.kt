@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityCollageBinding
@@ -17,6 +18,8 @@ import com.capstone.compassionly.presentation.feature.collage.viewmodel.CollageV
 import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CollageActivity : AppCompatActivity() {
     private var _binding: ActivityCollageBinding? = null
@@ -37,18 +40,16 @@ class CollageActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        collageViewModel.getCollage(this@CollageActivity, this)
         adapter = ItemCollageMenuAdapter { id, name ->
             val intent = Intent(this@CollageActivity, DetailCollageActivity::class.java)
             intent.putExtra("id", id)
             intent.putExtra("name", name)
             startActivity(intent)
         }
-        setView()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        collageViewModel.getCollage(this@CollageActivity, this)
+        lifecycleScope.launch {
+            setView()
+        }
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -76,11 +77,14 @@ class CollageActivity : AppCompatActivity() {
         adapter.save(data)
         binding.apply {
             rcList.hasFixedSize()
-            rcList.layoutManager = object: LinearLayoutManager(this@CollageActivity) {
-                override fun canScrollVertically() = false
-            }
+            rcList.layoutManager = LinearLayoutManager(this@CollageActivity)
             rcList.adapter = adapter
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.progressBar.visibility = View.GONE
     }
 
     override fun onDestroy() {

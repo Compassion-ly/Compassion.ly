@@ -1,5 +1,6 @@
 package com.capstone.compassionly.datasource.network
 
+import com.capstone.compassionly.models.CollageByIdModel
 import com.capstone.compassionly.models.CollageModel
 import com.capstone.compassionly.models.CollegesByMajorResponse
 import com.capstone.compassionly.models.DetailCollageModel
@@ -132,4 +133,16 @@ interface HitPointService {
         @HeaderMap headerMap: Map<String, String>,
         @Path("id") id: Int
     ): Response<SuccessResponse<DetailCollageModel>>
+
+    @GET("/api/v1/colleges/colleges/{college_id}")
+    suspend fun getCollageByIdDetail(
+        @HeaderMap headerMap: Map<String, String>,
+        @Path("college_id") collageId: Int
+    ): Response<SuccessResponse<CollageByIdModel>>
+
+
+    @GET("/api/v1/colleges/colleges-detail")
+    suspend fun getCollageDetail(
+        @HeaderMap headerMap: Map<String, String>
+    ): Response<SuccessResponse<List<DetailCollageModel>>>
 }
