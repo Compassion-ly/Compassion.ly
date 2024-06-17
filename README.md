@@ -27,6 +27,8 @@ The Major Introduction feature is designed to display information related to maj
 
 - *Dependencies :*
 
+**# Prerequisites**
+
 **# How to Install and Run the Project**
 
 **# How to Use the Project**
