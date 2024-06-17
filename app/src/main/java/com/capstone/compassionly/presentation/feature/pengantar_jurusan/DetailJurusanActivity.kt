@@ -22,6 +22,7 @@ import com.capstone.compassionly.presentation.adapter.ListProspectAdapter
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
+import com.capstone.compassionly.utility.Utils
 
 class DetailJurusanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailJurusanBinding
@@ -54,7 +55,8 @@ class DetailJurusanActivity : AppCompatActivity() {
             if (majorId != -1) {
                 findDetailMajor(token, majorId)
             } else {
-                //
+                Utils.showToast(this,getString(R.string.data_not_found))
+                finish()
             }
         } else {
             AlertDialog.Builder(this).apply {
@@ -77,7 +79,7 @@ class DetailJurusanActivity : AppCompatActivity() {
 
     private fun findDetailMajor(token: String, id: Int) {
 
-        viewModel.getDetailMajor(token, id)
+        viewModel.getDetailMajor(token, id, this)
         viewModel.detailMajor.observe(this) { detailMajor ->
             val peminat = getString(R.string.peminat_format, detailMajor.major?.majorInterest)
             val listCourses = detailMajor.courses

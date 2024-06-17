@@ -100,6 +100,7 @@
     <string name="peminat_format">%1$d Peminat</string>
     <string name="prospek_kerja">Prospek Kerja</string>
     <string name="token_not_found">Terdapat kesalahan</string>
+    <string name="data_not_found">Data tidak ditemukan</string>
     <string name="ask_login">Silahkan login kembali</string>
     <string name="daftar_kampus">Daftar Kampus</string>
 </resources>

@@ -12,9 +12,11 @@ import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailMatkulBinding
+import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailMatkulViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
+import com.capstone.compassionly.utility.Utils
 
 class DetailMatkulActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailMatkulBinding
@@ -49,7 +51,8 @@ class DetailMatkulActivity : AppCompatActivity() {
             if (courseId != -1) {
                 findDetailCourse(token, courseId)
             } else {
-                //
+                Utils.showToast(this,getString(R.string.data_not_found))
+                finish()
             }
         } else {
             AlertDialog.Builder(this).apply {
@@ -69,7 +72,7 @@ class DetailMatkulActivity : AppCompatActivity() {
     }
 
     private fun findDetailCourse(token: String, id: Int) {
-        viewModel.getDetailMatkul(token, id)
+        viewModel.getDetailMatkul(token, id, this)
         viewModel.detailMatkul.observe(this) { detailMatkul ->
             binding.apply {
                 toolbarTitle.text = detailMatkul.course?.courseName
