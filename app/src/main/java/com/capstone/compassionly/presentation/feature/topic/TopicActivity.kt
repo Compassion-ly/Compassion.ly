@@ -21,6 +21,7 @@ import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.SwipeControlListener
 import com.capstone.compassionly.utility.SwipeDirection
+import com.capstone.compassionly.utility.Utils
 
 class TopicActivity : AppCompatActivity() {
     private var _binding: ActivityTopicBinding? = null
@@ -41,9 +42,8 @@ class TopicActivity : AppCompatActivity() {
         setContentView(binding.root)
         swipeControlListener.setSwipeDirection(SwipeDirection.LEFT)
         additionalDisplay()
-
         topicVM.getToken().observe(this@TopicActivity) {
-            topicVM.getTopic(it, 2, 0).observe(this@TopicActivity) { data ->
+            topicVM.getTopic(it, 25, Utils.getRandomPick()).observe(this@TopicActivity) { data ->
                 topicVM.getUserData().observe(this@TopicActivity) { listUser ->
                     if (listUser.isNotEmpty()) {
                         topicVM.getTopicHistory(listUser[0].data?.user?.id!!)
@@ -157,7 +157,6 @@ class TopicActivity : AppCompatActivity() {
         val currentPosition = binding.vpTopic.currentItem
         val dataOnPosition = data[currentPosition]
 
-        println("dataon poision $dataOnPosition")
         val intent = Intent(this@TopicActivity, DetailTopicActivity::class.java)
         intent.putExtra("topic", dataOnPosition)
         startActivity(intent)

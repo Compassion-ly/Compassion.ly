@@ -19,7 +19,7 @@ import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 
 class DetailTopicActivity : AppCompatActivity() {
-    private var _binding : ActivityDetailBinding? = null
+    private var _binding: ActivityDetailBinding? = null
     private val binding get() = _binding!!
     private val topicVM: TopicViewModel by viewModels {
         CommonInjector.common(this)
@@ -35,7 +35,6 @@ class DetailTopicActivity : AppCompatActivity() {
 
         if (intent.hasExtra("topic")) {
             val data = intent.getParcelableExtra<TopicModel>("topic")
-            println(data)
             data?.let {
                 setToDisplay(it, dialog)
             }
@@ -73,8 +72,16 @@ class DetailTopicActivity : AppCompatActivity() {
 //        val adapter = DetailTopicAdapter(this@DetailTopicActivity)
         val adapter = ImageMaterialAdapter()
         val dataImage = mutableListOf<String>()
-        dataImage.add(data.topicImage!!)
-        dataImage.add(data.topicImage2!!)
+        data.topicImage?.let {
+            dataImage.add(it)
+        } ?: run {
+            dataImage.add("https://www.netlify.com/v3/img/blog/the404.png")
+        }
+        data.topicImage2?.let {
+            dataImage.add(it)
+        } ?: run {
+            dataImage.add("https://www.netlify.com/v3/img/blog/the404.png")
+        }
         adapter.save(dataImage)
 //        binding.pagerDetail.apply {
 //            this.adapter = adapter
@@ -92,7 +99,7 @@ class DetailTopicActivity : AppCompatActivity() {
             headTopic.text = data.topicName
             mainTopic.text = data.topicExplanation
             binding.nextButton.setOnClickListener {
-                val dialogRate =  LayoutDialogRateTopicBinding.inflate(layoutInflater)
+                val dialogRate = LayoutDialogRateTopicBinding.inflate(layoutInflater)
                 dialog.setContentView(dialogRate.root)
                 dialog.show()
                 dialogAction(dialogRate, dialog, data.id!!)
@@ -148,7 +155,7 @@ class DetailTopicActivity : AppCompatActivity() {
         topicVM.apply {
             getToken().observe(this@DetailTopicActivity) { token ->
                 if (token.isNullOrEmpty()) {
-                    Utils.showToast(this@DetailTopicActivity,"Login expired")
+                    Utils.showToast(this@DetailTopicActivity, "Login expired")
                 } else {
                     postToken(token, rating, topicId)
                 }
