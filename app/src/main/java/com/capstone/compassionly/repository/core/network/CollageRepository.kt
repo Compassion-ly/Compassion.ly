@@ -13,6 +13,10 @@ class CollageRepository(
 
     suspend fun getCollageById(token: String, id: Int) = ApiConfiguration.hitPointService.getCollageById(Utils.getHeader(token), id)
 
+    suspend fun getCollegeDetail(token: String) = ApiConfiguration.hitPointService.getCollageDetail(Utils.getHeader(token))
+
+    suspend fun getCollageByIdDetail(token: String, collageId: Int) = ApiConfiguration.hitPointService.getCollageByIdDetail(Utils.getHeader(token), collageId)
+
     fun getToken() = stateAppPreference.getAccessToken().asLiveData()
 
     companion object {

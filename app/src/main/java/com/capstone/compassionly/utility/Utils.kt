@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.LayoutDialogRateTopicBinding
+import kotlin.random.Random
 
 object Utils {
     fun changeStatusBarColorWhite(activity: Activity) {
@@ -89,5 +90,10 @@ object Utils {
             }
         }
         return false
+    }
+
+    fun getRandomPick() : Int {
+        val random = Random.nextInt(1, 200)
+        return random
     }
 }
