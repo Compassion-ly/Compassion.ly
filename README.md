@@ -26,6 +26,15 @@ The Major Introduction feature is designed to display information related to maj
 - *Technologies :*
 
 - *Dependencies :*
+1. https://developer.android.com/kotlin/ktx
+2. https://m3.material.io/
+3. https://firebase.google.com/docs/auth?hl=id
+4. https://junit.org/junit4/
+5. https://github.com/tommybuonomo/dotsindicator
+6. https://github.com/shobhitpuri/custom-google-signin-button
+7. https://developer.android.com/training/data-storage/room
+8. https://developer.android.com/training/data-storage/shared-preferences
+9. 
 
 **# Prerequisites**
 
