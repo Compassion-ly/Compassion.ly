@@ -1,5 +1,6 @@
 package com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.capstone.compassionly.models.DataItem
 import com.capstone.compassionly.repository.core.network.MajorRepository
 import com.capstone.compassionly.utility.Resources
+import com.capstone.compassionly.utility.Utils
 
 class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : ViewModel() {
 
@@ -21,7 +23,7 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
     val isLoading: LiveData<Boolean> = _isLoading
 
 
-    fun getMajors(token: String) {
+    fun getMajors(token: String, context: Context) {
         majorRepository.getMajors(token).observeForever { resource ->
             when (resource) {
                 is Resources.Success -> {
@@ -32,6 +34,7 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
                 is Resources.Error -> {
                     Log.e(TAG, "${resource.error}")
                     _isLoading.value = false
+                    Utils.showToast(context,"${resource.error}")
                 }
 
                 is Resources.Loading -> {
@@ -49,35 +52,6 @@ class PengantarJurusanViewModel(private val majorRepository: MajorRepository) : 
         _findMajor.value = filteredList
     }
 
-//    fun getMajor(token: String, searchQuery: String) {
-//        majorRepository.getMajor(token,searchQuery).observeForever{ resource ->
-//            when (resource) {
-//                is Resources.Success -> {
-//                    val data = resource.data as? List<DataItem>
-//                    if (!data.isNullOrEmpty()) {
-//                        // Optionally, filter the data here if needed
-//                        _findMajor.value = data!!
-//                    } else {
-//                        Log.e(TAG, "No matching data found")
-//                        _findMajor.value = emptyList()
-//                    }
-//                    _isLoading.value = false
-//                }
-//
-//                is Resources.Error -> {
-//                    Log.e(TAG, "error : ${resource.error}")
-//                    _isLoading.value = false
-//                }
-//
-//                is Resources.Loading -> {
-//                    _isLoading.value = true
-//                    Log.d(TAG, "Loading to get the majors you are looking for")
-//
-//                }
-//            }
-//        }
-//
-//    }
     companion object {
         const val TAG = "pengantar jurusan view model"
     }
