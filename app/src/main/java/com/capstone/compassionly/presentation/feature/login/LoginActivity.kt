@@ -81,7 +81,11 @@ class LoginActivity : AppCompatActivity() {
                                     if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
                                         checkState(result.data, token = result.data?.accessToken)
                                     } else {
-                                        updateUI(false, result.data?.accessToken)
+                                        result.data?.accessToken?.let { it1 ->
+                                            updateUI(false,
+                                                it1
+                                            )
+                                        }
                                     }
                                 }
                             }
@@ -164,14 +168,15 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUI(needUpdateData: Boolean, token: String?) {
+    private fun updateUI(needUpdateData: Boolean, token: String) {
+        Log.d("LoginTest","Updatedata()")
         if (needUpdateData) {
             val intent = Intent(this@LoginActivity, FormCompleteUserProfile::class.java)
             intent.putExtra("token", token)
             startActivity(intent)
             finishAffinity()
         } else {
-            storeUserToLocal(token!!)
+            storeUserToLocal(token)
             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
             finishAffinity()
         }

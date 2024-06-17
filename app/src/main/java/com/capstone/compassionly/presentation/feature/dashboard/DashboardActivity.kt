@@ -45,7 +45,6 @@ class DashboardActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -57,6 +56,7 @@ class DashboardActivity : AppCompatActivity() {
         viewModel.getToken().observe(this) { token ->
             if (token != null) {
                 Log.d(TAG, "User Token: $token")
+                Log.d(TAG, "UPDATE: $token")
                 viewModel.updateUserHistory(this@DashboardActivity, token)
                 menu(token)
             }
@@ -203,6 +203,8 @@ class DashboardActivity : AppCompatActivity() {
                 .into(ivProfilePhoto)
         }
     }
+
+
 
     companion object {
         const val TAG = "Dashboard Activity Test"
