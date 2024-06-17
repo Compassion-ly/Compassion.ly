@@ -3,6 +3,7 @@ package com.capstone.compassionly.presentation.feature.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -168,10 +169,12 @@ class LoginActivity : AppCompatActivity() {
         viewModel.getMe(token).observe(this@LoginActivity) { resources ->
             when (resources) {
                 is Resources.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                     Log.d("LoginActivity", "Loading...")
                 }
 
                 is Resources.Success -> {
+                    binding.progressBar.visibility = View.GONE
                     val data = resources.data as SuccessResponse<*>
                     val detailUser = data.data as DetailUserModel
                     viewModel.store(LocalUser(0, detailUser))
@@ -179,6 +182,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 is Resources.Error -> {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(
                         application,
                         "Error: ${resources.error}",
