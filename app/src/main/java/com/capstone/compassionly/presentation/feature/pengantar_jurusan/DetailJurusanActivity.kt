@@ -55,7 +55,7 @@ class DetailJurusanActivity : AppCompatActivity() {
             if (majorId != -1) {
                 findDetailMajor(token, majorId)
             } else {
-                Utils.showToast(this,getString(R.string.data_not_found))
+                Utils.showToast(this, getString(R.string.data_not_found))
                 finish()
             }
         } else {
@@ -87,9 +87,17 @@ class DetailJurusanActivity : AppCompatActivity() {
             val listCollege = detailMajor.colleges
 
             binding.apply {
-                Glide.with(binding.root.context)
-                    .load(detailMajor.major?.majorImage)
-                    .into(binding.ivMajor)
+                detailMajor.major?.majorImage?.let {
+                    Glide.with(binding.root.context)
+                        .load(detailMajor.major.majorImage)
+                        .into(binding.ivMajor)
+                } ?: run {
+                    Glide.with(binding.root.context)
+                        .load("https://www.quipper.com/id/blog/wp-content/uploads/2020/10/175-min-min.png")
+                        .into(binding.ivMajor)
+                }
+
+
                 tvMajorName.text = detailMajor.major?.majorName.toString()
                 tvPeminat.text = peminat
                 tvMajorDef.text = detailMajor.major?.majorDefinition.toString()

@@ -16,9 +16,17 @@ class ListMajorAdapter(private val token: String) :
     class MyViewHolder(val binding: ItemMajorBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(token: String, majors: DataItem) {
             binding.tvMajorname.text = majors.majorName
-            Glide.with(binding.root.context)
-                .load(majors.majorImage)
-                .into(binding.ivMajor)
+
+            if (majors.majorImage == null) {
+                Glide.with(binding.root.context)
+                    .load("https://www.quipper.com/id/blog/wp-content/uploads/2020/10/175-min-min.png")
+                    .into(binding.ivMajor)
+            } else {
+                Glide.with(binding.root.context)
+                    .load(majors.majorImage)
+                    .into(binding.ivMajor)
+            }
+
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, DetailJurusanActivity::class.java)
                 intent.putExtra(DetailJurusanActivity.MAJOR_ID, majors.id)
