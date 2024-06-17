@@ -53,11 +53,21 @@ class DashboardViewModel(
                     val jsonInString = e.response()?.errorBody()?.string()
                     val errorBody =
                         Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
-                    val errorMessage = errorBody.detail
+                    Utils.showToast(context, "${errorBody.detail}")
+                } else if (e.code() == 404) {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody =
+                        Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                    Utils.showToast(context, "${errorBody.detail}")
+                } else if (e.code() == 422) {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody =
+                        Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                    Utils.showToast(context, "${errorBody.detail}")
                 } else {
                     val jsonInString = e.response()?.errorBody()?.string()
                     val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
-                    val errorMessage = errorBody.detail
+                    Utils.showToast(context, "${errorBody.detail}")
                 }
             }
         }

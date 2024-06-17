@@ -65,17 +65,19 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.token.observe(this) { token ->
             token?.let {
-                viewModel.sendToken(it).observe(this) { resources ->
+                viewModel.sendToken(it, this).observe(this) { resources ->
                     if (resources != null) {
                         when (resources) {
                             is Resources.Loading -> {
+                                binding.progressBar.visibility = View.VISIBLE
                                 Log.d("LoginActivity", "Loading...")
                             }
 
                             is Resources.Success -> {
+                                binding.progressBar.visibility = View.GONE
                                 Log.d("LoginActivity", "$resources")
-                                viewModel.loginResult.observe(this) { user ->
-                                    val result = resources.data as LoginResponse
+                                viewModel.loginResult.observe(this) {
+                                    val result = resources.data
                                     if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
                                         checkState(result.data, token = result.data?.accessToken)
                                     } else {
@@ -85,11 +87,20 @@ class LoginActivity : AppCompatActivity() {
                             }
 
                             is Resources.Error -> {
-                                Toast.makeText(
-                                    application,
-                                    "Error: ${resources.error}",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                binding.progressBar.visibility = View.GONE
+                                AlertDialog.Builder(this).apply {
+                                    setTitle(getString(R.string.token_not_found))
+                                    setMessage(R.string.ask_login)
+                                    setPositiveButton(R.string.signIn) { _, _ ->
+                                        val intent = Intent(context, LoginActivity::class.java)
+                                        intent.flags =
+                                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                    create()
+                                    show()
+                                }
                             }
                         }
                     }
@@ -148,6 +159,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.handleSignIn(result)
             } catch (e: GetCredentialException) {
                 Log.d("Error", e.message.toString())
+                Utils.showToast(applicationContext, e.message.toString())
             }
         }
     }

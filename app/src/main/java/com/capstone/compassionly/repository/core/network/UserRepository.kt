@@ -1,5 +1,6 @@
 package com.capstone.compassionly.repository.core.network
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.liveData
 import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
@@ -50,7 +51,7 @@ class UserRepository {
         return hitPointService.logout(token)
     }
 
-    fun sendToken(token: String) = liveData {
+    fun sendToken(token: String, context: Context) = liveData {
         emit(Resources.Loading)
         try {
             val accessToken = AccessToken(token)
@@ -60,14 +61,23 @@ class UserRepository {
         } catch (e: HttpException) {
             if (e.code() == 500) {
                 val jsonInString = e.response()?.errorBody()?.string()
-                val errorBody = Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
-                val errorMessage = errorBody.detail
-                emit(Resources.Error(errorMessage!!))
+                val errorBody =
+                    Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                Utils.showToast(context, "${errorBody.detail}")
+            } else if (e.code() == 404) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody =
+                    Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                Utils.showToast(context, "${errorBody.detail}")
+            } else if (e.code() == 422) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody =
+                    Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                Utils.showToast(context, "${errorBody.detail}")
             } else {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
-                val errorMessage = errorBody.detail
-                emit(Resources.Error(errorMessage!!))
+                Utils.showToast(context, "${errorBody.detail}")
             }
         }
     }

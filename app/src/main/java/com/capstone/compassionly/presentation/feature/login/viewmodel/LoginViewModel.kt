@@ -1,5 +1,6 @@
 package com.capstone.compassionly.presentation.feature.login.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialResponse
@@ -23,6 +24,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
+
 
 
 class LoginViewModel(
@@ -77,7 +79,7 @@ class LoginViewModel(
             }
     }
 
-    fun sendToken(token: String) = userRepository.sendToken(token)
+    fun sendToken(token: String, context:Context) = userRepository.sendToken(token, context)
 
     private fun sendTokenToServer() {
         val mUser = FirebaseAuth.getInstance().currentUser
@@ -85,13 +87,10 @@ class LoginViewModel(
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val idToken: String? = task.result.token
-                    // Send token to your backend via HTTPS
                     if (idToken != null) {
                         _token.value = idToken
                         Log.d(TAG, "token id: $idToken")
                     }
-                } else {
-                    Log.e(TAG, "failed get da token")
                 }
             }
     }
