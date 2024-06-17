@@ -59,7 +59,6 @@ class DashboardActivity : AppCompatActivity() {
                 Log.d(TAG, "User Token: $token")
                 viewModel.updateUserHistory(this@DashboardActivity, token)
                 menu(token)
-
             }
         }
 
@@ -149,11 +148,9 @@ class DashboardActivity : AppCompatActivity() {
                                     startActivityWithToken(
                                         NoDataRecActivity::class.java, userToken
                                     )
-                                    finish()
                                 }
                             }
                         }
-
                     }
             }
 

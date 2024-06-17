@@ -11,6 +11,24 @@ data class DetailMajorResponse(
 	val message: String? = null
 )
 
+data class CoursesItem(
+
+	@field:SerializedName("course_explain")
+	val courseExplain: Any? = null,
+
+	@field:SerializedName("course_definition")
+	val courseDefinition: String? = null,
+
+	@field:SerializedName("course_name")
+	val courseName: String? = null,
+
+	@field:SerializedName("id")
+	val id: Int? = null,
+
+	@field:SerializedName("course_image")
+	val courseImage: String? = null
+)
+
 data class Data(
 
 	@field:SerializedName("courses")
@@ -20,15 +38,19 @@ data class Data(
 	val major: Major? = null,
 
 	@field:SerializedName("prospects")
-	val prospects: List<ProspectsItem?>? = null
+	val prospects: List<ProspectsItem?>? = null,
+
+	@field:SerializedName("colleges")
+	val colleges: List<CollegesItem?>? = null
 )
 
-data class CoursesItem(
-	@field:SerializedName("course_name")
-	val courseName: String? = null,
+data class CollegesItem(
+
+	@field:SerializedName("college_name")
+	val collegeName: String? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int? = null
 )
 
 data class ProspectsItem(

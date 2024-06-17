@@ -27,25 +27,6 @@ class MajorRepository {
         }
     }
 
-//    fun getMajor(token: String, searchQuery: String) = liveData {
-//        emit(Resources.Loading)
-//        try {
-//            val response = hitPointService.getMajor(Utils.getHeader(token), searchQuery)
-//            val data = response.data
-//            if (!data.isNullOrEmpty()) {
-//                emit(Resources.Success(data))
-//            } else {
-//                Log.e(TAG, "Data not found")
-//                emit(Resources.Error("Data not found"))
-//            }
-//        } catch (e: HttpException) {
-//            val jsonInString = e.response()?.errorBody()?.string()
-//            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
-//            val errorMessage = errorBody.detail
-//            emit(Resources.Error(errorMessage))
-//        }
-//    }
-
     fun getDetailMajor(token: String, majorId: Int) = liveData {
         emit(Resources.Loading)
         try {
