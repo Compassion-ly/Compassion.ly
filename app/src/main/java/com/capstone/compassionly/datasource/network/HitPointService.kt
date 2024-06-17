@@ -118,7 +118,7 @@ interface HitPointService {
         @Body requestBody: Unit = Unit
     ): MajorRecResponse
 
-    @GET("/api/v1/predict/quick-recommendation")
+    @GET("/api/v1/users/field-recommendation")
     suspend fun fieldRecommendation(
         @HeaderMap headerMap: Map<String, String>
     ): FieldRecResponse

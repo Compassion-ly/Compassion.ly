@@ -10,10 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.databinding.FragmentKetertarikanBinding
+import com.capstone.compassionly.models.DataFieldRec
+import com.capstone.compassionly.models.FieldRecResponse
 import com.capstone.compassionly.presentation.adapter.ListCategoryAdapter
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Category
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
+import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
+import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.KetertarikanFragmentViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
 
@@ -49,7 +50,7 @@ class KetertarikanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getToken().observe(viewLifecycleOwner) { userToken ->
             if (userToken != null) {
-                setListInterest()
+                setListInterest(userToken)
                 showRecyclerView()
                 Log.d("Ketertarikan Fragment", "User Token: $userToken")
             } else {
@@ -63,21 +64,59 @@ class KetertarikanFragment : Fragment() {
         binding.rvInterests.layoutManager = layoutManager
     }
 
-    private fun setListInterest() {
-        Log.d("QuickRecResult", "setListInterest()")
+    private fun setListInterest(token: String) {
+        Log.d("Ketertarikan Fragment", "setListInterest()")
 
         val adapter = ListCategoryAdapter()
         binding.rvInterests.adapter = adapter
         binding.rvInterests.layoutManager = LinearLayoutManager(requireContext())
         binding.progressBar.visibility = View.VISIBLE
 
+        viewModel.askRec(token).observe(viewLifecycleOwner) { resources ->
+            if (resources != null) {
+                when (resources) {
+                    is Resources.Loading -> {
+                        Log.d("Ketertarikan Fragment", "Loading...")
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
 
-        viewModel.getFieldRecResult()
-        viewModel.interests.observe(viewLifecycleOwner) { interests ->
-            binding.progressBar.visibility = View.GONE
-            adapter.submitList(interests)
-            Log.d("FieldRecResult", "result : $interests")
+                    is Resources.Success -> {
+                        Log.d("Ketertarikan Fragment", "$resources")
+                        binding.progressBar.visibility = View.GONE
+                        val fieldRecResponse: FieldRecResponse? =
+                            resources.data as? FieldRecResponse
+                        Log.d("Ketertarikan Fragment", "fieldRecResponse : $fieldRecResponse")
 
+                        if (fieldRecResponse?.data != null) {
+                            val predictionList = fieldRecResponse.data.topTopics.orEmpty()
+
+                            Log.d("Ketertarikan Fragment", "predictionList : $predictionList")
+                            val newRecResponse =
+                                FieldRecResponse(DataFieldRec(topTopics = predictionList))
+                            Log.d("Ketertarikan Fragment", "newQuickRecResponse : $newRecResponse")
+                            viewModel.saveFieldRecResult(newRecResponse)
+                            viewModel.getFieldRecResult()
+                            viewModel.interests.observe(viewLifecycleOwner) { interests ->
+                                binding.progressBar.visibility = View.GONE
+                                adapter.submitList(interests)
+                                Log.d("FieldRecResult", "result : $interests")
+
+                            }
+
+                        } else {
+                            Log.d(
+                                QuickRecActivity.TAG,
+                                "quickRecResponse or quickRecResponse.data is null"
+                            )
+                        }
+                    }
+
+                    is Resources.Error -> {
+                        binding.progressBar.visibility = View.GONE
+
+                    }
+                }
+            }
         }
     }
 

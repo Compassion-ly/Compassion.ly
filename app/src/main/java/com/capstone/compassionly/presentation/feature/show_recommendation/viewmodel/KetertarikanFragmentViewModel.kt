@@ -23,7 +23,9 @@ class KetertarikanFragmentViewModel(
 
     fun getToken() = stateAppPreferences.getAccessToken().asLiveData()
 
-    fun saveQuickRecResult(result: FieldRecResponse) {
+    fun askRec(token: String) = fieldRecRepository.askRec(token)
+
+    fun saveFieldRecResult(result: FieldRecResponse) {
         Log.d("FieldRecVm", "save() $result")
         viewModelScope.launch {
             fieldRecRepository.saveFieldRecResult(result)
@@ -32,7 +34,7 @@ class KetertarikanFragmentViewModel(
 
     fun getFieldRecResult() {
         viewModelScope.launch {
-            Log.d("FieldRecVm", "getQuickRecResult()")
+            Log.d("FieldRecVm", "getFieldRecResult()")
             fieldRecRepository.getFieldRecResult().collect { predictionList ->
                 val interestList = predictionList.map { Interest(listOf(it)) }
                 _interests.value = interestList
