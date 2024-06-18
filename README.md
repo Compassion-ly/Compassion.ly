@@ -1,5 +1,5 @@
 # Bangkit 2024 Batch 1 Capstone Team `C241-PS069`
-<h1 align="center">COMPASSION.LY</h1><br>
+<h1 align="center">COMPASSION.LY</h1>
 <h4 align="center">Compass For Your Passion</h4><br>
 <h4 align="center">COMPASSION.LY is an Android application designed to provide recommendations for fields of study and college majors based on the user's learning activities in the app.</h4>
 <h5 align="center">
