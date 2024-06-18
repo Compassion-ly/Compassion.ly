@@ -1,6 +1,7 @@
 # Bangkit 2024 Batch 1 Capstone Team `C241-PS069`
 
-<h1 align="center">COMPASSION.LY</h1>
+<h1 align="center">COMPASSION.LY</h1><br>
+<h2 align="center">Compass For Your Passion</h2><br>
 <h4 align="center">COMPASSION.LY is an Android application designed to provide recommendations for fields of study and college majors based on the user's learning activities in the app.</h4>
 <h5 align="center">
 Our team aims to address the issue of students choosing the wrong major, a common problem in Indonesia. We offer an approach that provides recommendations using Machine Learning to analyze user interests through the learning process. Through the features we provide, we hope this application can help users explore their interests and the majors we recommend.</h5>
@@ -38,24 +39,25 @@ Our team aims to address the issue of students choosing the wrong major, a commo
     
       We provide a list of universities along with the majors they offer.
 
-- *Technologies :*
+## Technologies 
   ![Technologies](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:61e970043ca90360db4661e6e35adb0220221228091054.png)
 1. [MVVM](https://developer.android.com/topic/architecture)
 2. [Dependency Injection](https://developer.android.com/training/dependency-injection)
 3. [Repository](https://developer.android.com/topic/architecture/data-layer)
 
-- *Dependencies :*
-1. [Material Design](https://m2.material.io/develop/android)
-3. [Firebase Authentication](https://firebase.google.com/docs/auth?hl=id)
-4. [JUnit](https://junit.org/junit4/)
-5. [Dots Indicator](https://github.com/tommybuonomo/dotsindicator)
-6. [Custom Google Signin Button](https://github.com/shobhitpuri/custom-google-signin-button)
-7. [ROOM](https://developer.android.com/training/data-storage/room)
-8. [Shared Preference](https://developer.android.com/training/data-storage/shared-preferences)
-9. [Retrofit](https://square.github.io/retrofit/)
-10. [Circle Imageview](https://github.com/hdodenhof/CircleImageView)
-11. [Image Slide Show](https://github.com/denzcoskun/ImageSlideshow)
-12. [Glide](https://github.com/bumptech/glide)
+## *Dependencies :*
+- [Material Design](https://m2.material.io/develop/android)
+- [Firebase Authentication](https://firebase.google.com/docs/auth?hl=id)
+- [JUnit](https://junit.org/junit4/)
+- [Dots Indicator](https://github.com/tommybuonomo/dotsindicator)
+- [Custom Google Signin Button](https://github.com/shobhitpuri/custom-google-signin-button)
+- [ROOM](https://developer.android.com/training/data-storage/room)
+- [Shared Preference](https://developer.android.com/training/data-storage/shared-preferences)
+- [Retrofit](https://square.github.io/retrofit/)
+- [Circle Imageview](https://github.com/hdodenhof/CircleImageView)
+- [Image Slide Show](https://github.com/denzcoskun/ImageSlideshow)
+- [Glide](https://github.com/bumptech/glide)
+- [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 
 ## Prerequisites
          1. Android Studio at least version Hedgehog
@@ -73,8 +75,6 @@ Download Link apk Compassion.ly:<br>
 3. Once downloaded, locate the file in your File Manager.
 4. Click on the file and install it.
 5. After successfully installing, you can open the application and begin logging in.
-
-## How to Use the Project
 
 ## Languages and Tools:
 <p align="left">
