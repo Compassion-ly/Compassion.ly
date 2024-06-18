@@ -59,7 +59,7 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 
 ## Prerequisites
  - ##### Tools Sofware
-        1. Android Studio at least version Hedgehog. [Android Studio](https://developer.android.com/studio)
+         1. Android Studio at least version [Hedgehog](https://developer.android.com/studio).
         2. JRE (Java Runtime Environment) or JDK (Java Development Kit).
 
 ## Deployment Link APK Compassion.ly
