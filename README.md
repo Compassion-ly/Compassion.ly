@@ -6,14 +6,13 @@
 Our team aims to address the issue of students choosing the wrong major, a common problem in Indonesia. We offer an approach that provides recommendations using Machine Learning to analyze user interests through the learning process. Through the features we provide, we hope this application can help users explore their interests and the majors we recommend.</h5>
 <p align="center">
 
-*Mobile Development Documentation*
-
 ## MD Members:
 | Name | Bangkit-ID     | Github-Profile  | LinkedIn |
 | :-------- | :------- | :-------------------------------- | :-------------------------------- |
 | Ilham Surya Putra Pamungkas      | `A622D4KY4540` | [@Ilham](https://github.com/ispamungkas) | [@Ilham](in/ilham-surya-putra-pamungkas-71b63825a) |
 | Jesica Sanditia Putri      | `A132D4KX4100` | [@Jesica](https://github.com/jesicasp) | [@Jesica](https://www.linkedin.com/in/jesica-sanditia-putri/)|
 
+## Mobile Development Documentation
 - *Features :*
 1. Learn
 In this feature, users will engage in learning about the presented topics briefly. The topics provided are fundamental lessons from various courses and majors, enabling   users to gain brief insights into several majors displayed randomly. Users can choose to read a presented topic or skip it. After reading the presented topic, users are prompted to rate the topic.
