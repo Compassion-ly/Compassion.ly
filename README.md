@@ -2,8 +2,9 @@
 
 *Mobile Development Documentation*
 
-## COMPASSION.LY
-<h3 align="center">COMPASSION.LY is an Android application designed to provide recommendations for fields of study and college majors based on the user's learning activities in the app.</h3>h3>
+
+<h1 align="center">## COMPASSION.LY</h1>
+<h3 align="center">COMPASSION.LY is an Android application designed to provide recommendations for fields of study and college majors based on the user's learning activities in the app.</h3>
 <p align="center">
 
 - *Features :*
