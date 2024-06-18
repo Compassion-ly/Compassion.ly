@@ -31,7 +31,7 @@ The Major Introduction feature is designed to display information related to maj
   2. [Dependency Injection](https://developer.android.com/training/dependency-injection)
 
 - *Dependencies :*
-1. [Material Design]([https://m3.material.io/](https://m2.material.io/develop/android))
+1. [Material Design](https://m2.material.io/develop/android)
 3. [Firebase Authentication](https://firebase.google.com/docs/auth?hl=id)
 4. [JUnit](https://junit.org/junit4/)
 5. [Dots Indicator](https://github.com/tommybuonomo/dotsindicator)
@@ -39,7 +39,9 @@ The Major Introduction feature is designed to display information related to maj
 7. [ROOM](https://developer.android.com/training/data-storage/room)
 8. [Shared Preference](https://developer.android.com/training/data-storage/shared-preferences)
 9. [Retrofit](https://square.github.io/retrofit/)
-10. 
+10. [Circle Imageview](https://github.com/hdodenhof/CircleImageView)
+11. [Image Slide Show](https://github.com/denzcoskun/ImageSlideshow)
+12. [Glide](https://github.com/bumptech/glide)
 
 ## Prerequisites
 
