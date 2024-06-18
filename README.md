@@ -38,9 +38,9 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 
 ## Technologies 
   ![Technologies](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:61e970043ca90360db4661e6e35adb0220221228091054.png)
-1. [MVVM](https://developer.android.com/topic/architecture)
-2. [Dependency Injection](https://developer.android.com/training/dependency-injection)
-3. [Repository](https://developer.android.com/topic/architecture/data-layer)
+- [MVVM](https://developer.android.com/topic/architecture)
+- [Dependency Injection](https://developer.android.com/training/dependency-injection)
+- [Repository](https://developer.android.com/topic/architecture/data-layer)
 
 ## *Dependencies :*
 - [Material Design](https://m2.material.io/develop/android)
