@@ -12,34 +12,35 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 
 ## Mobile Development Documentation
  *Features :*
-1. Learn
+1. Google Login
+2. Learn
    
    In this feature, users will engage in learning about the presented topics briefly. The topics provided are fundamental lessons from various courses and majors, enabling   users to gain brief insights into several majors displayed randomly. Users can choose to read a presented topic or skip it. After reading the presented topic, users are prompted to rate the topic.
    
-2. Fields and Major Recommendation
+3. Fields and Major Recommendation
    
    Users will be provided with recommendations for fields of study and majors based on their learning activities in the application. These recommendations will continuously update as users engage in more learning. Therefore, the more learning and ratings provided by the user, the more accurate the recommendations will become.
 
-3. Quick Recommendation
+4. Quick Recommendation
    
    The Quick Recommendation feature is used to obtain field recommendations without going through the learning process. Users simply provide a description of at least 50 characters for 3 questions, and we will provide field recommendations by analyzing the given descriptions.
 
-4. Major Introduction
+5. Major Introduction
    
    The Major Introduction feature is designed to display information related to majors, including an introduction to the majors, the courses available in those majors, job prospects, and a list of universities offering those majors. This feature was created to provide users with detailed information about various majors and enrich their knowledge about a major after receiving recommendations from our application.
 
-5. Course Introduction
+6. Course Introduction
     
    For each major, there will be a list of courses, and we will also provide brief information about each course. This way, users can understand what courses they will study if they choose that major and get brief insights into each course.
    
-6. Colleges Information
+7. Colleges Information
       We provide a list of universities along with the majors they offer.
    
-7. Features Introduction
+8. Features Introduction
 
       Introducing features to guide users on how to use the app.
 
-8. Topic History
+9. Topic History
       
       Feature to display the rating history of topics already learned by user.
 10. Fields and major Recommendation histories
