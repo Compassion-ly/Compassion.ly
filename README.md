@@ -2,8 +2,8 @@
 
 *Mobile Development Documentation*
 
-# Project Title  
-COMPASSION.LY
+# Project Title : COMPASSION.LY
+
 
 **Project Description**  
 COMPASSION.LY is an Android application designed to provide recommendations for fields of study and college majors based on the user's learning activities in the app.
