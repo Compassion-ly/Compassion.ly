@@ -43,6 +43,7 @@ Our team aims to address the issue of students choosing the wrong major, a commo
       
       Feature to display the rating history of topics already learned by user.
 10. Fields and major Recommendation histories
+    
        Show the fields and the last major recommendation obtained by user.
 
 ## Technologies 
