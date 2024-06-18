@@ -2,9 +2,7 @@ package com.capstone.compassionly.presentation.feature.pengantar_jurusan
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -15,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailJurusanBinding
+import com.capstone.compassionly.models.CollegesItem
 import com.capstone.compassionly.models.CoursesItem
 import com.capstone.compassionly.models.ProspectsItem
 import com.capstone.compassionly.presentation.adapter.ListCollegeAdapter
@@ -23,6 +22,7 @@ import com.capstone.compassionly.presentation.adapter.ListProspectAdapter
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.pengantar_jurusan.viewmodel.DetailJurusanViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
+import com.capstone.compassionly.utility.Utils
 
 class DetailJurusanActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailJurusanBinding
@@ -53,10 +53,10 @@ class DetailJurusanActivity : AppCompatActivity() {
 
             val majorId = intent.getIntExtra(MAJOR_ID, -1)
             if (majorId != -1) {
-                findCollegesMajor(token, majorId)
                 findDetailMajor(token, majorId)
             } else {
-                //
+                Utils.showToast(this, getString(R.string.data_not_found))
+                finish()
             }
         } else {
             AlertDialog.Builder(this).apply {
@@ -79,16 +79,25 @@ class DetailJurusanActivity : AppCompatActivity() {
 
     private fun findDetailMajor(token: String, id: Int) {
 
-        viewModel.getDetailMajor(token, id)
+        viewModel.getDetailMajor(token, id, this)
         viewModel.detailMajor.observe(this) { detailMajor ->
             val peminat = getString(R.string.peminat_format, detailMajor.major?.majorInterest)
             val listCourses = detailMajor.courses
             val listProspect = detailMajor.prospects
+            val listCollege = detailMajor.colleges
 
             binding.apply {
-                Glide.with(binding.root.context)
-                    .load(detailMajor.major?.majorImage)
-                    .into(binding.ivMajor)
+                detailMajor.major?.majorImage?.let {
+                    Glide.with(binding.root.context)
+                        .load(detailMajor.major.majorImage)
+                        .into(binding.ivMajor)
+                } ?: run {
+                    Glide.with(binding.root.context)
+                        .load("https://www.quipper.com/id/blog/wp-content/uploads/2020/10/175-min-min.png")
+                        .into(binding.ivMajor)
+                }
+
+
                 tvMajorName.text = detailMajor.major?.majorName.toString()
                 tvPeminat.text = peminat
                 tvMajorDef.text = detailMajor.major?.majorDefinition.toString()
@@ -96,26 +105,25 @@ class DetailJurusanActivity : AppCompatActivity() {
                 tvMajorLevel.text = detailMajor.major?.majorLevel.toString()
             }
 
-            setListCourse(token,listCourses)
+            setListCourse(token, listCourses)
             showRecyclerViewCourse()
 
             setListProspect(listProspect)
             showRecyclerViewProspect()
 
+            setListCollege(token, listCollege)
+            showRecyclerViewCollege()
+
         }
     }
 
-    private fun findCollegesMajor(token: String, majorId: Int) {
-        viewModel.getCollegesByMajor(token, majorId)
-        Log.d(PengantarJurusanActivity.TAG, "findCollegesMajor(), token: $token")
-        setListColleges()
-        showRecyclerViewCollege()
-    }
-
     private fun showRecyclerViewCourse() {
-        val layoutManager = LinearLayoutManager(this)
+        val layoutManager = object : LinearLayoutManager(this) {
+            override fun canScrollVertically() = false
+        }
         binding.rvCourses.layoutManager = layoutManager
     }
+
     private fun showRecyclerViewProspect() {
         val layoutManager = LinearLayoutManager(this)
         binding.rvProspect.layoutManager = layoutManager
@@ -139,16 +147,12 @@ class DetailJurusanActivity : AppCompatActivity() {
         binding.rvProspect.adapter = adapter
     }
 
-    private fun setListColleges() {
-        val adapter = ListCollegeAdapter()
+    private fun setListCollege(token: String, college: List<CollegesItem?>?) {
+        val adapter = ListCollegeAdapter(token)
+        adapter.submitList(college)
         binding.rvColleges.adapter = adapter
-        binding.rvColleges.layoutManager = LinearLayoutManager(this)
-
-        viewModel.colleges.observe(this) { colleges ->
-            Log.d(TAG, "$colleges")
-            adapter.submitList(colleges)
-        }
     }
+
 
     private fun showLoading(isLoading: Boolean) {
         binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE

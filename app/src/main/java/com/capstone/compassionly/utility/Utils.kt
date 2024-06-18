@@ -12,14 +12,11 @@ import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getString
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.WindowCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.LayoutDialogRateTopicBinding
-import com.capstone.compassionly.presentation.feature.login.LoginActivity
+import kotlin.random.Random
 
 object Utils {
     fun changeStatusBarColorWhite(activity: Activity) {
@@ -93,5 +90,10 @@ object Utils {
             }
         }
         return false
+    }
+
+    fun getRandomPick() : Int {
+        val random = Random.nextInt(1, 200)
+        return random
     }
 }

@@ -50,29 +50,7 @@ class PengantarJurusanActivity : AppCompatActivity() {
             Log.d(TAG, "token : $token")
             setup()
             setStatusBarColor()
-            setListMajors()
-            showRecyclerView()
-            binding.searchBar.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                }
 
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-                    searchMajor = s.toString()
-                    findMajor(searchMajor)
-
-                    Log.d(TAG, "find major : $searchMajor")
-                }
-
-
-            })
         } else {
             AlertDialog.Builder(this).apply {
                 setTitle(getString(R.string.token_not_found))
@@ -103,8 +81,33 @@ class PengantarJurusanActivity : AppCompatActivity() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        setListMajors()
+        showRecyclerView()
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                searchMajor = s.toString()
+                findMajor(searchMajor)
+
+                Log.d(TAG, "find major : $searchMajor")
+            }
+        })
+    }
+
     private fun setup() {
-        viewModel.getMajors(token)
+        viewModel.getMajors(token, this)
     }
 
 

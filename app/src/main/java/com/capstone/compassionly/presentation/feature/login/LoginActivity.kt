@@ -3,6 +3,7 @@ package com.capstone.compassionly.presentation.feature.login
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -64,31 +65,46 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.token.observe(this) { token ->
             token?.let {
-                viewModel.sendToken(it).observe(this) { resources ->
+                viewModel.sendToken(it, this).observe(this) { resources ->
                     if (resources != null) {
                         when (resources) {
                             is Resources.Loading -> {
+                                binding.progressBar.visibility = View.VISIBLE
                                 Log.d("LoginActivity", "Loading...")
                             }
 
                             is Resources.Success -> {
+                                binding.progressBar.visibility = View.GONE
                                 Log.d("LoginActivity", "$resources")
-                                viewModel.loginResult.observe(this) { user ->
-                                    val result = resources.data as LoginResponse
+                                viewModel.loginResult.observe(this) {
+                                    val result = resources.data
                                     if (resources.data.javaClass.isAssignableFrom(LoginResponse::class.java)) {
                                         checkState(result.data, token = result.data?.accessToken)
                                     } else {
-                                        updateUI(false, result.data?.accessToken)
+                                        result.data?.accessToken?.let { it1 ->
+                                            updateUI(false,
+                                                it1
+                                            )
+                                        }
                                     }
                                 }
                             }
 
                             is Resources.Error -> {
-                                Toast.makeText(
-                                    application,
-                                    "Error: ${resources.error}",
-                                    Toast.LENGTH_LONG
-                                ).show()
+                                binding.progressBar.visibility = View.GONE
+                                AlertDialog.Builder(this).apply {
+                                    setTitle(getString(R.string.token_not_found))
+                                    setMessage(R.string.ask_login)
+                                    setPositiveButton(R.string.signIn) { _, _ ->
+                                        val intent = Intent(context, LoginActivity::class.java)
+                                        intent.flags =
+                                            Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                    create()
+                                    show()
+                                }
                             }
                         }
                     }
@@ -147,18 +163,20 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.handleSignIn(result)
             } catch (e: GetCredentialException) {
                 Log.d("Error", e.message.toString())
+                Utils.showToast(applicationContext, e.message.toString())
             }
         }
     }
 
-    private fun updateUI(needUpdateData: Boolean, token: String?) {
+    private fun updateUI(needUpdateData: Boolean, token: String) {
+        Log.d("LoginTest","Updatedata()")
         if (needUpdateData) {
             val intent = Intent(this@LoginActivity, FormCompleteUserProfile::class.java)
             intent.putExtra("token", token)
             startActivity(intent)
             finishAffinity()
         } else {
-            storeUserToLocal(token!!)
+            storeUserToLocal(token)
             startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
             finishAffinity()
         }
@@ -168,10 +186,12 @@ class LoginActivity : AppCompatActivity() {
         viewModel.getMe(token).observe(this@LoginActivity) { resources ->
             when (resources) {
                 is Resources.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
                     Log.d("LoginActivity", "Loading...")
                 }
 
                 is Resources.Success -> {
+                    binding.progressBar.visibility = View.GONE
                     val data = resources.data as SuccessResponse<*>
                     val detailUser = data.data as DetailUserModel
                     viewModel.store(LocalUser(0, detailUser))
@@ -179,6 +199,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 is Resources.Error -> {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(
                         application,
                         "Error: ${resources.error}",

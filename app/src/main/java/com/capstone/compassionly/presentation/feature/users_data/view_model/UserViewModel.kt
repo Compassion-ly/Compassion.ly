@@ -8,6 +8,7 @@ import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.models.ErrorModel
+import com.capstone.compassionly.models.ErrorUnDocumentedModel
 import com.capstone.compassionly.models.SchoolMajor
 import com.capstone.compassionly.models.SchoolModel
 import com.capstone.compassionly.models.SuccessResponse
@@ -38,13 +39,21 @@ class UserViewModel(
     ) = liveData {
         emit(Resources.Loading)
         try {
-            val response = userRepository.updateProfile(firstName, lastName, phoneNumber, gender, userSchoolId, userSchoolMajorId, token)
+            val response = userRepository.updateProfile(
+                firstName,
+                lastName,
+                phoneNumber,
+                gender,
+                userSchoolId,
+                userSchoolMajorId,
+                token
+            )
             if (response.isSuccessful) {
                 response.body().apply {
                     emit(Resources.Success(this))
                 }
             }
-        } catch (e : HttpException) {
+        } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
             val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
             val errorMessage = errorBody.detail
@@ -52,7 +61,7 @@ class UserViewModel(
         }
     }
 
-    fun removeTokenApi(token: String) : LiveData<Resources<SuccessResponse<String>?>> {
+    fun removeTokenApi(token: String): LiveData<Resources<SuccessResponse<String>?>> {
         val result = MutableLiveData<Resources<SuccessResponse<String>?>>()
         viewModelScope.launch {
             val response = userRepository.removeTokenApi(token)
@@ -65,7 +74,7 @@ class UserViewModel(
         return result
     }
 
-    fun getSchoolList() : LiveData<List<SchoolModel>?> {
+    fun getSchoolList(): LiveData<List<SchoolModel>?> {
         val result = MutableLiveData<List<SchoolModel>?>()
         viewModelScope.launch {
             schoolRepository.getSchoolList().apply {
@@ -77,7 +86,7 @@ class UserViewModel(
         return result
     }
 
-    fun getSchoolMajorList() : LiveData<List<SchoolMajor>?> {
+    fun getSchoolMajorList(): LiveData<List<SchoolMajor>?> {
         val result = MutableLiveData<List<SchoolMajor>?>()
         viewModelScope.launch {
             schoolRepository.getSchoolMajor().apply {
@@ -106,9 +115,29 @@ class UserViewModel(
 
     }
 
+    fun updateToken(token: String) = viewModelScope.launch {
+        try {
+            val call = userRepository.updateToken(token)
+            if (call.data != null) {
+                call.data.accessToken?.let { storeToken(it) }
+            }
+        } catch (e: HttpException) {
+            if (e.code() == 500) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody =
+                    Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                val errorMessage = errorBody.detail
+            } else {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+                val errorMessage = errorBody.detail
+            }
+        }
+    }
+
     // Local and State
 
-    fun store (localUser: LocalUser?) = viewModelScope.launch {
+    fun store(localUser: LocalUser?) = viewModelScope.launch {
         localDataSource.insertUser(localUser)
     }
 
@@ -116,11 +145,12 @@ class UserViewModel(
         localDataSource.deleteUser()
     }
 
-    fun getDataUser()  = localDataSource.getUser()
+    fun getDataUser() = localDataSource.getUser()
 
-    fun storeToken(token: String) = viewModelScope.launch{
+    fun storeToken(token: String) = viewModelScope.launch {
         stateAppPreference.setAccessToken(token)
     }
+
     fun getAccessToken(): LiveData<String?> {
         return stateAppPreference.getAccessToken().asLiveData()
     }

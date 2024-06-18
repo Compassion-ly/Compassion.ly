@@ -73,10 +73,10 @@
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/iv_courseimg"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="250dp"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginTop="15dp"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_coursedef"
                 app:shapeAppearanceOverlay="@style/RoundedCornersImageView"

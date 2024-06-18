@@ -2,9 +2,6 @@ package com.capstone.compassionly.presentation.feature.dashboard.viewmodel
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -12,11 +9,7 @@ import com.capstone.compassionly.datasource.preference.datasupport.StateAppPrefe
 import com.capstone.compassionly.models.ErrorModel
 import com.capstone.compassionly.models.ErrorUnDocumentedModel
 import com.capstone.compassionly.models.MajorRecResponse
-import com.capstone.compassionly.models.PredictionItem
-import com.capstone.compassionly.models.forsending.QuickRecResponse
-import com.capstone.compassionly.models.local.Interest
 import com.capstone.compassionly.models.local.LocalHistoryTopic
-import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.MajorRecRepository
 import com.capstone.compassionly.repository.core.network.UserRepository
@@ -60,11 +53,21 @@ class DashboardViewModel(
                     val jsonInString = e.response()?.errorBody()?.string()
                     val errorBody =
                         Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
-                    val errorMessage = errorBody.detail
+                    Utils.showToast(context, "${errorBody.detail}")
+                } else if (e.code() == 404) {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody =
+                        Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                    Utils.showToast(context, "${errorBody.detail}")
+                } else if (e.code() == 422) {
+                    val jsonInString = e.response()?.errorBody()?.string()
+                    val errorBody =
+                        Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                    Utils.showToast(context, "${errorBody.detail}")
                 } else {
                     val jsonInString = e.response()?.errorBody()?.string()
                     val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
-                    val errorMessage = errorBody.detail
+                    Utils.showToast(context, "${errorBody.detail}")
                 }
             }
         }

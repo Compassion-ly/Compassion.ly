@@ -17,7 +17,6 @@ import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.login.LoginActivity
 import com.capstone.compassionly.presentation.feature.users_data.view_model.UserViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
-import com.capstone.compassionly.repository.di.UserInjector
 import com.capstone.compassionly.utility.Utils
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth

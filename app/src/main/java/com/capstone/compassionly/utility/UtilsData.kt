@@ -43,15 +43,15 @@ object UtilsData {
     private fun getStepSystemRecommendation(): List<Step>{
         val data = mutableListOf<Step>()
         val stepSystemRecommendation1 = Step(
-            R.drawable.image_profile_sample,
+            R.drawable.image_learn_1,
             "Masuk ke learn untuk belajar beberapa materi yang diberikan"
         )
         val stepSystemRecommendation2 = Step(
-            R.drawable.image_profile_sample,
+            R.drawable.image_learn_2,
             "Berikan rating di setiap materi yang anda baca"
         )
         val stepSystemRecommendation3 = Step(
-            R.drawable.image_profile_sample,
+            R.drawable.image_learn_3,
             "Setelah membaca dan memberikan rating pada setiap materi yang dibaca, anda dapat menekan tombol sistem rekomendasi yang ada pada halaman utama"
         )
         data.add(stepSystemRecommendation1)
@@ -63,15 +63,15 @@ object UtilsData {
     private fun getStepQuickRecommendation(): List<Step> {
         val data = mutableListOf<Step>()
         val stepQuick1 = Step(
-            R.drawable.image_profile_sample,
+            R.drawable.image_quick_recommendation_1,
             "Masuk kedalam menu Quick Recommendation"
         )
         val stepQuick2 = Step(
-            R.drawable.image_profile_sample,
+            R.drawable.image_quick_recommendation_2,
             "Masukan beberapa input sesuai dengan keinginan anda"
         )
         val stepQuick3 = Step(
-            R.drawable.image_profile_sample,
+            R.drawable.image_quick_recommendation_3,
             "Anda akan dapat melihat hasil rekomendasi dari sistem kami sesuai dengan minat anda"
         )
         data.add(stepQuick1)
