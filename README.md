@@ -1,4 +1,4 @@
-# Bangkit 2024 Batch 1 Capstone Team C241-PS069
+# Bangkit 2024 Batch 1 Capstone Team `C241-PS069`
 
 *Mobile Development Documentation*
 
