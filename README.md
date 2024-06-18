@@ -59,7 +59,7 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 
 ## Prerequisites
  - ##### Tools Sofware
-         1. Android Studio at least version [Hedgehog](https://developer.android.com/studio).
+         1. Android Studio at least version Hedgehog
         2. JRE (Java Runtime Environment) or JDK (Java Development Kit).
 
 ## Deployment Link APK Compassion.ly
@@ -68,6 +68,11 @@ Download Link apk Compassion.ly:<br>
 [Compassion.ly](#)
 
 ## How to Install and Run the Project
+1. Click on the Compassion.ly APK link.
+2. Download the file.
+3. Once downloaded, locate the file in your File Manager.
+4. Click on the file and install it.
+5. After successfully installing, you can open the application and begin logging in.
 
 ## How to Use the Project
 
