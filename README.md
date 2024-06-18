@@ -90,6 +90,24 @@ Download Link apk Compassion.ly:<br>
 
 ###
 
+## Project Structure :
+* `datasource`
+  - `local`
+  - `network`
+  - `preference`
+* `models`
+  - `forSending`
+  - `local`
+* `presentation`
+  - `adapter`
+  - `feature`
+* `repository`
+  - `core`
+    1. `local`
+    2. `network`
+  - `di`
+* `utility`
+
 🔥 Supported By
 
 ###
