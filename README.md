@@ -33,8 +33,17 @@ Our team aims to address the issue of students choosing the wrong major, a commo
    For each major, there will be a list of courses, and we will also provide brief information about each course. This way, users can understand what courses they will study if they choose that major and get brief insights into each course.
    
 6. Colleges Information
-    
       We provide a list of universities along with the majors they offer.
+   
+7. Features Introduction
+
+      Introducing features to guide users on how to use the app.
+
+8. Topic History
+      
+      Feature to display the rating history of topics already learned by user.
+10. Fields and major Recommendation histories
+       Show the fields and the last major recommendation obtained by user.
 
 ## Technologies 
   ![Technologies](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:61e970043ca90360db4661e6e35adb0220221228091054.png)
