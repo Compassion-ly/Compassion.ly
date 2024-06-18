@@ -22,8 +22,10 @@ The Quick Recommendation feature is used to obtain field recommendations without
 The Major Introduction feature is designed to display information related to majors, including an introduction to the majors, the courses available in those majors, job prospects, and a list of universities offering those majors. This feature was created to provide users with detailed information about various majors and enrich their knowledge about a major after receiving recommendations from our application.
 
 6. Course Introduction
+For each major, there will be a list of courses, and we will also provide brief information about each course. This way, users can understand what courses they will study if they choose that major and get brief insights into each course.
    
-7. Colleges Information
+8. Colleges Information
+We provide a list of universities along with the majors they offer.
 
 - *Technologies :*
   ![Technologies](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:61e970043ca90360db4661e6e35adb0220221228091054.png)
