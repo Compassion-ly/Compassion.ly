@@ -58,9 +58,9 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 12. [Glide](https://github.com/bumptech/glide)
 
 ## Prerequisites
- - ##### Tools Sofware
          1. Android Studio at least version Hedgehog
-        2. JRE (Java Runtime Environment) or JDK (Java Development Kit).
+         2. JRE (Java Runtime Environment) or JDK (Java Development Kit).
+         3. Firebase Authentication 
 
 ## Deployment Link APK Compassion.ly
 
