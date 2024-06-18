@@ -2,6 +2,8 @@
 
 <h1 align="center">COMPASSION.LY</h1>
 <h4 align="center">COMPASSION.LY is an Android application designed to provide recommendations for fields of study and college majors based on the user's learning activities in the app.</h4>
+<h5>
+Our team aims to address the issue of students choosing the wrong major, a common problem in Indonesia. We offer an approach that provides recommendations using Machine Learning to analyze user interests through the learning process. Through the features we provide, we hope this application can help users explore their interests and the majors we recommend.</h5>
 <p align="center">
 
 *Mobile Development Documentation*
