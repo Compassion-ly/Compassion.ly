@@ -45,6 +45,7 @@ Our team aims to address the issue of students choosing the wrong major, a commo
    For each major, there will be a list of courses, and we will also provide brief information about each course. This way, users can understand what courses they will study if they choose that major and get brief insights into each course.
    
 7. Colleges Information
+   
       We provide a list of universities along with the majors they offer.
    
 8. Features Introduction
