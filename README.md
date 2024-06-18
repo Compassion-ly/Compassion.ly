@@ -2,7 +2,7 @@
 
 *Mobile Development Documentation*
 
-# Project Title : COMPASSION.LY
+## Project Title : COMPASSION.LY
 
 
 **Project Description**  
@@ -38,13 +38,13 @@ The Major Introduction feature is designed to display information related to maj
 8. https://developer.android.com/training/data-storage/shared-preferences
 9. 
 
-# Prerequisites
+## Prerequisites
 
-# How to Install and Run the Project
+## How to Install and Run the Project
 
-# How to Use the Project
+## How to Use the Project
 
-# Acknowledgements
+## Acknowledgements
 
 
 
