@@ -26,17 +26,18 @@ The Major Introduction feature is designed to display information related to maj
 7. Colleges Information
 
 - *Technologies :*
+  1. [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview)
 
 - *Dependencies :*
-1. https://developer.android.com/kotlin/ktx
-2. https://m3.material.io/
-3. https://firebase.google.com/docs/auth?hl=id
-4. https://junit.org/junit4/
-5. https://github.com/tommybuonomo/dotsindicator
-6. https://github.com/shobhitpuri/custom-google-signin-button
-7. https://developer.android.com/training/data-storage/room
-8. https://developer.android.com/training/data-storage/shared-preferences
-9. 
+1. [Material Design](https://m3.material.io/)
+3. [Firebase Authentication](https://firebase.google.com/docs/auth?hl=id)
+4. [JUnit](https://junit.org/junit4/)
+5. [Dots Indicator](https://github.com/tommybuonomo/dotsindicator)
+6. [Custom Google Signin Button](https://github.com/shobhitpuri/custom-google-signin-button)
+7. [ROOM](https://developer.android.com/training/data-storage/room)
+8. [Shared Preference](https://developer.android.com/training/data-storage/shared-preferences)
+9. [Retrofit](https://square.github.io/retrofit/)
+10. 
 
 ## Prerequisites
 
