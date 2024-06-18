@@ -75,8 +75,7 @@ Download Link apk Compassion.ly:<br>
 ###
 
 <div align="center">
-  <img src="![image](https://github.com/Compassion-ly/Compassion.ly/assets/115514246/e84e70c0-a6f1-4fc8-aa7c-18f87ba414d3)
-" height="80" alt="kampus merdeka" style="margin-right:20px;"/>
+   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeGw8kO0DxGpoYXf4pL6NgnEs7NxaFGA8H4Q&s" height="80" alt="kampus merdeka" style="margin-right:20px;"/>
   <img src="https://storage.googleapis.com/kampusmerdeka_kemdikbud_go_id/mitra/mitra_af66db2e-0997-4f52-9cc0-a14412eeeab9.png" height="80" alt="bangkit academy" style="margin-right:left0px;"/>
   
 </div>
