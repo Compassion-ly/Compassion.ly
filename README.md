@@ -10,8 +10,19 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 | Ilham Surya Putra Pamungkas      | `A622D4KY4540` | [@Ilham](https://github.com/ispamungkas) | [@Ilham](https://www.linkedin.com/in/ilham-surya-putra-pamungkas-71b63825a/) |
 | Jesica Sanditia Putri      | `A132D4KX4100` | [@Jesica](https://github.com/jesicasp) | [@Jesica](https://www.linkedin.com/in/jesica-sanditia-putri/)|
 
-## Mobile Development Documentation
- *Features :*
+## Table of Contents
+- [Features](#features)
+- [Technologies](#technologies)
+- [Dependencies](#dependencies)
+- [Prerequisites](#prerequisites)
+- [Deployment Link APK Compassion.ly](#deplink)
+- [How to Install](#howto)
+- [Languages and Tools](#lang_tool)
+- [Project Structure](#structure)
+
+
+## <a name="features"></a> Features
+
 1. Google Login
 2. Learn
    
@@ -47,13 +58,13 @@ Our team aims to address the issue of students choosing the wrong major, a commo
     
        Show the fields and the last major recommendation obtained by user.
 
-## Technologies 
+## <a name="technologies"></a> Technologies 
   ![Technologies](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:61e970043ca90360db4661e6e35adb0220221228091054.png)
 - [MVVM](https://developer.android.com/topic/architecture)
 - [Dependency Injection](https://developer.android.com/training/dependency-injection)
 - [Repository](https://developer.android.com/topic/architecture/data-layer)
 
-## *Dependencies :*
+## <a name="dependencies"> Dependencies 
 - [Material Design](https://m2.material.io/develop/android)
 - [Firebase Authentication](https://firebase.google.com/docs/auth?hl=id)
 - [JUnit](https://junit.org/junit4/)
@@ -67,24 +78,24 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 - [Glide](https://github.com/bumptech/glide)
 - [Lifecycle & Livedata](https://developer.android.com/jetpack/androidx/releases/lifecycle)
 
-## Prerequisites
+## <a name="prerequisites"> Prerequisites
          1. Android Studio at least version Hedgehog
          2. JRE (Java Runtime Environment) or JDK (Java Development Kit).
          3. Firebase Authentication 
 
-## Deployment Link APK Compassion.ly
+## <a name="deplink"> Deployment Link APK Compassion.ly
 
 Download Link apk Compassion.ly:<br>
 [Compassion.ly](#)
 
-## How to Install and Run the Project
+## <a name="howto"> How to Install and Run the Project
 1. Click on the Compassion.ly APK link.
 2. Download the file.
 3. Once downloaded, locate the file in your File Manager.
 4. Click on the file and install it.
 5. After successfully installing, you can open the application and begin logging in.
 
-## Languages and Tools:
+## <a name="lang_tool"> Languages and Tools:
 <p align="left">
   <a href="https://developer.android.com" target="_blank" rel="noreferrer">
     <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/>
@@ -100,7 +111,7 @@ Download Link apk Compassion.ly:<br>
 
 ###
 
-## Project Structure :
+## <a name="structure">Project Structure :
 * `datasource`
   - `local`
   - `network`
