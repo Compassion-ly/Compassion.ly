@@ -124,8 +124,8 @@ Download Link apk Compassion.ly:<br>
   - `feature`
 * `repository`
   - `core`
-    -- `local`
-    -- `network`
+    - `local`
+    - `network`
   - `di`
 * `utility`
 
