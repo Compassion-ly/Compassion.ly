@@ -1,8 +1,6 @@
 
 *Mobile Development Documentation*
 
-
-![logo fix no ellipse](https://drive.google.com/file/d/1er0PvWhnQydAAnMThrFn4YKnASqNvslW/view?usp=drive_link)
 **# Project Title**  
 COMPASSION.LY
 
