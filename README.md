@@ -26,9 +26,10 @@ The Major Introduction feature is designed to display information related to maj
 7. Colleges Information
 
 - *Technologies :*
-  [Technologies](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:61e970043ca90360db4661e6e35adb0220221228091054.png)
+  ![Technologies](https://dicoding-web-img.sgp1.cdn.digitaloceanspaces.com/original/academy/dos:61e970043ca90360db4661e6e35adb0220221228091054.png)
   1. [MVVM](https://developer.android.com/topic/architecture)
   2. [Dependency Injection](https://developer.android.com/training/dependency-injection)
+
 - *Dependencies :*
 1. [Material Design]([https://m3.material.io/](https://m2.material.io/develop/android))
 3. [Firebase Authentication](https://firebase.google.com/docs/auth?hl=id)
