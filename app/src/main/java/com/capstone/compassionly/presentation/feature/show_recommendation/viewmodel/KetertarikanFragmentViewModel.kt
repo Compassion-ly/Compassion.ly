@@ -8,7 +8,6 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.models.FieldRecResponse
-import com.capstone.compassionly.models.forsending.QuickRecResponse
 import com.capstone.compassionly.models.local.Interest
 import com.capstone.compassionly.repository.core.network.FieldRecRepository
 import kotlinx.coroutines.launch
