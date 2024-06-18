@@ -9,7 +9,7 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 ## MD Members:
 | Name | Bangkit-ID     | Github-Profile  | LinkedIn |
 | :-------- | :------- | :-------------------------------- | :-------------------------------- |
-| Ilham Surya Putra Pamungkas      | `A622D4KY4540` | [@Ilham](https://github.com/ispamungkas) | [@Ilham](in/ilham-surya-putra-pamungkas-71b63825a) |
+| Ilham Surya Putra Pamungkas      | `A622D4KY4540` | [@Ilham](https://github.com/ispamungkas) | [@Ilham](https://www.linkedin.com/in/ilham-surya-putra-pamungkas-71b63825a/) |
 | Jesica Sanditia Putri      | `A132D4KX4100` | [@Jesica](https://github.com/jesicasp) | [@Jesica](https://www.linkedin.com/in/jesica-sanditia-putri/)|
 
 ## Mobile Development Documentation
