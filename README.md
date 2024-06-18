@@ -1,4 +1,7 @@
+
 *Mobile Development Documentation*
+
+![logo fix no ellipse]([https://user-images.githubusercontent.com/55023518/121027586-4a164d80-c7d1-11eb-9432-63b89e9af274.png](https://drive.google.com/file/d/1er0PvWhnQydAAnMThrFn4YKnASqNvslW/view?usp=drive_link))
 
 **# Project Title**  
 COMPASSION.LY
