@@ -11,6 +11,10 @@ android {
     namespace = "com.capstone.compassionly"
     compileSdk = 34
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     defaultConfig {
         applicationId = "com.capstone.compassionly"
         minSdk = 26
@@ -113,6 +117,8 @@ dependencies {
     kapt("androidx.room:room-compiler:2.6.1")
 
     // For Testing
-    testImplementation("org.mockito:mockito-core:3.12.4")
-    testImplementation("org.mockito:mockito-inline:3.12.4")
+    testImplementation("org.mockito:mockito-core:3.11.2")
+    testImplementation("org.mockito:mockito-inline:3.11.2")
+    testImplementation("androidx.arch.core:core-testing:2.1.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.0")
 }
