@@ -36,6 +36,35 @@
             android:lineSpacingExtra="10dp"
             style="@style/Theme.Compassionly.Poppins_12_regular_onSurface"/>
 
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/EditTextCustom_allradius_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cari_universitas">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/md_theme_primary"
+                    android:drawableEnd="@drawable/baseline_search_24"
+                    style="@style/Theme.Compassionly.Poppins_12_regular_primary"
+                    android:ems="10"
+                    android:maxLines="1"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="2dp"

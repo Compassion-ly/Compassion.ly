@@ -49,7 +49,7 @@
     <string name="user_like_the_material">Apakah kamu menyukai topik ini ?</string>
     <string name="send">Kirim</string>
     <string name="image_rate_success">Gambar rating sukses</string>
-    <string name="explore_another_topic">Pelajari topic lain</string>
+    <string name="explore_another_topic">Pelajari Topik Lain</string>
     <string name="app_logo">App Logo</string>
     <string name="circle_deco">circle decoration</string>
     <string name="login_title">Ayo cari \nPassion mu !!</string>
@@ -93,7 +93,7 @@
     <string name="nama_universitas">Nama Universitas</string>
     <string name="interest">Ketertarikan</string>
     <string name="_1000">1000</string>
-    <string name="kapaistas">Kapaistas</string>
+    <string name="kapaistas">Kapasitas</string>
     <string name="data_jurusan">Data Jurusan</string>
     <string name="nama_major">Nama Major</string>
     <string name="_100">100</string>
@@ -103,4 +103,6 @@
     <string name="data_not_found">Data tidak ditemukan</string>
     <string name="ask_login">Silahkan login kembali</string>
     <string name="daftar_kampus">Daftar Kampus</string>
+    <string name="lihat_rekomendasi">Lihat Rekomendasi</string>
+    <string name="cari_universitas">Cari Universitas ...</string>
 </resources>

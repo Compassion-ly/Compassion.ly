@@ -2,7 +2,10 @@ package com.capstone.compassionly.presentation.feature.collage
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +23,7 @@ import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class CollageActivity : AppCompatActivity() {
     private var _binding: ActivityCollageBinding? = null
@@ -76,6 +80,27 @@ class CollageActivity : AppCompatActivity() {
     private fun setAdapter(data: List<CollageModel>) {
         adapter.save(data)
         binding.apply {
+            edSearch.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val filter = data.filter { item ->
+                        item.collegeName?.lowercase(Locale.ROOT)?.contains(s.toString()) ?: false
+                    }
+                    adapter.save(filter)
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+
+            })
             rcList.hasFixedSize()
             rcList.layoutManager = LinearLayoutManager(this@CollageActivity)
             rcList.adapter = adapter
