@@ -14,9 +14,9 @@ import com.capstone.compassionly.models.DataFieldRec
 import com.capstone.compassionly.models.FieldRecResponse
 import com.capstone.compassionly.presentation.adapter.ListCategoryAdapter
 import com.capstone.compassionly.presentation.feature.quickrec.QuickRecActivity
-import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.KetertarikanFragmentViewModel
 import com.capstone.compassionly.repository.di.CommonInjector
+import com.capstone.compassionly.utility.Resources
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
