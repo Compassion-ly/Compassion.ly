@@ -1,11 +1,8 @@
 package com.capstone.compassionly.presentation.feature.quickrec.viewmodel
 
-import androidx.annotation.OptIn
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.MutableLiveData
 import com.capstone.compassionly.UtilsTest.getOrAwaitValue
-import com.capstone.compassionly.models.RatingModel
-import com.capstone.compassionly.models.SuccessResponse
 import com.capstone.compassionly.models.forsending.Data
 import com.capstone.compassionly.models.forsending.QuickRecResponse
 import com.capstone.compassionly.repository.core.network.QuickRecRepository
@@ -17,10 +14,9 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -29,7 +25,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
-import retrofit2.Response
 
 @kotlin.OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(MockitoJUnitRunner::class)

@@ -1,6 +1,5 @@
 package com.capstone.compassionly
 
-import com.capstone.compassionly.models.DataItem
 import com.capstone.compassionly.models.DetailUserModel
 import com.capstone.compassionly.models.SchoolMajor
 import com.capstone.compassionly.models.SchoolModel
