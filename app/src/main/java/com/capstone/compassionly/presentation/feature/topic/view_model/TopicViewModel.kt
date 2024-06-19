@@ -15,6 +15,7 @@ import com.capstone.compassionly.repository.core.network.TopicRepository
 import com.capstone.compassionly.utility.Resources
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import okhttp3.internal.EMPTY_REQUEST
 import retrofit2.HttpException
 
 class TopicViewModel(
@@ -35,7 +36,7 @@ class TopicViewModel(
                     val body = call.body()?.data
                     emit(Resources.Success(body))
                 } else if (call.code() == 404) {
-                    emit(Resources.Error("notfound topic"))
+                    emit(Resources.Error("Topik tidak ditemukan"))
                 }
             } catch (e: HttpException) {
                 if (e.code() == 500) {
@@ -61,6 +62,8 @@ class TopicViewModel(
                 if (call.isSuccessful) {
                     val body = call.body()
                     _resultPost.postValue(Resources.Success(body))
+                } else {
+                    _resultPost.postValue(Resources.Error("Terjadi kesalahan"))
                 }
             } catch (e: HttpException) {
                 if (e.code() == 500) {

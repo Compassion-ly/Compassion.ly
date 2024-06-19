@@ -76,18 +76,11 @@ class UserViewModelTest {
 
     @Test
     fun `when got a data of Detail User must be Loading First`() = runTest {
-        // Given
         `when`(userRepository.getMe("s")).thenReturn(Response.success(SuccessResponse(userDummy)))
-
-        // Observer to observe changes in LiveData
         val observer = Observer<Resources<Any?>> {}
         try {
             userViewModel.getMe("s").observeForever(observer)
-
-            // When
             val actualResult = userViewModel.getMe("s").getOrAwaitValue()
-
-            // Then
             assertEquals(Resources.Loading, actualResult)
         } finally {
             userViewModel.getMe("s").removeObserver(observer)
@@ -96,30 +89,19 @@ class UserViewModelTest {
 
     @Test
     fun `when got a data of Detail User error`() = runTest {
-        // Given
         val errorResponse = Response.error<SuccessResponse<DetailUserModel>>(
             404,
             "User not found".toResponseBody("text/plain".toMediaTypeOrNull())
         )
         `when`(userRepository.getMe("s")).thenReturn(errorResponse)
-
-
-        // When
         val actualResult = userRepository.getMe("s")
-
-        // Then
         assertEquals(errorResponse.code(), actualResult.code())
     }
 
     @Test
     fun `when got a data of Detail User success`() = runTest {
-        // Check API
         `when`(userRepository.getMe("s")).thenReturn(Response.success(SuccessResponse(userDummy)))
-
-        // Get API
         val actualResult = userRepository.getMe("s")
-
-        // Then
         assertEquals(Response.success(userDummy).code() , actualResult.code())
     }
 }
