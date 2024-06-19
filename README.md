@@ -7,8 +7,8 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 ## MD Members:
 | Name | Bangkit-ID     | Github-Profile  | LinkedIn |
 | :-------- | :------- | :-------------------------------- | :-------------------------------- |
-| Ilham Surya Putra Pamungkas      | `A622D4KY4540` | [@Ilham](https://github.com/ispamungkas) | [@Ilham](https://www.linkedin.com/in/ilham-surya-putra-pamungkas-71b63825a/) |
-| Jesica Sanditia Putri      | `A132D4KX4100` | [@Jesica](https://github.com/jesicasp) | [@Jesica](https://www.linkedin.com/in/jesica-sanditia-putri/)|
+| Ilham Surya Putra Pamungkas      | `A622D4KY4540` | [@Ilham](https://github.com/ispamungkas) | <a href="https://www.linkedin.com/in/ilham-surya-putra-pamungkas-71b63825a/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>   |
+| Jesica Sanditia Putri      | `A132D4KX4100` | [@Jesica](https://github.com/jesicasp) |<a href="https://www.linkedin.com/in/jesica-sanditia-putri/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"/></a>|
 
 ## Table of Contents
 - [Features](#features)
