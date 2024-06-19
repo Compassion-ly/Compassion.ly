@@ -7,7 +7,7 @@ import com.capstone.compassionly.utility.viewmodelfactory.StateViewModelFactory
 
 object StateInjection {
 
-    fun onBoardInjection(context : Context) : StateViewModelFactory {
+    fun onBoardInjection(context: Context): StateViewModelFactory {
         val stateAppPreference = StateAppPreference(context.datastore)
         return StateViewModelFactory(stateAppPreference)
     }

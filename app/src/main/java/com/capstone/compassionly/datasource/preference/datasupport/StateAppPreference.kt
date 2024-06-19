@@ -10,10 +10,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 val Context.datastore : DataStore<Preferences> by preferencesDataStore("state")
-class StateAppPreference(private val dataStore: DataStore<Preferences>) {
+class StateAppPreference(val dataStore: DataStore<Preferences>) {
 
     object ModelState {
         val onBoardState = stringPreferencesKey("onBoardState")
+        val accessToken = stringPreferencesKey("access_token")
     }
 
     suspend fun updateOnBoardState() {
@@ -25,6 +26,24 @@ class StateAppPreference(private val dataStore: DataStore<Preferences>) {
     fun getOnBoardState() : Flow<String?> {
         return dataStore.data.map {
             it[ModelState.onBoardState]
+        }
+    }
+
+    fun getAccessToken() : Flow<String?> {
+        return dataStore.data.map {
+            it[ModelState.accessToken]
+        }
+    }
+
+    suspend fun setAccessToken(accessToken: String) {
+        dataStore.edit {
+            it[ModelState.accessToken] = accessToken
+        }
+    }
+
+    suspend fun deleteAccessToken() {
+        dataStore.edit {
+            it[ModelState.accessToken] = ""
         }
     }
 

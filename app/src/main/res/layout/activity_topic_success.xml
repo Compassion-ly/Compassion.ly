@@ -23,13 +23,33 @@
             android:src="@drawable/image_success_learn"
             android:contentDescription="@string/image_rate_success"/>
         
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnMoreExploreTopic"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="@string/explore_another_topic"
-            style="@style/Button_Primary_12_regular"
-            android:layout_margin="20dp"/>
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMoreExploreTopic"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:text="@string/explore_another_topic"
+                style="@style/Button_Primary_12_regular"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="5dp"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnShowRecommendation"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="60dp"
+                android:text="@string/lihat_rekomendasi"
+                android:layout_marginStart="5dp"
+                style="@style/Button_Primary_12_regular"
+                android:layout_marginEnd="20dp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

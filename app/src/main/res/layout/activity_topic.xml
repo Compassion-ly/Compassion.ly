@@ -11,37 +11,38 @@
         android:id="@+id/vpTopic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/containerInstruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:layout_marginBottom="40dp"
+        android:visibility="invisible"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="UseCompoundDrawables">
-        
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="32dp"
-            android:src="@drawable/icon_arrow_left"
+            android:layout_marginEnd="20dp"
             android:contentDescription="@string/desc_icon_skip"
-            android:layout_marginEnd="20dp"/>
+            android:src="@drawable/icon_arrow_left" />
 
         <TextView
+            style="@style/Theme.Compassionly.Poppins_12_regular_outline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
             android:text="@string/skip_intruction"
-            style="@style/Theme.Compassionly.Poppins_12_regular_outline"/>
-        
+            android:textAlignment="center" />
+
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
@@ -49,10 +50,11 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:cardCornerRadius="100dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,11 +65,58 @@
             <ImageView
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/icon_play"
-                android:contentDescription="@string/desc_button_topic"/>
+                android:contentDescription="@string/desc_button_topic"
+                android:src="@drawable/icon_play" />
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/notFoundContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/image_not_found" />
+
+        <TextView
+            style="@style/Theme.Compassionly.Poppins_12_regular_onSurface"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/data_topic_tidak_ditemukan_silahkan_refresh_halaman"
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRefresh"
+            style="@style/Button_Primary_12_regular"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/muat_ulang" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

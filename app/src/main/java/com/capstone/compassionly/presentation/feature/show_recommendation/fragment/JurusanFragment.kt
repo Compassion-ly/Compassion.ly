@@ -1,15 +1,18 @@
 package com.capstone.compassionly.presentation.feature.show_recommendation.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstone.compassionly.databinding.FragmentJurusanBinding
 import com.capstone.compassionly.presentation.adapter.ListMajorRecAdapter
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.DataDummyUtil
-import com.capstone.compassionly.presentation.feature.show_recommendation.datadummy.Major
+import com.capstone.compassionly.presentation.feature.show_recommendation.viewmodel.JurusanFragmentViewModel
+import com.capstone.compassionly.repository.di.CommonInjector
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +30,9 @@ class JurusanFragment : Fragment() {
     private var param2: String? = null
     private var _binding: FragmentJurusanBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: JurusanFragmentViewModel by viewModels {
+        CommonInjector.common(requireContext())
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +40,22 @@ class JurusanFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val listMajor = DataDummyUtil.getMajors()
-        setListMajor(listMajor)
-        showRecyclerView()
+
+        viewModel.getToken().observe(viewLifecycleOwner) { userToken ->
+            if (userToken != null) {
+                setListMajor(userToken)
+                showRecyclerView()
+                Log.d("Jurusan Fragment", "User Token: $userToken")
+            } else {
+                Toast.makeText(context, "Token not found", Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
 
     private fun showRecyclerView() {
@@ -48,20 +63,23 @@ class JurusanFragment : Fragment() {
         binding.rvMajors.layoutManager = layoutManager
     }
 
-    private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
-    }
 
-    private fun setListMajor(majors: List<Major>) {
-        val adapter = ListMajorRecAdapter()
-        adapter.submitList(majors)
+    private fun setListMajor(token: String) {
+        val adapter = ListMajorRecAdapter(token)
         binding.rvMajors.adapter = adapter
+
+        viewModel.getMajorRecResult()
+        viewModel.majorrec.observe(viewLifecycleOwner) { majors ->
+            binding.progressBar.visibility = View.GONE
+            adapter.submitList(majors)
+            Log.d("Major Rec Fragment", "result : $majors")
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentJurusanBinding.inflate(inflater, container, false)
         return binding.root
@@ -78,3 +96,6 @@ class JurusanFragment : Fragment() {
             }
     }
 }
+
+
+

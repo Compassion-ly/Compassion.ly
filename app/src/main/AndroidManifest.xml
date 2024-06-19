@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Compassionly"
         tools:targetApi="31">
+        <activity
+            android:name=".presentation.feature.collage.DetailCollageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.collage.CollageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.pengantar_jurusan.DetailProspectActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.quickrec.QuickRecResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.feature.quickrec.QuickRecActivity"
+            android:exported="false"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".presentation.feature.topic.TopicSuccessActivity"
             android:exported="false" />
@@ -28,7 +46,6 @@
         <activity
             android:name=".presentation.feature.topic_histories.TopicHistoriesActivity"
             android:exported="false" />
-
         <activity
             android:name=".presentation.feature.show_recommendation.ShowRecommendationActivity"
             android:exported="false" />
@@ -40,7 +57,8 @@
             android:exported="false" />
         <activity
             android:name=".presentation.feature.dashboard.DashboardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTop"/>
         <activity
             android:name=".presentation.feature.pengantar_jurusan.DetailJurusanActivity"
             android:exported="false" />
@@ -58,6 +76,9 @@
             android:exported="false" />
         <activity
             android:name=".presentation.feature.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -65,9 +86,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

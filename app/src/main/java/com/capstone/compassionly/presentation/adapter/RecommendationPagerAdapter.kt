@@ -7,6 +7,7 @@ import com.capstone.compassionly.presentation.feature.show_recommendation.fragme
 import com.capstone.compassionly.presentation.feature.show_recommendation.fragment.KetertarikanFragment
 
 class RecommendationPagerAdapter(activity: AppCompatActivity) : FragmentStateAdapter(activity) {
+
     override fun getItemCount(): Int {
         return 2
     }

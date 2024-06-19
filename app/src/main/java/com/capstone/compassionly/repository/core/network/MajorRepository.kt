@@ -1,0 +1,107 @@
+package com.capstone.compassionly.repository.core.network
+
+import android.util.Log
+import androidx.lifecycle.liveData
+import com.capstone.compassionly.datasource.network.ApiConfiguration.Companion.hitPointService
+import com.capstone.compassionly.models.ErrorMajorDetailModel
+import com.capstone.compassionly.models.ErrorModel
+import com.capstone.compassionly.utility.Resources
+import com.capstone.compassionly.utility.Utils
+import com.google.gson.Gson
+import retrofit2.HttpException
+
+class MajorRepository {
+
+    fun getMajors(token: String) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = hitPointService.getMajors(Utils.getHeader(token))
+            response.data?.let {
+                emit(Resources.Success(it.filterNotNull()))
+            } ?: emit(Resources.Error("No data available"))
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage))
+        }
+    }
+
+    fun getDetailMajor(token: String, majorId: Int) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = hitPointService.getdetailMajor(Utils.getHeader(token), majorId)
+            response.data?.let {
+                emit(Resources.Success(it))
+                Log.d(TAG, "Detail major : ${response.data}")
+            } ?: run {
+                Log.e(TAG, "Response data is null")
+                emit(Resources.Error("No data available"))
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorDetailModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage))
+        }
+    }
+
+    fun getDetailCourse(token: String, courseId: Int) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = hitPointService.getdetailCourse(Utils.getHeader(token), courseId)
+            response.data?.let {
+                emit(Resources.Success(it))
+                Log.d(TAG, "Detail course : ${response.data}")
+            } ?: run {
+                Log.e(TAG, "Response data is null")
+                emit(Resources.Error("No data available"))
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorDetailModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage))
+        }
+    }
+
+
+
+
+    fun getCollegesByMajor(token: String, majorId: Int) = liveData {
+        emit(Resources.Loading)
+        try {
+            val response = hitPointService.getCollegesByMajor(Utils.getHeader(token), majorId)
+            response.data?.let {
+                if (it.isNotEmpty()) {
+                    emit(Resources.Success(it.filterNotNull()))
+                } else {
+                    Log.e(TAG, "No data available")
+                    emit(Resources.Error("No data available"))
+                }
+            } ?: run {
+                Log.e(TAG, "Response data is null")
+                emit(Resources.Error("No data available"))
+            }
+        } catch (e: HttpException) {
+            val jsonInString = e.response()?.errorBody()?.string()
+            val errorBody = Gson().fromJson(jsonInString, ErrorMajorDetailModel::class.java)
+            val errorMessage = errorBody.detail
+            emit(Resources.Error(errorMessage))
+        }
+    }
+
+    companion object {
+        const val TAG = "Major Repository"
+
+        @Volatile
+        private var instance: MajorRepository? = null
+
+        fun getInstance(
+        ): MajorRepository =
+            instance ?: synchronized(this) {
+                instance ?: MajorRepository()
+            }.also { instance = it }
+    }
+
+}

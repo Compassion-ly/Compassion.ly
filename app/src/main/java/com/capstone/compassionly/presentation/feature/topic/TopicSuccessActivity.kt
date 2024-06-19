@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityTopicSuccessBinding
+import com.capstone.compassionly.presentation.feature.show_recommendation.ShowRecommendationActivity
 
 class TopicSuccessActivity : AppCompatActivity() {
     private var _binding : ActivityTopicSuccessBinding? = null
@@ -30,8 +31,14 @@ class TopicSuccessActivity : AppCompatActivity() {
 
         binding.btnMoreExploreTopic.setOnClickListener {
             val intent = Intent(this, TopicActivity::class.java)
+            finishAffinity()
             startActivity(intent)
-            finish()
+        }
+
+        binding.btnShowRecommendation.setOnClickListener {
+            val intent = Intent(this, ShowRecommendationActivity::class.java)
+            finishAffinity()
+            startActivity(intent)
         }
     }
 

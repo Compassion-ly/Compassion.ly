@@ -1,19 +1,20 @@
 package com.capstone.compassionly.models
 
+import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 data class UserModel(
-
 	@field:SerializedName("access_token")
-	val accessToken: String? = null,
+	val accessToken: String,
 
 	@field:SerializedName("token_type")
-	val tokenType: String? = null,
+	val tokenType: String,
 
 	@field:SerializedName("user")
-	val user: User? = null
+	val user: User
 )
 
+@Entity
 data class User(
 
 	@field:SerializedName("uid")
@@ -26,7 +27,10 @@ data class User(
 	val gender: String? = null,
 
 	@field:SerializedName("user_schools_id")
-	val userSchoolsId: Int? = null,
+	val userSchoolsId: Int,
+
+	@field:SerializedName("user_topic_weight")
+	val userTopicWeight: List<Any>,
 
 	@field:SerializedName("last_name")
 	val lastName: String? = null,
@@ -42,4 +46,17 @@ data class User(
 
 	@field:SerializedName("email")
 	val email: String? = null
+)
+
+data class DetailUserModel (
+
+	@field:SerializedName("school")
+	val school: SchoolModel?,
+
+	@field:SerializedName("school_major")
+	val schoolMajor: SchoolMajor?,
+
+	@field:SerializedName("user")
+	val user: User?
+
 )
