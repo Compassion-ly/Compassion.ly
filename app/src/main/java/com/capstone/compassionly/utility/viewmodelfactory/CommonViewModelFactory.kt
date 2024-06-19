@@ -35,7 +35,7 @@ class CommonViewModelFactory(
     private val quickRecRepository: QuickRecRepository,
     private val majorRecRepository: MajorRecRepository,
     private val collageRepository: CollageRepository,
-    private val fieldRecRepository: FieldRecRepository
+    private val fieldRecRepository: FieldRecRepository,
 
 ) : ViewModelProvider.NewInstanceFactory() {
 
@@ -63,7 +63,7 @@ class CommonViewModelFactory(
             }
 
             TopicHistoryViewModel::class.java -> {
-                TopicHistoryViewModel(localDataSource) as T
+                TopicHistoryViewModel(localDataSource, majorRecRepository, fieldRecRepository) as T
             }
 
             DetailJurusanViewModel::class.java -> {

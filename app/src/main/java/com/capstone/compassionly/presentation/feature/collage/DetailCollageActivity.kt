@@ -1,8 +1,6 @@
 package com.capstone.compassionly.presentation.feature.collage
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -12,7 +10,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDetailCollageBinding
-import com.capstone.compassionly.models.DetailCollageModel
 import com.capstone.compassionly.models.MajorsItem
 import com.capstone.compassionly.presentation.adapter.ItemMajorGridAdapter
 import com.capstone.compassionly.presentation.feature.collage.viewmodel.CollageViewModel

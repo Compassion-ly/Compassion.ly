@@ -105,4 +105,7 @@
     <string name="daftar_kampus">Daftar Kampus</string>
     <string name="lihat_rekomendasi">Lihat Rekomendasi</string>
     <string name="cari_universitas">Cari Universitas ...</string>
+    <string name="topic_history">Histori Topik</string>
+    <string name="rec_history">Histori Rekomendasi</string>
+    <string name="bidang">Bidang</string>
 </resources>

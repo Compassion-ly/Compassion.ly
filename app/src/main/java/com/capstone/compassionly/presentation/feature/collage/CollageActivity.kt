@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +20,6 @@ import com.capstone.compassionly.presentation.feature.collage.viewmodel.CollageV
 import com.capstone.compassionly.repository.di.CommonInjector
 import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.Locale
 

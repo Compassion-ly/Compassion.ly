@@ -1,15 +1,12 @@
 package com.capstone.compassionly.presentation.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
-import com.capstone.compassionly.databinding.ItemDetailTopicBinding
 import com.capstone.compassionly.databinding.ItemMajorForGridBinding
 import com.capstone.compassionly.models.MajorsItem
-import com.capstone.compassionly.models.TopicModel
 
 class ItemMajorGridAdapter() : RecyclerView.Adapter<ItemMajorGridAdapter.DetailViewHolder>() {
 
