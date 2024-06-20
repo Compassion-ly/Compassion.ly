@@ -61,18 +61,6 @@ class UserViewModel(
         }
     }
 
-    fun removeTokenApi(token: String): LiveData<Resources<SuccessResponse<String>?>> {
-        val result = MutableLiveData<Resources<SuccessResponse<String>?>>()
-        viewModelScope.launch {
-            val response = userRepository.removeTokenApi(token)
-            if (response.isSuccessful) {
-                result.postValue(
-                    Resources.Success(response.body())
-                )
-            }
-        }
-        return result
-    }
 
     fun getSchoolList(): LiveData<List<SchoolModel>?> {
         val result = MutableLiveData<List<SchoolModel>?>()
@@ -126,7 +114,6 @@ class UserViewModel(
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody =
                     Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
-                val errorMessage = errorBody.detail
             } else {
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)

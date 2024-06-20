@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 val Context.datastore : DataStore<Preferences> by preferencesDataStore("state")
-class StateAppPreference(private val dataStore: DataStore<Preferences>) {
+class StateAppPreference(val dataStore: DataStore<Preferences>) {
 
     object ModelState {
         val onBoardState = stringPreferencesKey("onBoardState")
