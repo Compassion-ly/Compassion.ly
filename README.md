@@ -87,7 +87,7 @@ Our team aims to address the issue of students choosing the wrong major, a commo
 ## <a name="deplink"> Deployment Link APK Compassion.ly
 
 Download Link apk Compassion.ly:<br>
-[Compassion.ly](#)
+[Compassion.ly](https://drive.google.com/file/d/19UzTTVlRCTD8c-FWAlIQ8Hp9k7w9Oo29/view?usp=sharing)
 
 ## <a name="howto"> How to Install and Run the Project
 1. Click on the Compassion.ly APK link.
