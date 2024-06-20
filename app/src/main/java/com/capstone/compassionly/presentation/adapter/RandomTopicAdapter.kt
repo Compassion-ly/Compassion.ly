@@ -17,9 +17,15 @@ class RandomTopicAdapter() : RecyclerView.Adapter<RandomTopicAdapter.TopicViewHo
         fun setData(data: TopicModel) {
             binding.apply {
 //                imageTopic.setImageResource(data.picture)
-                Glide.with(binding.root.context)
-                    .load(data.topicImage)
-                    .into(imageTopic)
+                data.topicImage?.let {
+                    Glide.with(binding.root.context)
+                        .load(data.topicImage)
+                        .into(imageTopic)
+                } ?: run {
+                    Glide.with(binding.root.context)
+                        .load("https://www.netlify.com/v3/img/blog/the404.png")
+                        .into(imageTopic)
+                }
                 topicName.text = data.topicName
                 shortDescription.text = data.shortIntroduction
             }

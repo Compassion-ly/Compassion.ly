@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityDashboardBinding
 import com.capstone.compassionly.models.DataMajorRec
+import com.capstone.compassionly.models.LoginResponse
 import com.capstone.compassionly.models.MajorRecResponse
 import com.capstone.compassionly.models.local.LocalUser
 import com.capstone.compassionly.presentation.feature.collage.CollageActivity
@@ -33,6 +34,7 @@ import com.capstone.compassionly.utility.UtilsData
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -54,11 +56,35 @@ class DashboardActivity : AppCompatActivity() {
         auth = Firebase.auth
         Utils.changeStatusBarColorWhite(this)
         viewModel.getToken().observe(this) { token ->
+            println("token $token")
             if (token != null) {
                 Log.d(TAG, "User Token: $token")
                 Log.d(TAG, "UPDATE: $token")
                 viewModel.updateUserHistory(this@DashboardActivity, token)
                 menu(token)
+            } else {
+                auth.currentUser?.getIdToken(true)?.addOnCompleteListener { task ->
+                    task.result.token?.let {
+                        viewModel.getTokenOnline(it).observe(this@DashboardActivity) {result ->
+                            when (result) {
+                                is Resources.Loading -> {
+                                    Log.d(TAG, "Loading...")
+                                }
+
+                                is Resources.Success -> {
+                                    val data = result.data as LoginResponse
+                                    val toks = data.data?.accessToken
+                                    toks?.let { token ->
+                                        menu(token)
+                                    }
+                                }
+
+                                is Resources.Error -> {
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 

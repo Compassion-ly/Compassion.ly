@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.capstone.compassionly.datasource.preference.datasupport.StateAppPreference
 import com.capstone.compassionly.models.ErrorModel
@@ -13,6 +14,7 @@ import com.capstone.compassionly.models.local.LocalHistoryTopic
 import com.capstone.compassionly.repository.core.local.LocalDataSource
 import com.capstone.compassionly.repository.core.network.MajorRecRepository
 import com.capstone.compassionly.repository.core.network.UserRepository
+import com.capstone.compassionly.utility.Resources
 import com.capstone.compassionly.utility.Utils
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -28,6 +30,37 @@ class DashboardViewModel(
     fun getDataUser() = localDataSource.getUser()
 
     fun getToken() = stateAppPreferences.getAccessToken().asLiveData()
+
+    fun setToken(token: String) = viewModelScope.launch { stateAppPreferences.setAccessToken(token) }
+
+    fun getTokenOnline(token: String) = liveData {
+        emit(Resources.Loading)
+        try {
+            val call = userRepository.updateToken(token)
+            emit(Resources.Success(call))
+        } catch (e: HttpException) {
+            if (e.code() == 500) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody =
+                    Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                emit(Resources.Error(errorBody))
+            } else if (e.code() == 404) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody =
+                    Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                emit(Resources.Error(errorBody))
+            } else if (e.code() == 422) {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody =
+                    Gson().fromJson(jsonInString, ErrorUnDocumentedModel::class.java)
+                emit(Resources.Error(errorBody))
+            } else {
+                val jsonInString = e.response()?.errorBody()?.string()
+                val errorBody = Gson().fromJson(jsonInString, ErrorModel::class.java)
+                emit(Resources.Error(errorBody))
+            }
+        }
+    }
 
     fun updateUserHistory(context: Context, token: String) = viewModelScope.launch {
         if (Utils.checkConnection(context)) {
@@ -86,5 +119,6 @@ class DashboardViewModel(
     companion object {
         const val TAG = "Dashboard VM"
     }
+
 
 }

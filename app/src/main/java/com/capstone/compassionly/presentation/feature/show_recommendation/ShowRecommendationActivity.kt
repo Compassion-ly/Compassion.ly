@@ -1,5 +1,6 @@
 package com.capstone.compassionly.presentation.feature.show_recommendation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.StringRes
@@ -10,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.capstone.compassionly.R
 import com.capstone.compassionly.databinding.ActivityShowRecommendationBinding
 import com.capstone.compassionly.presentation.adapter.RecommendationPagerAdapter
+import com.capstone.compassionly.presentation.feature.dashboard.DashboardActivity
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -38,6 +40,12 @@ class ShowRecommendationActivity : AppCompatActivity() {
             tab.text = resources.getString(TAB_TITLES[position])
         }.attach()
         supportActionBar?.elevation = 0f
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this@ShowRecommendationActivity, DashboardActivity::class.java)
+        startActivity(intent)
     }
 
     companion object {

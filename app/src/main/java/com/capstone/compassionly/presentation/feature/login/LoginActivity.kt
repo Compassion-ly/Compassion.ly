@@ -82,7 +82,8 @@ class LoginActivity : AppCompatActivity() {
                                         checkState(result.data, token = result.data?.accessToken)
                                     } else {
                                         result.data?.accessToken?.let { it1 ->
-                                            updateUI(false,
+                                            updateUI(
+                                                false,
                                                 it1
                                             )
                                         }
@@ -127,7 +128,8 @@ class LoginActivity : AppCompatActivity() {
                 }
                 create()
                 show()
-            }        } else {
+            }
+        } else {
             if (
                 user?.user?.firstName == null ||
                 user.user.lastName == null ||
@@ -169,7 +171,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(needUpdateData: Boolean, token: String) {
-        Log.d("LoginTest","Updatedata()")
+        Log.d("LoginTest", "Updatedata()")
         if (needUpdateData) {
             val intent = Intent(this@LoginActivity, FormCompleteUserProfile::class.java)
             intent.putExtra("token", token)
@@ -177,8 +179,6 @@ class LoginActivity : AppCompatActivity() {
             finishAffinity()
         } else {
             storeUserToLocal(token)
-            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-            finishAffinity()
         }
     }
 
@@ -195,7 +195,10 @@ class LoginActivity : AppCompatActivity() {
                     val data = resources.data as SuccessResponse<*>
                     val detailUser = data.data as DetailUserModel
                     viewModel.store(LocalUser(0, detailUser))
+                    // Problem
                     viewModel.storeToken(token)
+                    startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
+                    finishAffinity()
                 }
 
                 is Resources.Error -> {

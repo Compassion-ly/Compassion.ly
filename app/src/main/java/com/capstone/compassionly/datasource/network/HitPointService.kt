@@ -137,7 +137,7 @@ interface HitPointService {
     @GET("/api/v1/colleges/colleges/{college_id}")
     suspend fun getCollageByIdDetail(
         @HeaderMap headerMap: Map<String, String>,
-        @Path("college_id") collageId: Int
+        @Path("college_id") collegeId: Int
     ): Response<SuccessResponse<CollageByIdModel>>
 
 

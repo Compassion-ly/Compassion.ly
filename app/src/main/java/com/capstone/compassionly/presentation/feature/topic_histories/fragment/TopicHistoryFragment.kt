@@ -55,8 +55,9 @@ class TopicHistoryFragment : Fragment() {
     private fun initialization() {
         historyVM.apply {
             getUser().observe(viewLifecycleOwner) { user ->
-                val current = user[0].data?.user?.id
-                getHistoryTopic(viewLifecycleOwner ,current!!)
+                user[0].data?.user?.id.let {
+                    getHistoryTopic(viewLifecycleOwner ,it!!)
+                }
             }
         }
     }

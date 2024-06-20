@@ -103,6 +103,8 @@ class LoginViewModel(
                 response.body().apply {
                     emit(Resources.Success(this))
                 }
+            } else if (response.code() == 500) {
+                emit(Resources.Error("Terjadi kesalahan, harap mencoba kembali nanti"))
             }
         } catch (e: HttpException) {
             val jsonInString = e.response()?.errorBody()?.string()
